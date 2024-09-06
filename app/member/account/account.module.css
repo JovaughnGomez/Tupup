@@ -1,0 +1,133 @@
+.contentWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    width: 100%;
+    max-width: 609px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.info {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.info h1 {
+    width: 100%;
+    font-size: .9em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.info span {
+    font-size: .8em;
+    letter-spacing: 1px;
+}
+
+.manageAccount {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+    color: white;
+}
+
+.email {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    font-size: .85em; 
+    font-weight: bold;
+}
+
+.email p {
+    width: 100%;
+}
+
+.userOrders {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8em;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255 255 255 / 5%);
+    padding-bottom: 1.5em;
+}
+
+.viewOrders>p {
+    color: var(--grayText);
+}
+
+.viewOrders {
+    display: flex;
+    gap: .2em;
+    align-items: center;
+    color: white;
+}
+
+.orderInfo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.orderInfo a {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderInfo span {
+    color: var(--grayText);
+    font-size: .7em;
+    font-weight: bold;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat::before {
+    color: white;
+    content: attr(data);
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.userWallet {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.topUp {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.topUpBtn {
+    color: white;
+}
+
+.balance {
+    color: green;
+    display: flex;
+}
+
+@media (min-width: 1000px) {
+    
+}

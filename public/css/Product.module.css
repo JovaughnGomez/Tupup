@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    height: 55px;
+    gap: 1em;
+    width: 230px;
+}
+
+.img {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.img {
+    width: 50px;
+    height: 50px;
+}
+
+.productName {
+    font-weight: bold;
+    font-size: .8em;
+}
+
+.productRegion {
+    font-size: .7em;
+}
+
+@media (min-width: 580px) {
+    .wrapper {
+        width: 195px;
+    }
+}
+
+@media (min-width: 970px) {
+    .wrapper {
+        width: 210px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .wrapper {
+        width: 180px;
+    }
+}

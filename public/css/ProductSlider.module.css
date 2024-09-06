@@ -1,0 +1,66 @@
+.wrapper {
+    position: relative;
+    max-width: var(--maxContentWidth);
+    margin: auto;
+}
+
+.slider {
+    overflow: hidden;
+    display: flex;  
+    gap: 1em;
+    width: 100%;
+}
+
+.arrows {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 3.5em;
+}
+
+.arrow {
+    position: relative;
+    border-radius: 50%;
+    background-color: var(--primaryAccent);
+    z-index: 1;
+}
+
+.leftArrow {
+    position: absolute;
+    margin-left: 3px;
+}
+
+.rightArrow {
+    position: absolute;
+    margin-right: 3px;
+    right: 0%;
+}
+
+            
+@media (min-width: 1000px) {
+    .slider {
+        display: grid;
+        gap: 1.5em;
+        grid-template-columns: repeat(2, 2fr);
+    }
+
+    .arrows {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* .slider {
+        grid-template-columns: repeat(2, 2fr);
+        width: 85%;
+        margin: auto;
+    } */
+}
+
+@media (min-width: 1150px) and (max-width: 1420px) {
+    .slider {
+        width: 85%;
+        margin: auto;
+    }
+}

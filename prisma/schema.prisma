@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  email String @unique
+  password String
+  sessionId String?
+  wallet Decimal @default(0)
+  credits Decimal @default(0)
+  Country String @default("Trinidad and Tobago")
+  isAdmin Boolean @default(false)
+  isActive Boolean @default(true)
+  cart Cart[]
+  order Order[]
+  transaction Transaction[]
+}
+
+model Cart {
+  userId String @id @unique
+  user User @relation(fields: [userId], references: [id])
+  productId String  
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id String @id
+  productId String  
+  product Product @relation(fields: [productId], references: [id])
+  status String // Ongoing, Completed, Refunded, Cancelled
+  paymentMethod String
+  dateCreated DateTime @default(now())
+  dateCompleted DateTime?
+  userId String
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id String @id
+  value Decimal
+  voucher String
+  voucherType String
+  numberAssigned String
+  status String
+  dateCreated DateTime @default(now())
+  dateCompleted DateTime?
+  userId String
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Product {
+  id String @id
+  name String
+  displayName String
+  category String
+  cost Decimal
+  region String
+  order Order[]
+  carts Cart[]
+  amountAvailable Int @default(0)
+}

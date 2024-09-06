@@ -1,0 +1,132 @@
+.slideWrapper {
+    border-radius: 15px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 2em;
+    max-width: var(--maxContentWidth);
+}
+
+.slider {
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    margin: auto;
+    width: 100%;
+}
+
+.slide {
+    flex: 1 0 70%;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-178.5%);
+    padding: 0 .6em;
+}
+
+.picture {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+}
+
+.previousSlide {
+    order: 1;
+    opacity: .3;
+    transition: opacity .4s;
+}
+
+.currentSlide {
+    order: 2;
+    animation: changeOpacity 1s;
+}
+
+.nextSlide {
+    order: 3;
+    opacity: .2;
+}
+
+.waitingSlide {
+    order: 4;
+    opacity: .2;
+} 
+
+.moveSlides {
+    animation: moveAllSlides .5s;
+}
+
+.zoomIn {
+    animation: zoomIn 4.75s;
+}
+
+@keyframes moveAllSlides {
+    0% {transform: translateX(-178.5%);}
+    90% {transform: translateX(-278.5%);}
+    100% {transform: translateX(-278.5%);}
+}
+
+@keyframes moveAllSlidesSmall {
+    0% {transform: translateX(-200%);}
+    90% {transform: translateX(-300%);}
+    100% {transform: translateX(-300%);}
+}
+
+@keyframes zoomIn {
+    0% {transform:scale(1);}
+    90% {transform:scale(1.05);}
+    100% {transform:scale(1);}
+}
+
+@keyframes changeOpacity {
+    0% {opacity: .2;}
+    100% {opacity: 1;}
+}
+
+@media (max-width: 1420px) {
+    .slider {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .slider {
+        width: 100%;
+    }
+
+    .slide {
+        flex: 1 0 100%;
+        transform: translateX(-200%);
+        aspect-ratio: 1000 / 360;
+        padding: 0;
+    }
+
+    .moveSlides {
+        animation: moveAllSlidesSmall .5s;
+    }
+
+    .picture {
+        aspect-ratio: 1000 / 360;
+    }
+}
+
+@media (max-width: 450px) {
+    .slider {
+        width: 100%;
+    }
+
+    .slide {
+        flex: 1 0 100%;
+        transform: translateX(-200%);
+    }
+
+    .moveSlides {
+        animation: moveAllSlidesSmall .5s;
+    }
+
+    .picture {
+        aspect-ratio:unset
+    }
+}

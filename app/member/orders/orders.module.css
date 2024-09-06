@@ -1,0 +1,98 @@
+.innerWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.tabWrp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.tabWrp ul {
+    display: flex;
+    gap: 1em;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.tabWrp li {
+    padding: .5em 1.3em;
+    border-radius: var(--borderRadius);
+    background-color: var(--navBackground);
+}
+
+.tabWrp a {
+    color: white;
+}
+
+.tabWrp li:last-of-type {
+    display: none;
+}
+
+.searchWrp {
+    background: var(--navBackground);
+    border-radius: var(--borderRadius);
+    padding: 4px;
+}
+
+.searchWrp:focus-within {
+    background: var(--primaryAccentAlpha);
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.searchBoxWrp {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.searchBox {
+    width: 100%;
+    background: transparent;
+    padding: 5px 0;
+    padding-inline: 1em;
+    font-size: .8em;
+    outline: none;
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    padding-inline: .5em;
+}
+
+@media (min-width: 480px) {
+    .tabWrp li:last-of-type {
+        display: block;
+    }
+}
+
+@media (min-width: 520px) {
+    .searchWrp {
+        width: 100%;
+        max-width: 485px;   
+        margin: auto;    
+    }
+}
+
+@media (min-width: 1280px) {
+    .contentWrp {
+        flex-direction: row;
+    }
+
+    .innerWrp {
+        /* flex-direction: row; */
+    }
+
+    /* .tabWrp {
+        justify-content: flex-start;
+    } */
+}

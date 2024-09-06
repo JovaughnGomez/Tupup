@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.innerWrapper
+{
+    background-color: var(--navBackground);
+    width: 100%;
+    border-radius: 15px;
+}
