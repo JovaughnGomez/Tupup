@@ -1,0 +1,105 @@
+
+.contentWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+}
+
+.user_info>p {
+    font-weight: bold;
+    font-size: .9em;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.title {
+    display: flex;
+    gap: .8em;
+}
+
+.title img {
+    display: block;
+    background-image: '/img/tt_flag.webp';
+    border-radius: 15px;
+    /* width: 50px;
+    height: 50px; */
+}
+
+.title span {
+    font-weight: bold;
+    font-size: .8em;
+}
+
+.balance {
+    font-weight: bold;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+}
+
+.topUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+
+.voucherWrp input {
+    width: 100%;
+    text-align: center;
+}
+
+.voucherInnerWrp {
+    background: var(--navBackground2);
+    padding: 10px;
+    border-radius: var(--borderRadius);
+    font-weight: bold;
+    display: flex;  
+}
+
+.voucherInnerWrp * {
+    background-color: transparent;
+    background: transparent;
+    padding-inline: .5em;
+    outline: none;
+}
+
+/* .voucherInnerWrp:focus-within {
+    background: var(--digicelAlpha); 
+} */
+
+.voucherInnerWrp input::-webkit-outer-spin-button,
+.voucherInnerWrp input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dropdownMenu option {
+    background: var(--navBackground2);
+}
+
+.dropdownMenu {
+    background: transparent;
+}
+
+.topupBtn {
+    padding: 10px;
+    border-radius: var(--borderRadius);
+    font-weight: bold;
+    text-align: center;
+    /* background-color: var(--digicel); */
+}
+
+.topupBtn input {
+    display: none;
+}
+
+@media (min-width: 480px) {
+    .topUpForm {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+}

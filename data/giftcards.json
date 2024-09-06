@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Playstation Network Card",
+        "region":"United States",  
+        "icon": "/img/cards/psn_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Xbox Live Gift Card",
+        "region":"United States",   
+        "icon": "/img/cards/xbox_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Steam Wallet Code",
+        "region":"United States",   
+        "icon": "/img/cards/steam_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Nintendo Gift Card",
+        "region":"United States",   
+        "icon": "/img/cards/nintendo_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Itunes Gift Card",
+        "region":"United States",   
+        "icon": "/img/cards/itunes_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Roblox Gift Card",
+        "region":"United States",   
+        "icon": "/img/cards/roblox_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Amazon",
+        "region":"United States",   
+        "icon": "/img/cards/amazon_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Spotify",
+        "region":"United States",   
+        "icon": "/img/cards/spotify_icon.webp",
+        "description":"",   
+        "guide":""   
+    },
+    {
+        "name": "Netflix",
+        "region":"United States",   
+        "icon": "/img/cards/netflix_icon.webp",
+        "description":"",   
+        "guide":""   
+    }
+]

@@ -1,0 +1,108 @@
+.login_form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+
+.login_form h2 
+{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.login_input_wrp
+{
+    display: flex;
+}
+
+.label
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--inputBackground);
+    height: 3em;
+    align-items: center;
+    position: relative;
+    gap: 1em;
+    box-sizing: border-box;
+    padding-inline-start: 1.5em;
+    border-radius: calc(var(--CPT-BDR) - var(--CPT-BDW));
+}
+
+.input    
+{
+    border: none;
+    background-color: transparent;
+    width: stretch;
+    outline: none;
+    height: 65%;
+    color: white;
+    font-weight: bold;
+}
+
+.input::placeholder
+{
+    font-weight: bold;
+    letter-spacing: -.5px;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    color: white;transition: background-color 5000s;
+    -webkit-text-fill-color: white;
+}
+
+.submit_label
+{
+    border-radius: var(--CPT-BDR);
+    padding: .4em;
+    background-image: linear-gradient(calc(135deg * var(--angle-reverse, 1)),hsl(calc(var(--CPT-THM-H) - 5) var(--CPT-THM-S) var(--CPT-THM-L)),hsl(calc(var(--CPT-THM-H) + 5) var(--CPT-THM-S) var(--CPT-THM-L)));
+    transform: translateX(-.5em);
+}
+
+.submit_label>input
+{
+    position: absolute;
+    visibility: hidden;
+}
+
+.pwd_reset p
+{
+    text-align: center;
+    font-size: 13px;
+}
+
+.bottom_text
+{
+    color: var(--primaryAccent);
+}
+
+.whip
+{
+    display: block;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.alert
+{
+    color: red;
+    font-size: 12px;
+    display: none;
+    padding-top: .8em;
+}
+
+.showAlert
+{
+    display: block;
+}
+
+.signup
+{
+    color: white;
+}

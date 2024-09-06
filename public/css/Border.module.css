@@ -1,0 +1,24 @@
+.mainWrp {
+  width: 100%;
+}
+
+.innerWrp
+{
+  width: 90%;
+  margin: auto;
+  position: relative;
+}
+
+@media (min-width: 500px) {
+  /* .innerWrap {
+    max-width: 600px;
+    width: 80%;
+  } */
+}
+
+@media (min-width: 1045px) {
+  .innerWrp {
+    width: 90%;
+  }
+
+}

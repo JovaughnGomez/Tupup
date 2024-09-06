@@ -1,0 +1,17 @@
+.submit_label
+{
+    border-radius: var(--CPT-BDR);
+    display: block;
+    padding-inline: 1em;
+    padding: .4em;
+    background-image: linear-gradient(calc(135deg * var(--angle-reverse, 1)),hsl(calc(var(--CPT-THM-H) - 5) var(--CPT-THM-S) var(--CPT-THM-L)),hsl(calc(var(--CPT-THM-H) + 5) var(--CPT-THM-S) var(--CPT-THM-L)));
+    width: 50%;
+    align-self: center;
+}
+
+.submit_label>p
+{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 14px;
+}
