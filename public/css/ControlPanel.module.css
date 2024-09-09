@@ -18,7 +18,7 @@
 
 .contentWrp {
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .content {
@@ -92,6 +92,10 @@
 @media (min-width: 1000px) {
     .controlPanelInner {
         grid-template-columns: clamp(15em, 25%, 25em) 1fr;
+    }
+
+    .contentWrp {
+        width: 100%;
     }
 
     .navTextStyle {
