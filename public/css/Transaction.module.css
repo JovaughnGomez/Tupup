@@ -1,0 +1,76 @@
+
+.wrapper {
+    position: relative;
+    border: 1px solid var(--border-bottom);
+    overflow: auto;
+    border-radius: 10px;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-bottom);
+    padding: .65em 1em;
+    background: var(--navBackground);
+    transition: height 0.5s ease;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+}
+
+.transactionWrp {
+    padding: .65em 1em;
+    font-size: .8em;
+    background: var(--navBackground2);
+}
+
+.transactionInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.value {
+    display: flex;
+    flex-direction: column;
+}
+
+.value::before {
+    content: attr(data);
+}
+
+.period {
+    align-items: flex-end;
+}
+
+.visibility {
+    display: none;
+}
+
+.chevron {
+    transform: rotate(180deg);
+}
+
+.additionalInfo {
+    padding-top: 10px;
+}
+
+.additionalInfo::before {
+    content: attr(data);
+    font-weight: bold;
+}
+
+
+@media (min-width: 1000px) {
+    /* .additionalInfo::before {
+        display: none;
+    }
+
+    .value::before {
+        display: none;
+    } */
+}

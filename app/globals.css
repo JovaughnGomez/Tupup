@@ -41,6 +41,23 @@
   --bmobileAlpha: rgba(26, 126, 26, 0.274);
   --digicel: rgb(202, 29, 29);
   --digicelAlpha: rgba(202, 29, 29, 0.274);
+  --border-bottom: rgba(255 255 255 / 5%);
+}
+
+.Completed {
+  color:rgb(26, 126, 26);
+}
+
+.Refunded {
+  color: rgb(202, 29, 29);
+}
+
+.Waiting {
+  color: rgb(240, 164, 23);
+}
+
+.Sending {
+  color: rgb(226, 226, 12);
 }
 
 .filter_blue:hover
@@ -54,7 +71,7 @@
 
 .accent
 {
-  color: var(--primaryAccent);
+  color: var(--primaryAccent) !important;
 }
 
 .bmobile {
@@ -205,4 +222,8 @@ ul {
   border-radius: 10px;
   padding: 1.3em;
   border: none;
+}
+
+.blur2 {
+  visibility: hidden;
 }

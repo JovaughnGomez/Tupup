@@ -1,0 +1,91 @@
+.orderDetails {
+    font-size: .75em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.productWrp {
+    padding: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+}
+
+.productDetails {
+    display: flex;
+    gap: 1em;
+    font-size: .75em;
+}
+
+.productIcon {
+    border-radius: 15px;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    padding-top: .6em;
+}
+
+.productBtn span {
+    border-radius: var(--borderRadius);
+    font-size: .8em;
+    padding: 5px 15px;
+    background: var(--primaryAccent);
+    font-weight: bold;
+}
+
+.cardInfo {
+    padding: .4em;
+    border-top: 2px solid var(--border-bottom);
+    border-bottom: 2px solid var(--border-bottom);
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.cardInfo>div {
+    display: flex;
+    gap: .3em;
+    align-items: center;
+}
+
+.cardInfo h3 {
+    font-size: .8em;
+}
+
+.cardInfo span {
+    font-size: .7em;
+}
+
+.value {
+    /* DO NOT REMOVE */
+}
+
+.visibility {
+    visibility: hidden;
+}
+
+@media (min-width:410px) {
+    .cardInfo {
+        justify-content: space-between;
+    }
+}
+
+@media (min-width:450px) {
+    .productDetails {
+        font-size: .85em;
+    }
+}
+
+@media (min-width:570px) {
+    .cardInfo div {
+        width: 50%;
+    }
+}
+
+@media (min-width:800px) {
+    .cardInfo div {
+        width: 40%;
+    }
+}

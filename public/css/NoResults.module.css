@@ -1,0 +1,10 @@
+.wrapper {
+    margin: auto;
+    padding: 1em;
+    width: fit-content;
+}
+
+.wrapper p {
+    text-align: center;
+    font-weight: bold;
+}

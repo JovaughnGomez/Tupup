@@ -103,3 +103,10 @@
         grid-template-columns: 2fr 1fr;
     }
 }
+
+@media (min-width: 1000px) {
+    .contentWrp {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
