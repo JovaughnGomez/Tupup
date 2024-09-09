@@ -71,7 +71,7 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
                             <div id="navigation" className={`${styles.welcome}`}>
                                 <ul className={styles.navMenu}>
                                     <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/cards"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiWalletGiftcard} size={1} /> <p className={styles.navText}>Gift Card</p></span></Link>
-                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/top-ups"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiCash} size={1} /> <p className={styles.navText}>Top-Up</p></span></Link>
+                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/topups"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiCash} size={1} /> <p className={styles.navText}>Top-Up</p></span></Link>
                                     <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/accessories"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiGamepad } size={1} /> <p className={styles.navText}>Accessories</p></span></Link>
                                 </ul>
                             </div>

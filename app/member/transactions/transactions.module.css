@@ -32,10 +32,24 @@
     color: white;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
 .transactionWrp {
     display: flex;
     flex-direction: column;
     gap: 1em;
+}
+
+.tableWrp {
+    display: none;
+    padding-bottom: 1em;
+    font-size: .75em;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .header {
@@ -53,4 +67,36 @@
 .filter {
     background: var(--navBackground2);
     font-size: .8em;
+}
+
+@media (min-width:1000px) {
+    .transactionWrp {
+        background: var(--navBackground);
+        border-radius: 10px;
+        padding: 1.3em;
+        border: none;
+        gap: 0;
+    }
+
+    .tableWrp {
+        display: grid;
+        grid-template-columns: 43% 54%;
+        justify-content: space-between;
+    }
+
+    .first {
+        display: grid;
+        grid-template-columns: 126px auto;
+        gap: 25px;
+    }
+
+    .second {
+        display: grid;
+        grid-template-columns: 65px auto;
+        gap: 1.3em;
+    }
+
+    .balance {
+        text-align: end;
+    }
 }

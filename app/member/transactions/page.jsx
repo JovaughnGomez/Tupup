@@ -11,9 +11,10 @@ function page() {
         amount: 100,
         balance: 21,
         date: Date.now(),
-        notes: "Voucher Type: Bmobile <br /> Voucher #: 1234-5678-9012",
+        notes: "Voucher Type: Bmobile, Voucher #: 1234-5678-9012",
     }
 
+    transactions.push(transaction);
     transactions.push(transaction);
   return (
     <>
@@ -24,7 +25,7 @@ function page() {
                 <NavigationButton id={"topUpBtn"} text={"Top Up"} path={"/member/topup"} styles={styles.topUpBtn}/>
             </div>
         </div>
-        <div className={styles.transactionWrp}>
+        <div className={styles.wrapper}>
             <div className={styles.header} >
                 <h1>Transaction History</h1>
                 <label className={styles.label}>
@@ -36,7 +37,17 @@ function page() {
                     </select >
                 </label>
             </div>
-            <div className={styles.transactionWrp}>
+            <div className={`${styles.transactionWrp}`}>
+                <ul className={styles.tableWrp}>
+                    <div className={styles.first}>
+                        <span>Time</span>
+                        <span>Transaction</span>
+                    </div>
+                    <div className={styles.second}>
+                        <span className={styles.balance}>Balance</span>
+                        <span>Notes</span>
+                    </div>
+                </ul>
                 {
                     transactions.map((transaction, index) =>
                         <Transaction key={index} transaction={transaction} identifier={index}/>
