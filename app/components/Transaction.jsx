@@ -3,11 +3,12 @@ import React from 'react'
 import styles from '@/public/css/Transaction.module.css'
 import Icon from '@mdi/react'
 import { mdiChevronDown } from '@mdi/js'
-import { AddNewLines, ConvertDateToString } from '../lib/clientUtils'
+import { ConvertDateToString } from '../lib/clientUtils'
 
 function Transaction({ transaction, identifier }) {
     const dateAsString = ConvertDateToString(transaction.date);
-    const transactionColor = transaction.transaction == "Bmobile" ? "Completed" : "Refunded"
+    const transactionColor = transaction.transaction == "Bmobile" ? "Completed" : "Refunded";
+    const symbol = transaction.amount >= 0 ? "+" : "-";
     let balanceColor = transaction.amount >= 0 ? "Completed" : "Refunded";
 
     function ToggleVisibility()
@@ -22,12 +23,15 @@ function Transaction({ transaction, identifier }) {
     return (
     <div className={`${styles.wrapper}`} onClick={ToggleVisibility}>
         <div className={styles.header}>
+            <div className={styles.dateAt1000}>
+                <span>{dateAsString}</span>
+            </div>
             <div className={`${transactionColor} ${styles.transactionType}`}>
                 <span>{transaction.transaction}</span>
             </div>
             <div className={styles.headerRight}>
-                <span className={`${balanceColor} ${styles.amount}`}>${transaction.amount}</span>
-                <div id={`chevron${identifier}`}>
+                <span className={`${balanceColor}`}>{`${symbol} $${transaction.amount}`}</span>
+                <div id={`chevron${identifier}`} className= {styles.chevronWrp}>
                     <Icon className={styles.chevron} path={mdiChevronDown} size={1} />
                 </div>
             </div>
@@ -35,7 +39,7 @@ function Transaction({ transaction, identifier }) {
 
         <div id={`transaction${identifier}`} className={`${styles.visibility} ${styles.transactionWrp}`}>
             <div className={`${styles.transactionInfo}`}>
-                <div className={`${styles.value} ${styles.balance}`} data="Balanace">
+                <div className={`${styles.value}`} data="Balanace">
                     <span>${transaction.balance}</span>
                 </div>
                 <div className={`${styles.value} ${styles.period}`} data="Date">
