@@ -23,10 +23,12 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={manrope.className}>
+      <body className={`${manrope.className}`}>
         <Nav isOnline={isOnline}/>
-        {children}
-        <Footer />
+        <div className="body2">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

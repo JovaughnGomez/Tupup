@@ -3,8 +3,13 @@ const assert = require('node:assert');
 const { chromium, devices } = require('playwright');
 
 // To handle a POST request to /api
-export async function GET(request)
+export async function POST(request)
 {
+    console.log("OK");  
+    const formData = await request.formData();
+    console.log(formData);
+    return NextResponse.json({message: "Failed to find FreeFire Id Option"}, {status: 400});
+
     // Setup
     const browser = await chromium.launch();
     const context = await browser.newContext({

@@ -8,7 +8,7 @@ import topups from '@/data/topups.json'
 
 export default function Home() {
   return (
-    <Border classes={`mt-5 mb-5 ${styles.heroBackground}`} margin="mt-24">
+    <Border classes={`mt-5 mb-5 ${styles.heroBackground}`}>
       <ImageSlider />
       <div id='tips' className={styles.tips_wrp}>
         <h2>How {process.env.NEXT_PUBLIC_WEBSITE_NAME} Works.</h2>

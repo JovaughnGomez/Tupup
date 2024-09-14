@@ -4,7 +4,7 @@ import NavigationLinks from '@/app/components/NavigationLinks';
 
 export default function ControlPanelLayout({ children }) {
     return (
-        <div className='mt-24'>
+        <div>
             <div className={styles.controlPanelWrp}>
                 <div className={styles.controlPanelInner}>
                     <div className={`${styles.panelNavigation}`}>

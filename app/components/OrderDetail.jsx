@@ -9,7 +9,7 @@ function Order({order}) {
         <div className={styles.orderHeader}>
             <Image 
                 className={styles.orderImg}
-                src={"/img/topup/freefire_icon.webp"}
+                src={"/img/icons/freefire_icon.webp"}
                 width={65}
                 height={65}
             />

@@ -19,7 +19,7 @@ async function Card({card}) {
                 <div className={styles.productDetails}>
                     <Image 
                         className={styles.productIcon}
-                        src={"/img/cards/psn_icon.webp"}
+                        src={"/img/icons/psn_icon.webp"}
                         width={45}
                         height={45}
                     />

@@ -119,12 +119,19 @@ ul {
   list-style: none;
 }
 
+body {
+  overflow: hidden;
+}
+
+.body2 {
+  margin-top: calc(10vh + .5em);
+}
+
 .display {
   display: block !important;
 }
 
 .show {
-  display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
   transition: opacity .3s; 
@@ -165,7 +172,7 @@ ul {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .register_login_form_wrp {
@@ -224,6 +231,22 @@ ul {
   border: none;
 }
 
+.hideInput {
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  outline: none;
+}
+
 .blur2 {
   visibility: hidden;
+}
+
+@media (min-width: 750px) {
+  .body {
+    margin-top: 8vh;
+  }
 }

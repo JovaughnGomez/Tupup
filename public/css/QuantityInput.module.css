@@ -1,0 +1,44 @@
+.inner {
+    font-weight: bold;
+    font-size: .8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantityWrp {
+    background: var(--inputBackground);
+    border-radius: var(--borderRadius);
+    align-items: center;
+}
+
+.quantityWrp:hover {
+    background: var(--primaryAccentAlpha);
+    border: 2px solid var(--primaryAccent);
+}
+
+.quantityInner {
+    display: flex;
+    padding: .5em;
+}
+
+.quantityInput {
+    width: 3em;
+    font-size: 1em;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+.quantityWrp:-webkit-autofill,
+.quantityWrp:-webkit-autofill:hover, 
+.quantityWrp:-webkit-autofill:focus, 
+.quantityWrp:-webkit-autofill:active{
+    transition: background-color 10000s;
+    -webkit-text-fill-color: white;
+}
+
+.quantityIcons:hover {
+    cursor: pointer;
+}
