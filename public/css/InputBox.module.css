@@ -1,0 +1,52 @@
+.input_wrp
+{
+    width: 100%;
+}
+
+.label
+{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background-color: var(--inputBackground);
+    align-items: center;
+    position: relative;
+    border-radius: var(--borderRadius);
+    padding: .8em 0;
+}
+
+.input::placeholder, .label 
+{
+    font-weight: bold;
+    letter-spacing: -.5px;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+
+.label:focus-within
+{
+    border: 2px solid var(--primaryAccent);
+    /* box-shadow: var(--SiteTHM-A75) 0 0 0 .25em,var(--SiteTHM-A10) 0 0 0 99em inset; */
+    background-color: var(--primaryAccentAlpha);
+}
+
+.input
+{
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding-inline: 1em;
+}
+
+.label span {
+    padding-inline: 2em;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    color: white;transition: background-color 10000s;
+    -webkit-text-fill-color: white;
+}

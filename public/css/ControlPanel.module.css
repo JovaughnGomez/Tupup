@@ -2,7 +2,7 @@
     width: var(--maxContentWidth);
     width: 100%;
     height: 100%;
-    margin-top: 5.7em;
+    /* margin-top: 5.7em; */
     display: flex;
     align-items: center;
     margin-left: 0;

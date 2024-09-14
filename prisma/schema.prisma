@@ -32,14 +32,14 @@ model User {
 model Cart {
   userId String @id @unique
   user User @relation(fields: [userId], references: [id])
-  productId String  
+  productId Int  
   product Product @relation(fields: [productId], references: [id])
 }
 
 model Order {
   id String @id
   paymentId String
-  productId String  
+  productId Int  
   product Product @relation(fields: [productId], references: [id])
   status String // Ongoing, Completed, Refunded, Cancelled
   paymentMethod String
@@ -62,14 +62,26 @@ model Transaction {
   user User @relation(fields: [userId], references: [id])
 }
 
-model Product {
-  id String @id
+model ProductCategory {
+  id Int @id
+  name String
+  displayName String
+  region String
+  notes String
+  description String
+  guide String
+  onSale Boolean @default(false)
+}
+
+model Product{
+  id Int @id
   name String
   displayName String
   category String
-  cost Decimal
+  price Decimal
   region String
+  amountAvailable Int @default(0)
+  salePrice Decimal
   order Order[]
   carts Cart[]
-  amountAvailable Int @default(0)
 }
