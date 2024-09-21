@@ -108,7 +108,7 @@ function ProductPage({ category, products, description, guide, children }) {
           </div>
         </div>
       </div>
-      <form id='purchaseForm' method='post' action="">
+      <form id='purchase_form' method='post' action="">
         <input type="hidden" name='category_id' value={category.id} />
         <div className={styles.purchase}>
           <div className={styles.purchaseInner}>

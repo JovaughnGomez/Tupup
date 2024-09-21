@@ -15,7 +15,7 @@ function page() {
                 <div className={styles.info}>
                     <ProfileIcon />
                     <h1>Paper Arcade</h1>
-                    <Link href="/member/manage" className={styles.manageAccount}>
+                    <Link href="/member/manage/profile" className={styles.manageAccount}>
                         <Icon path={mdiAccountCog} size={1} />
                         <span>Edit</span>
                     </Link>

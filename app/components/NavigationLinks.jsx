@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link'
 import Icon from '@mdi/react'
-import { mdiAccount, mdiListBox, mdiHistory, mdiLogout, mdiCreditCard, mdiCurrencyUsd  } from '@mdi/js';
+import { mdiAccount, mdiListBox, mdiHistory, mdiLogout, mdiCreditCard, mdiCurrencyUsd, mdiCellphone, mdiLock  } from '@mdi/js';
 function NavigationLinks({id, styles, toggleMenu, onLogout}) {
     const pathname = usePathname();
     let useDefaultNav = !pathname.startsWith("/member/manage");
@@ -31,10 +31,9 @@ function NavigationLinks({id, styles, toggleMenu, onLogout}) {
         ) : (
             <div id={id} className={`${styles.welcome}`}>
                 <ul className={styles.user_menu}>
-                    <Link className='toggleSidebar' href="/member/manage"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiAccount} size={1} /> </span> <p className={styles.navText}>User Profile</p></span></Link>
-                    <Link className='toggleSidebar' href="/member/orders"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiListBox} size={1} /> </span> <p className={styles.navText}>Change Password</p></span></Link>
-                    <Link className='toggleSidebar' href="/member/cards"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiCreditCard} size={1} /> </span> <p className={styles.navText}>My Cards</p></span></Link>
-                    <Link className='toggleSidebar' href="/member/transactions"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiHistory} size={1} /> </span> <p className={styles.navText}>Transactions</p></span></Link> 
+                    <Link className='toggleSidebar' href="/member/manage/profile"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiAccount} size={1} /> </span> <p className={styles.navText}>User Profile</p></span></Link>
+                    <Link className='toggleSidebar' href="/member/manage/change-password"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiLock} size={1} /> </span> <p className={styles.navText}>Change Password</p></span></Link>
+                    {/* <Link className='toggleSidebar' href="/member/manage/mobile"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiCellphone} size={1} /> </span> <p className={styles.navText}>Mobile Phone</p></span></Link>  */}
                 </ul>
             </div>
         )}

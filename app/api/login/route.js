@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { CreateCookie, CreateSession, DeleteSessionWithId } from '@/app/lib/utils'
-import { CheckIfUserExist, ComparePassword } from "@/app/lib/auth";
-import { UpdateUserSessionId } from "@/app/lib/userController";
-import { v4 as uuidv4 } from 'uuid';
+import { CreateCookie, CreateSession, DeleteSessionWithId } from '@/app/lib/session'
+import { CheckIfUserExist } from "@/app/lib/auth";
+import { ComparePassword, GenerateUUID } from "@/app/lib/utils";
 
 // To handle a POST request to /api
 export async function POST(request) {
@@ -38,14 +37,8 @@ export async function POST(request) {
   if(user.sessionId)
     await DeleteSessionWithId(user.sessionId);
   
-  const sessionId = uuidv4();
-  const loginSuccessful = await UpdateUserSessionId(user.id, sessionId);
-  if(loginSuccessful)
-  {
-    const session = await CreateSession(user, sessionId);
-    await CreateCookie(session);
-    return NextResponse.json({}, {status: 200});
-  } else {
-    return NextResponse.json({ error:"Unexpected Error. Please try again!" }, { status: 500 });
-  }
+  const sessionId = await GenerateUUID();
+  const session = await CreateSession(user, sessionId);
+  await CreateCookie(session);
+  return NextResponse.json({}, {status: 200});
 }

@@ -42,6 +42,7 @@
   --digicel: rgb(202, 29, 29);
   --digicelAlpha: rgba(202, 29, 29, 0.274);
   --border-bottom: rgba(255 255 255 / 5%);
+  --money-green: rgb(51, 226, 51);
 }
 
 .Completed {
@@ -125,6 +126,14 @@ body {
 
 .body2 {
   margin-top: calc(10vh + .5em);
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer {
+  justify-self: flex-end;
 }
 
 .display {

@@ -3,21 +3,16 @@
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
-import { DeleteSession, DeleteCookie } from './utils';
-
-export async function GenerateUUID()
-{   
-    return uuidv4();
-}
-
-export async function GenerateHash(password)
-{
-    return await bcrypt.hash(password, 12);
-}
+import { DeleteSession, DeleteCookie } from './session';
 
 export async function Redirect(link)
 {
     redirect(link);
+}
+
+export async function Calculate()
+{
+    console.log("calculating");
 }
 
 export async function Logout()

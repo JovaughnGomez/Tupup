@@ -1,38 +1,35 @@
 "use server"
-import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
 import prisma from '@/server/prisma';
+import { GetSession, GetSessionFromCookies } from './session';
 
-export async function GenerateUUID()
-{   
-    return uuidv4();
-}
+class User {
+    constructor(session)
+    {
 
-export async function GenerateHash(password)
-{
-    return await bcrypt.hash(password, 12);
-}
-
-export async function ComparePassword(password, hashedPassword)
-{
-    return await bcrypt.compare(password, hashedPassword);
+    }
 }
 
 export async function CheckIfUserExist(email, username)
 {
-    try {
-        const user = await prisma.user.findFirst({
-            where: {
-                OR: [
-                    { email },
-                    { username},
-                ]
-            }
-        })
+    const user = await prisma.user.findFirst({
+        where: {
+            OR: [
+                { email },
+                { username},
+            ]
+        }
+    })
 
-        return user;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
+    return user;
 }
+
+export async function GetCurrentUser() {
+    const session = await GetSessionFromCookies();
+    
+    try {
+        return new User(session);
+    } catch (error) {
+        console.log(`Failed to find the current user.${error}`);
+        return null;    
+    }
+};

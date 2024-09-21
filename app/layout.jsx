@@ -2,7 +2,7 @@ import { Manrope} from 'next/font/google'
 import "./globals.css";
 import Nav from '@/app/components/Nav'
 import Footer from '@/app/components/Footer'
-import { GetSessionFromCookies } from './lib/utils';
+import { GetSessionFromCookies } from './lib/session';
 
 export const manrope = Manrope({
   subsets: ['latin'],
