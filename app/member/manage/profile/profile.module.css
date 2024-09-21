@@ -1,0 +1,88 @@
+.contentWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.innerWrp {
+    display: grid;
+    gap: 1em;
+}
+
+.profileWrp {
+    border-radius: 15px;
+    background: var(--navBackground);
+    max-width: 100%;
+}
+
+.profileInner {
+    padding: 1.5em;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: .8em;
+    padding-bottom: 1.5em;
+    border-bottom: 2px solid var(--border-bottom);
+}
+
+.inner {
+    padding-top: 1.5em;
+}
+
+.changePhotoWrp, .usernameForm {
+    display: grid;
+    gap: 1.5em;
+    align-items: center;
+}
+
+.changePhotoWrp {
+    grid-template-columns: auto 1fr;
+}
+
+.changePhotoWrp img {
+    border-radius: 50%;
+}
+
+.photoControlsWrp {
+    display: flex;
+    justify-content: center;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.photoBtn, .photoBtnCancel{
+    border-radius: var(--borderRadius);
+    text-align: center;
+    padding: .7em 2em;
+}
+
+.photoBtn {
+    background: var(--primaryAccent);
+}
+
+.usernameForm {
+    grid-template-columns: 1fr auto;
+}
+
+.userInfoWrp {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .5em 1em;
+    font-size: .8em;
+}
+
+.infoLabel {
+    font-weight: bold;
+}
+
+.link {
+    color: var(--primaryAccent);
+    font-weight: bold;
+}

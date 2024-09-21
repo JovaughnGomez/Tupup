@@ -1,0 +1,94 @@
+.contentWrp {
+    height: auto;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerWrp {
+    width: 90%;
+    display: grid;
+    gap: 1.5em;
+    max-width: 540px;
+    margin: auto;
+}
+
+.heading {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .85em;
+}
+
+.titleWrp {
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    border-bottom: 2px solid var(--border-bottom);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .75em;
+}
+
+.paymentFunc {
+    display: grid;
+    gap: 1em;
+}
+
+.paymentDetails, .feesWrp {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    gap: .5em;
+}
+
+.paymentDetails, .feesWrp {
+    font-size: .85em;
+}
+
+.value {
+    text-align: end;
+}
+
+.fees .value {
+    text-decoration: line-through;
+}
+
+.serviceDiscount {
+    color: var(--money-green);
+    font-size: .9em;
+    text-align: end;
+    width: 100%;
+}
+
+.payNowWrp {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: var(--primaryAccent);
+    border-radius: 5px;
+    padding: .5em 0;
+    cursor: pointer;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 1.5em;
+}
+
+.payNowWrp span {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.terms {
+    font-size: .8em;
+}
+
+.terms a {
+    color: var(--primaryAccent);
+}

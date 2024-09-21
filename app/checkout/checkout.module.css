@@ -1,0 +1,151 @@
+.contentWrp {
+    margin: 0 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5em;    
+    margin: auto;
+    width: 480px;
+}
+
+.heading {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.productsWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.product {
+
+}
+
+.title {
+    font-weight: bold;
+    padding-bottom: 1em;
+    border-bottom: 2px solid var(--border-bottom);
+}
+
+.productInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.productDesc {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.productDesc img {
+    border-radius: 15px;
+}
+
+
+.productCost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: .8em;
+    gap: 5px;
+}
+
+.quantity {
+    padding: 0 1em;
+    background: var(--inputBackground);
+    border-radius: 5px;
+}
+
+.subtotal {
+    color: var(--primaryAccent);
+}
+
+.paymentWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.paymentDetails {
+    margin-top: 1em;
+    font-size: .8em;
+}
+
+.detailWrp {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailValue {
+    font-weight: bold;
+}
+
+.payment {
+    padding-top: 1em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.totalCost {
+    color: var(--primaryAccent);
+    font-size: 1.2em;
+}
+
+.payBtn {
+    color: white;
+    padding: .5em 1.4em;
+    background: var(--primaryAccent);
+    border-radius: var(--borderRadius);
+}
+
+@media (min-width:1000px) {
+    .contentWrp {
+        width: 100%;
+        max-width: 950px;
+    }
+    
+    .contentInner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5em;
+    }
+
+    .paymentWrp {
+        min-width: 360px;
+    }
+
+    .productCost {
+        flex-direction: row;
+        gap: 8em;
+    }
+}
+
+
+@media (min-width:1300px) {
+    .contentWrp {
+        max-width: 1250px;
+    }
+    
+    .contentInner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5em;
+    }
+    
+    .paymentWrp {
+        min-width: 360px;
+    }
+    
+    .productCost {
+        flex-direction: row;
+        gap: 10em;
+    }
+}

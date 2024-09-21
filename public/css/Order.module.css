@@ -22,22 +22,28 @@
 }
 
 .orderInfoLeft {
-    display: flex;
-    gap: 1em;
+    /* display: flex; */
+    /* gap: 1em; */
 }
 
 .productInfo {
     display: flex;
+    gap: 1em;
+    /* align-items: center; */
+}
+
+/* .productInfo {
+    display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .orderImg {
     border-radius: 15px;
 }
 
 .productDetail {
-    text-align: center;
+    /* text-align: center; */
     display: flex;
     flex-direction: column;
 }
@@ -80,6 +86,12 @@
     .productInfo {
         align-self: center;
         flex-direction: row;
+        gap: 1em;
+        
+    }
+
+    .orderInfoLeft {
+        display: flex;
         gap: 1em;
     }
 

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/server/prisma";
 import bcrypt from 'bcrypt';
-import { CreateSession, CreateCookie } from '@/app/lib/utils'
+import { CreateSession, CreateCookie } from '@/app/lib/session'
 import { CheckIfUserExist } from "@/app/lib/auth";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -51,7 +51,7 @@ export async function POST(request) {
   return NextResponse.json({success: true}, {status: 200});
 }
 
-async function CreateUser(username, email, password, sessionId)
+async function CreateUser(username, email, password)
 {
     try {
         const user = await prisma.user.create({
@@ -59,7 +59,6 @@ async function CreateUser(username, email, password, sessionId)
               username,
               email,
               password,
-              sessionId,
             }
         })
         

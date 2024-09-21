@@ -1,5 +1,5 @@
 // import { NextResponse } from 'next/server';
-// import { GetSession } from '@/app/lib/utils';
+// import { GetSession } from '@/app/lib/session';
 // import { IsUserAnAdmin } from '@/app/lib/userController';
 
 // export async function GET(request)

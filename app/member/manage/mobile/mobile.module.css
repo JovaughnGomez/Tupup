@@ -1,0 +1,29 @@
+.formLabel {
+    font-weight: bold;
+    padding: 1em 0;
+    font-size: .8em;
+    padding-inline-start: 1em;
+}
+
+.changePasswordWrp {
+    max-width: 500px;
+}
+
+.sendCodeWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.sendCodeWrp .btn {
+    font-weight: bold;
+    background: var(--primaryAccent);
+    font-size: .85em;
+    padding: .5em 2em;
+    border-radius: var(--borderRadius);
+    width: fit-content;
+}
+
+@media (min-width:460px) {
+
+}   

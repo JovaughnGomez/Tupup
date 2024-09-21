@@ -5,8 +5,9 @@
 
 .label
 {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    /* display: grid;
+    grid-template-columns: auto 1fr; */
+    display: flex;
     background-color: var(--inputBackground);
     align-items: center;
     position: relative;
@@ -26,7 +27,6 @@
 .label:focus-within
 {
     border: 2px solid var(--primaryAccent);
-    /* box-shadow: var(--SiteTHM-A75) 0 0 0 .25em,var(--SiteTHM-A10) 0 0 0 99em inset; */
     background-color: var(--primaryAccentAlpha);
 }
 
@@ -36,11 +36,14 @@
     background-color: transparent;
     border: none;
     color: white;
-    padding-inline: 1em;
+    padding-inline: 1.5em;
+    flex: 1
 }
 
 .label span {
-    padding-inline: 2em;
+    /* padding-inline: 2em; */
+    padding-inline-start: 1em;
+    flex: 0 0 auto; /* This makes the first child take up only as much space as its content needs */
 }
 
 .input:-webkit-autofill,
