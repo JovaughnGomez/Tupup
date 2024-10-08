@@ -1,6 +1,11 @@
-'use server'
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
+import { randomBytes } from 'crypto';
+
+export function GenerateCSRFToken()
+{
+    return randomBytes(32).toString('hex');;
+}
 
 export async function GenerateUUID()
 {   
@@ -16,6 +21,12 @@ export async function ComparePassword(password, hashedPassword)
 {
     return await bcrypt.compare(password, hashedPassword);
 }
+
+export async function GeneratePasswordHash(password)
+{
+  return await bcrypt.hash(password, 12);
+}
+
 
 export async function ConvertDateToString(timestamp) 
 { 

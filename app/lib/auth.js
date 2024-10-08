@@ -1,13 +1,7 @@
 "use server"
 import prisma from '@/server/prisma';
-import { GetSession, GetSessionFromCookies } from './session';
-
-class User {
-    constructor(session)
-    {
-
-    }
-}
+import { GetSessionFromCookies } from './session';
+import { GetUserFromMap } from '../services/userCache';
 
 export async function CheckIfUserExist(email, username)
 {
@@ -16,6 +10,9 @@ export async function CheckIfUserExist(email, username)
             OR: [
                 { email },
                 { username},
+            ],
+            AND: [
+                {isActive: true}
             ]
         }
     })
@@ -24,10 +21,20 @@ export async function CheckIfUserExist(email, username)
 }
 
 export async function GetCurrentUser() {
-    const session = await GetSessionFromCookies();
-    
     try {
-        return new User(session);
+        const session = await GetSessionFromCookies();
+        const user = GetUserFromMap(session.userId);
+        return user;
+    } catch (error) {
+        console.log(`Failed to find the current user.${error}`);
+        return null;    
+    }
+};
+
+export async function GetUserFromId(userId) {
+    try {
+        const user = GetUserFromMap(userId);
+        return user;
     } catch (error) {
         console.log(`Failed to find the current user.${error}`);
         return null;    

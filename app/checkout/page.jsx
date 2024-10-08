@@ -43,6 +43,7 @@ function page() {
                                             width={50}
                                             height={50}
                                             src={product.icon}
+                                            alt={`Product Poster`}
                                         />
                                         <div className={styles.name}>{product.name}</div>
                                     </div>

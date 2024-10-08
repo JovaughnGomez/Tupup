@@ -10,7 +10,8 @@ import Icon from '@mdi/react';
 import { mdiCartOutline, mdiMagnify, mdiCash, mdiWalletGiftcard, mdiGamepad } from '@mdi/js';
 import { MdClose, MdAccountCircle } from 'react-icons/md'
 
-const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) => { 
+const Nav = ({ userInfo = null}) => { 
+    const isOnline = userInfo;
     const router = useRouter();
     const show = "show";
     const pathname = usePathname();
@@ -51,9 +52,19 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
     return (
         <>
         {showNav &&
+        <div className={styles.mainWrapper}>
+            {(userInfo && userInfo.isAdmin) && 
+                <div className={styles.adminNavWrp}>
+                    <div className={styles.adminNav}>
+                        <div>
+                            <Link href={"/admin/products/category"}>Manage Category</Link>
+                            <Link href={"/admin/products/product"}>Manage Product</Link>
+                        </div>
+                    </div>
+                </div> 
+            }
             <nav id="navigation" className={styles.nav_wrapper}>
                 <div className={styles.inner_nav_wrapper}>
-                    
                     {/* Left Sidebar */}
                     <section id='navSidebar' className={styles.leftSidebarWrp}>
                         <div className={`${styles.leftSidebarInner}`}>
@@ -62,7 +73,7 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
                                 <Link href="/">
                                     <Image 
                                         src="/img/welcome.webp"
-                                        alt="RentalDB Logo"
+                                        alt="Logo"
                                         width={40}
                                         height={40}
                                     />
@@ -105,8 +116,8 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
                                 <div className={styles.user_menu_info}>
                                     <MdAccountCircle id='user_btn' size={35} fill='white'/>
                                     <div className={styles.name}>
-                                        <span>{username}</span>
-                                        <span>{email}</span>
+                                        <span>{userInfo.username}</span>
+                                        <span>{userInfo.email}</span>
                                     </div>
                                     <MdClose id="user_close_btn" className={styles.user_close_btn2} size={25} fill='white' onClick={ToggleRightMenu}/>
                                 </div>  
@@ -130,6 +141,7 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
                                         src="/img/welcome.webp"
                                         width={200}
                                         height={150}
+                                        alt='Welcome Poster'
                                     />
                                     <h3 className={styles.welcome_text} >Welcome To <b>{process.env.NEXT_PUBLIC_WEBSITE_NAME}</b></h3>
                                     <div className={styles.user_btns}>
@@ -142,6 +154,7 @@ const Nav = ({ isOnline, username="Jovaughn", email="jovaughn499@gmail.com" }) =
                     }
                 </div>
             </nav>
+        </div>
         }
         </>
     )

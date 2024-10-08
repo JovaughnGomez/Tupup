@@ -79,9 +79,9 @@
         display: grid; 
         border: none;       
         border-top: 2px solid var(--border-bottom);
-        grid-template-columns: 43% 54%;
-        justify-content: space-between;
-        padding: 1em 0;
+        grid-template-columns: 50% 43%;
+        /* justify-content: space-between; */
+        padding: .5em 0;
     }
 
     .wrapper:last-child {
@@ -97,10 +97,8 @@
         border: none;
         padding: 0;
         display: grid;
-        /* grid-template-columns: 126px 60px 100px; */
-        grid-template-columns: 126px min(21.58%, 40%) 100px;
-        gap: 25px;
-        justify-content:flex-start;
+        grid-template-columns: 150px 130px 100px;
+        justify-content: space-between;
     }
 
     .headerRight span {
@@ -118,7 +116,8 @@
         font-size: .8em;
         display: grid;
         grid-template-columns: 65px auto;
-        gap: 1.2em;
+        gap: 4em;
+        /* gap: 1.2em; */
     }
 
 

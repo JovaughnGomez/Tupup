@@ -10,7 +10,10 @@ const InputBox = ({
     name, 
     type="text", 
     required=true, 
-    defaultVal }) => {
+    defaultVal,
+    inputClasses="",
+    valueFill="",
+    autoComplete="false", }) => {
 
   function OnChange(e)
   {
@@ -19,6 +22,7 @@ const InputBox = ({
       const value = e.target.value;
       if (!/^\d*\.?\d*$/.test(value)) {
         e.target.value = value.slice(0, -1);
+        valueFill = value;
       }
     } else if(number == "mobile")
     {
@@ -41,7 +45,12 @@ const InputBox = ({
             <span>{label}</span>
           }
 
-          <input id={id} className={styles.input} defaultValue={defaultVal} type={type} placeholder={placeholder} name={name} required={required} onChange={OnChange}/>
+          {valueFill ? (
+              <input id={id} className={`${inputClasses} ${styles.input}`} type={type} value={valueFill} placeholder={placeholder} name={name} required={required} onChange={OnChange} autoComplete={autoComplete} />
+            ) : (
+              <input id={id} className={`${inputClasses} ${styles.input}`} defaultValue={defaultVal} type={type} placeholder={placeholder} name={name} required={required} onChange={OnChange} autoComplete={autoComplete} />
+            )
+          }
         </label>
     </div>  
   )

@@ -7,12 +7,11 @@ import SubmitButton from '@/app/components/SubmitButton';
 import Icon from '@mdi/react';
 import { mdiAccountCog, mdiChevronRight, mdiCurrencyUsd} from '@mdi/js';
 import { ConvertDateToString } from '@/app/lib/clientUtils';
+import { GetProfileDTO } from '@/data/user-dto';
 
-function page() {
-    const username = "Jovaughn";
-    const email = "jovaughn499@gmail.com";
-    const number = "";
-    const dateJoined = Date.now();
+async function page() {
+    const userData = await GetProfileDTO();
+    const dateJoinedReadable = ConvertDateToString(userData.joined);
 
   return (
     <>
@@ -53,7 +52,7 @@ function page() {
                             <form action="" method='post' className={styles.usernameForm}>
                                 <input type="hidden" name='csrfToken' value={"OK"}/>
                                 <div>
-                                    <InputBox name={"username"} defaultVal={username} />
+                                    <InputBox name={"username"} defaultVal={userData.username} />
                                 </div>
                                 <label id='change_username' className={styles.photoControlsWrp}>
                                     <div className={styles.photoBtn}>   
@@ -71,7 +70,7 @@ function page() {
                         <div className={`${styles.inner}`}>
                             <div className={styles.userInfoWrp}>
                                 <div className={styles.infoLabel}>Email</div>
-                                <div>{email}</div>
+                                <div>{userData.email}</div>
                                 {/* <div className={styles.infoLabel}>Mobile Phone</div>
                                 { number.length > 0 ?
                                 ( 
@@ -81,7 +80,7 @@ function page() {
                                     <a href="/member/manage/mobile" className={styles.link}>Add mobile phone number</a>
                                 )} */}
                                 <div className={styles.infoLabel}>Joined</div>
-                                <div>{dateJoined}</div>
+                                <div>{dateJoinedReadable}</div>
                             </div>
                             {/* <div className={styles.informationField} data-label="Email:">
                                 <span>{email}</span>

@@ -1,0 +1,124 @@
+.contentWrp {
+    max-width: var(--maxContentWidth);
+    margin: auto;
+}
+
+.addCategoryWrp {
+    max-width: 700px;
+    margin: auto;
+    display: grid;
+    gap: 2em;
+}
+
+.header {
+    margin-bottom: 1em;
+}
+
+.productsWrp {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1em;
+    width: 100%;
+}
+
+.activeProducts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5em;
+}
+
+
+.inactiveProducts {
+    background: var(--navBackground);
+    border-radius: 5px;
+    display: grid;
+    gap: .5em;
+    align-items: start;
+    max-height: 298px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.inactiveProducts h3 {
+    text-align: center;
+    position: sticky;
+    width: 215px;
+    background: var(--navBackground);
+    padding: 5px 0;
+    display: block;
+}
+
+.inactiveProducts::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+
+.inactiveProducts {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
+}
+
+.product {
+    background: var(--inputBackground);
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: .9em;
+    height: 50px;
+}
+
+.productLeftSide {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.product_icon {
+    border-radius: 5px;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing span {
+    text-align: end;
+}
+
+.salePrice {
+    color: var(--primaryAccent);
+}
+
+.textAreaWrp {
+    display: grid;
+    gap: .5em;
+}
+
+.textAreaLabel, .header {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.textarea {
+    border: none;
+    background: var(--inputBackground);
+    outline: none;
+    resize: none;
+    font-size: .9em;
+    padding: 1em;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.submitBtn {
+    background: var(--primaryAccent);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    width: fit-content;
+    padding: .6em 2.4em;
+    justify-self: center;
+}

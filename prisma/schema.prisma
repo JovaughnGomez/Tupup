@@ -25,64 +25,85 @@ model User {
   city String?
   isAdmin Boolean @default(false)
   isActive Boolean @default(true)
+  joined DateTime @default(now())
+  eula DateTime @default(now())
+  subscribe Boolean @default(false)
   cart Cart[]
   order Order[]
   transaction Transaction[]
 }
 
-model Cart {
-  userId String @id @unique
-  user User @relation(fields: [userId], references: [id])
-  productId Int  
-  product Product @relation(fields: [productId], references: [id])
-}
-
 model Order {
   id String @id
   paymentId String
-  productId Int  
-  product Product @relation(fields: [productId], references: [id])
+  productId String  
   status String // Ongoing, Completed, Refunded, Cancelled
   paymentMethod String
   dateCreated DateTime @default(now())
   dateCompleted DateTime?
   userId String
+  product Product @relation(fields: [productId], references: [id])
   user User @relation(fields: [userId], references: [id])
 }
 
 model Transaction {
-  id String @id
-  value Decimal
-  voucher String
-  voucherType String
-  numberAssigned String
-  status String
+  id String @id @default(uuid())
+  method String // phonecard, offline_banking, online_banking
+  value Decimal @default(0)
+  status String @default("waiting") // waiting, expired, completed
+  notes Json?
+  adminNotes Json?
   dateCreated DateTime @default(now())
   dateCompleted DateTime?
-  userId String
+  userId String 
+  balanceBefore Decimal @default(0)
+  balanceAfter Decimal @default(0)
   user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Cart {
+  userId String @id @unique
+  user User @relation(fields: [userId], references: [id])
+  productId String  
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model ProductCategory {
-  id Int @id
-  name String
+  id String @id @default(uuid())
+  name String @unique
   displayName String
-  region String
-  notes String
-  description String
-  guide String
+  icon String
+  region String?
   onSale Boolean @default(false)
+  allowMultiple Boolean @default(true)
+  notes String?
+  description String @db.Text
+  guide String? @db.Text
+  tags Json?
+  products Product[]
+  isActive Boolean @default(true)
+
+  @@index([name])
 }
 
-model Product{
-  id Int @id
+model Product {
+  id String @id @default(uuid())
   name String
-  displayName String
-  category String
+  icon String
+  categoryId String
+  usdValue Decimal @default(0)
   price Decimal
-  region String
-  amountAvailable Int @default(0)
   salePrice Decimal
+  isActive Boolean @default(false)
+  createdAt DateTime @default(now())
   order Order[]
   carts Cart[]
+  productCategory ProductCategory @relation(fields: [categoryId], references: [id])
+}
+
+model GiftCard {
+  id String @id
 }
