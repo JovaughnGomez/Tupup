@@ -12,7 +12,7 @@ function ProductForm({ productName }) {
         )
         default:
           return (
-            <InputBox type='text' number={true} placeholder={"Please enter Player ID"} label='Player ID' name={"player_id"}/>
+            <InputBox type='text' inputClasses='hideInputScroller' number={true} placeholder={"Please enter Player ID"} label='Player ID' name={"player_id"}/>
           )
     }
   }

@@ -30,6 +30,7 @@ async function Order({ order }) {
                             src={"/img/icons/freefire_icon.webp"}
                             width={65}
                             height={65}
+                            alt='product icon'
                         />
                         <div className={styles.productDetail}>
                             <span>{order.product}</span>

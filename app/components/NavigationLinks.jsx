@@ -25,7 +25,8 @@ function NavigationLinks({id, styles, toggleMenu, onLogout}) {
                     <Link onClick={toggleMenu} className='toggleSidebar' href="/member/orders"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiListBox} size={1} /> </span> <p className={styles.navText}>My Orders</p></span></Link>
                     <Link onClick={toggleMenu} className='toggleSidebar' href="/member/cards"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiCreditCard} size={1} /> </span> <p className={styles.navText}>My Cards</p></span></Link>
                     <Link onClick={toggleMenu} className='toggleSidebar' href="/member/transactions"><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiHistory} size={1} /> </span> <p className={styles.navText}>Transactions</p></span></Link>  
-                    <span onClick={onLogout} className='toggleSidebar'><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiLogout} size={1} /> </span><p className={styles.navText}>Logout</p></span></span>
+                    {/* <span onClick={onLogout} className='toggleSidebar'><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiLogout} size={1} /> </span><p className={styles.navText}>Logout</p></span></span> */}
+                    <a href='/logout' className='toggleSidebar'><span className={styles.navTextStyle}> <span className={styles.nav_icon_wrp}> <Icon className={styles.nav_icons} path={mdiLogout} size={1} /> </span><p className={styles.navText}>Logout</p></span></a>
                 </ul>
             </div>
         ) : (

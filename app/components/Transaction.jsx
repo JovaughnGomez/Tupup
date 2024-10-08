@@ -6,10 +6,11 @@ import { mdiChevronDown } from '@mdi/js'
 import { ConvertDateToString } from '../lib/clientUtils'
 
 function Transaction({ transaction, identifier }) {
-    const dateAsString = ConvertDateToString(transaction.date);
-    const transactionColor = transaction.transaction == "Bmobile" ? "Completed" : "Refunded";
-    const symbol = transaction.amount >= 0 ? "+" : "-";
-    let balanceColor = transaction.amount >= 0 ? "Completed" : "Refunded";
+    const dateAsString = ConvertDateToString(transaction.dateCompleted);
+    const value = parseFloat(transaction.value);
+    const valueIsPositive = value >= 0;
+    const symbol = valueIsPositive >= 0 ? "+" : "-";
+    const balanceColor = valueIsPositive ? "Completed" : "Refunded";
 
     function ToggleVisibility()
     {
@@ -26,11 +27,11 @@ function Transaction({ transaction, identifier }) {
             <div className={styles.dateAt1000}>
                 <span>{dateAsString}</span>
             </div>
-            <div className={`${transactionColor} ${styles.transactionType}`}>
-                <span>{transaction.transaction}</span>
+            <div className={`${styles.transactionType}`}>
+                <span>{transaction.method}</span>
             </div>
             <div className={styles.headerRight}>
-                <span className={`${balanceColor}`}>{`${symbol} $${transaction.amount}`}</span>
+                <span className={`${balanceColor}`}>{`${symbol} $${transaction.value}`}</span>
                 <div id={`chevron${identifier}`} className= {styles.chevronWrp}>
                     <Icon className={styles.chevron} path={mdiChevronDown} size={1} />
                 </div>
@@ -40,7 +41,7 @@ function Transaction({ transaction, identifier }) {
         <div id={`transaction${identifier}`} className={`${styles.visibility} ${styles.transactionWrp}`}>
             <div className={`${styles.transactionInfo}`}>
                 <div className={`${styles.value}`} data="Balanace">
-                    <span>${transaction.balance}</span>
+                    <span>${transaction.balanceAfter}</span>
                 </div>
                 <div className={`${styles.value} ${styles.period}`} data="Date">
                     <span>{dateAsString}</span>

@@ -3,6 +3,9 @@ import "./globals.css";
 import Nav from '@/app/components/Nav'
 import Footer from '@/app/components/Footer'
 import { GetSessionFromCookies } from './lib/session';
+import { GetUserFromMap, ListAll } from './services/userCache';
+import { GetNavDTO } from '@/data/user-dto';
+import { GetCurrentUser } from './lib/auth';
 
 export const manrope = Manrope({
   subsets: ['latin'],
@@ -17,15 +20,15 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await GetSessionFromCookies();
-  let isOnline = false;
+  let userInfo = null;
   if(session && session.sessionId)
-    isOnline = true;
+    userInfo = await GetNavDTO();
 
   return (
     <html lang="en">
       <body className={`${manrope.className}`}>
-        <Nav isOnline={isOnline}/>
-        <div className="body2">
+        <Nav userInfo={userInfo}/>
+        <div className={userInfo && userInfo.isAdmin ? "adminBody" : "body2"}>
           {children}
           <Footer />
         </div>

@@ -12,6 +12,7 @@ function Order({order}) {
                 src={"/img/icons/freefire_icon.webp"}
                 width={65}
                 height={65}
+                alt='product_icon'
             />
             <div className={styles.productInfo}>
                 <h2 className={styles.productTitle}> {order.product} </h2>

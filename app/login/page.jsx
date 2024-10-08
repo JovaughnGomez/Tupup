@@ -24,7 +24,7 @@ function page() {
 
     const form = document.getElementById('loginForm');
     const data = new FormData(form);
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/auth/login", {
       method:'POST',
       body: data
     });

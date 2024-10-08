@@ -8,7 +8,7 @@ import styles from './ProductPage.module.css'
 import Icon from '@mdi/react';
 import { mdiCheckBold, mdiChevronRight } from '@mdi/js';
 
-function ProductPage({ category, products, description, guide, children }) {
+function ProductPage({ category, products, description, guide }) {
   let quantity = 1;
   let currentCheckbox;
   let currentOption;
@@ -16,7 +16,8 @@ function ProductPage({ category, products, description, guide, children }) {
 
   useEffect(() => {
     const product = document.querySelector(`.${styles.option}`);
-    SelectProduct(product);
+    if(product)
+      SelectProduct(product);
   }, [])
   
 
@@ -43,7 +44,6 @@ function ProductPage({ category, products, description, guide, children }) {
 
   function SelectProduct(product)
   {
-    
     // Save product as currentProduct
     const productIndex = product.getAttribute("data-index");
     currentProduct = products[productIndex];

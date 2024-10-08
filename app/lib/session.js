@@ -1,16 +1,14 @@
 "use server"
 import { cookies } from "next/headers";
-import { v4 as uuidv4 } from 'uuid';
 import { add, get, redisDelete } from "@/app/lib/db"
+import { GenerateCSRFToken, GenerateUUID } from "./utils";
 
 class Session {
-    constructor(sessionId, user)
+    constructor(sessionId, userId, csrfToken)
     {
-        this.sessionId = sessionId ? sessionId : uuidv4();
-        this.userId = user.id;
-        this.username = user.username;
-        this.email = user.email;
-        this.isAdmin = user.isAdmin;
+        this.sessionId = sessionId ? sessionId : GenerateUUID();
+        this.userId = userId;
+        this.csrfToken = csrfToken;
     }
 }
 
@@ -52,24 +50,42 @@ export async function GetSessionOptions()
     return sessionOptions;
 } 
 
-export async function CreateSession(user, sessionId)
+export async function CreateSession(sessionId, userId)
 {
-    const session = new Session(sessionId, user);
+    const csrfToken = GenerateCSRFToken();
+    const session = new Session(sessionId, userId, csrfToken);
     add(session.sessionId, JSON.stringify(session));
     return session;
 }
 
 export async function GetSession(sessionId) 
 { 
+    let session = await get(sessionId);
+    if(!session)
+        return null;
+    
+    session = await JSON.parse(session);
+    if(!session)
+        return null;
+
+    return new Session(session.sessionId, session.userId, session.csrfToken);
+}   
+
+export async function GetSessionFromCookies() 
+{ 
+    const cookieStore = cookies();
     try {
-        let session = await get(sessionId);
-        session = await JSON.parse(session);
+        if(!cookieStore.has(process.env.AUTH_COOKIE_NAME))
+            return;
+        
+        let sessionId = cookieStore.get(process.env.AUTH_COOKIE_NAME).value;
+        let session = await GetSession(sessionId);
         return session;
     } catch (error) {
         console.log(error);
         return null;
     }
-}   
+} 
 
 export async function DeleteSession()
 {
@@ -90,19 +106,20 @@ export async function DeleteSessionWithId(sessionId)
     }
 }
 
-export async function GetSessionFromCookies() 
-{ 
-    const cookieStore = cookies();
-    try {
-        if(!cookieStore.has(process.env.AUTH_COOKIE_NAME))
-            return;
-        
-        let sessionId = cookieStore.get(process.env.AUTH_COOKIE_NAME).value;
-        let session = await get(sessionId);
-        session = await JSON.parse(session);
-        return session;
-    } catch (error) {
-        console.log(error);
-        return null;
+export async function ValidateCSRFToken(session, token)
+{
+    if(!token)
+    {
+        console.log("Token field is empty");
+        return false;
     }
+        
+    if(!session.csrfToken)
+    {
+        console.log("This session does not have a csrfToken");
+        return false;
+    } 
+
+    const isValid = token == session.csrfToken ? true : false;
+    return isValid;
 }

@@ -1,0 +1,137 @@
+.wrapper {
+    max-width: var(--maxContentWidth);
+    margin: 0 auto;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    column-gap: 3em;
+}
+
+.heading {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primaryAccent);
+}
+
+.searchWrp {
+    position: relative;
+    width: 70%;
+}
+
+.search {
+    outline: none;
+    background: var(--inputBackground);
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid var(--navBackground);
+    margin-bottom: .2em;
+}
+
+.searchResults {
+    position: absolute;
+    background: var(--navBackground);
+    width: 100%;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.searchResults li:nth-child(even)
+{
+    background: var(--navBackground2);
+}
+
+.searchResult {
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.searchResult:hover {
+    border: 2px solid var(--primaryAccent);
+    background: var(--translucentAccent);
+}
+
+.resultInfo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.icon {
+    border-radius: 5px;
+}
+
+.cost {
+    display: grid;
+    font-size: .9em;
+    text-align: end;
+    padding-right: 1em;
+}
+
+.sale {
+    color: var(--primaryAccent);
+    font-size: .85em;
+}
+
+.btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.btn {
+    font-weight: bold;
+    font-size: .9em;
+    border-radius: var(--borderRadius);
+    padding: 5px 25px;
+    background: var(--primaryAccent);
+    text-align: center;
+    width: fit-content;
+}
+
+.btns label:nth-child(1) {
+    background: gray;
+}
+
+.btns label:nth-child(2) {
+    justify-self: right;
+}
+
+.btns label:nth-child(3) {
+    background: red;
+}
+
+.addProductForm {
+    display: grid;
+    gap: 1em;
+}
+
+.productsWrp {
+    width: 100%;
+    margin-top: 1em;
+    gap: 1em;
+    display: grid;
+    overflow-y: scroll;
+    max-height: 438px;
+}
+
+.productsWrp::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+
+.productResult {
+    background-color: var(--navBackground);
+    border-radius: 10px;
+}
+
+.productHighlight {
+    border: 2px solid var(--primaryAccent);
+    background: var(--translucentAccent);
+}

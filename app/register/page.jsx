@@ -21,7 +21,7 @@ function register() {
     const form = document.getElementById('registerForm');
     const data = new FormData(form);
     
-    const res = await fetch("/api/register", {
+    const res = await fetch("/api/auth/register", {
       method:'POST',
       body: data
     });

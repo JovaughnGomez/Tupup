@@ -5,16 +5,27 @@ import ProfileIcon from '@/app/components/ProfileIcon';
 import SubmitButton from '@/app/components/SubmitButton';
 import Icon from '@mdi/react';
 import { mdiAccountCog, mdiChevronRight, mdiCurrencyUsd} from '@mdi/js';
+import { GetAccountDTO } from '@/data/user-dto';
+import { GetCurrentUser } from '@/app/lib/auth';
+import { redirect } from 'next/navigation';
 
-function page() {
-  return (
+async function page() {
+    const currentUser = await GetCurrentUser();
+    if(!currentUser)
+        redirect("/login");
+    
+    const userData = await GetAccountDTO(currentUser, currentUser.id);
+    if(!userData)
+        redirect("/login");
+    
+    return (
     <>
-        <h1>My Wallet</h1>
+        <h1>My Account</h1>
         <div className={styles.contentWrp}>
             <div className={`border ${styles.userInfo}`}>
                 <div className={styles.info}>
                     <ProfileIcon />
-                    <h1>Paper Arcade</h1>
+                    <h1>{userData.username}</h1>
                     <Link href="/member/manage/profile" className={styles.manageAccount}>
                         <Icon path={mdiAccountCog} size={1} />
                         <span>Edit</span>
@@ -22,7 +33,7 @@ function page() {
                 </div>
                 <div className={styles.email}>
                     <span>Email</span>
-                    <p>jovaughn499@gmail.com</p>                    
+                    <p>{userData.email}</p>                    
                 </div>
             </div>
 
@@ -54,7 +65,7 @@ function page() {
                 <div className={styles.topUp}>  
                     <div className={styles.balance}>
                         <Icon path={mdiCurrencyUsd} size={1.2} />
-                        <span>0.00</span>
+                        <span>{userData.wallet}</span>
                     </div>     
                     <Link href='/member/topup' className={styles.topUpBtn}>
                         <SubmitButton classes='w-24 p-2' placeholder='Top Up' />

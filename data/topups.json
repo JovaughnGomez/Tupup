@@ -2,63 +2,63 @@
     {
         "name": "Freefire",
         "region":"",  
-        "icon": "/img/icons/freefire_icon.webp",
+        "icon": "/img/icons/freefire.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "BloodStrike",
         "region":"",  
-        "icon": "/img/icons/bloodstrike_icon.webp",
+        "icon": "/img/icons/bloodstrike.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Clash Of Clans",
         "region":"",  
-        "icon": "/img/icons/clashofclans_icon.webp",
+        "icon": "/img/icons/clashofclans.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "PUBG Mobile UC",
         "region":"",  
-        "icon": "/img/icons/pubg_icon.webp",
+        "icon": "/img/icons/pubg.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "FC Mobile",
         "region":"",  
-        "icon": "/img/icons/fcmobile_icon.webp",
+        "icon": "/img/icons/fcmobile.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Clash Royale",
         "region":"",  
-        "icon": "/img/icons/clashroyale_icon.webp",
+        "icon": "/img/icons/clashroyale.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Mobile Legends Bang Bang",
         "region":"",  
-        "icon": "/img/icons/mobilelegends_icon.webp",
+        "icon": "/img/icons/mobilelegends.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Tik Tok",
         "region":"",  
-        "icon": "/img/icons/tiktok_icon.webp",
+        "icon": "/img/icons/tiktok.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Honor Of Kings",
         "region":"",  
-        "icon": "/img/icons/honorofkings_icon.png",
+        "icon": "/img/icons/honorofkings.png",
         "description":"",   
         "guide":""   
     }

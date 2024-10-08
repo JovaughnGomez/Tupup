@@ -76,20 +76,20 @@
 
     .tableWrp {
         display: grid;
-        grid-template-columns: 43% 54%;
+        grid-template-columns: 50% 50%;
         justify-content: space-between;
     }
 
     .first {
         display: grid;
-        grid-template-columns: 126px auto;
-        gap: 25px;
+        grid-template-columns: 150px 130px 100px;
+        justify-content: space-between;
     }
 
     .second {
         display: grid;
         grid-template-columns: 65px auto;
-        gap: 1.3em;
+        gap: 4em;
     }
 
     .balance {

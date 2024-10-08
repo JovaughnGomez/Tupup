@@ -13,14 +13,14 @@ function ProductList({ categories=[] }) {
             {
                 categories.map((product, index) => 
                     <li key={index} className={styles.product}>
-                        <a href={`/product/${product.name}`}>
+                        <a href={`/product/${product.name.toLowerCase()}`}>
                             <Image 
                                 width={138}
                                 height={138}
                                 src={product.icon}
                                 className={styles.productIcon}
                             />
-                            <span className={styles.productName}>{product.displayName}</span>
+                            <span className={styles.productName}>{product.name}</span>
                         </a>
                     </li>
                 )

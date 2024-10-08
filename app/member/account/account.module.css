@@ -126,6 +126,7 @@
 .balance {
     color: green;
     display: flex;
+    align-items: center;
 }
 
 @media (min-width: 1000px) {

@@ -1,0 +1,94 @@
+.contentWrp {
+    width: 95%;
+    margin: 0 auto;
+    max-width: 700px
+}
+
+.transactionWrp {
+    display: grid;
+    gap: 1em;
+}
+
+.transaction {
+    display: grid;
+    gap: 1em;
+}
+
+.row1 {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .5em;
+}
+
+.tLabel {
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.tValue, .tNote {
+    font-size: .85em;
+}
+
+.tValue {
+    text-align: end;
+}
+
+.formWrp {
+    display: flex;
+    justify-content: space-between;
+}
+
+.outerInputWrp {
+    display: grid;
+    gap: 1em;
+}
+
+.inputWrp {
+    background-color: var(--inputBackground);
+    display: flex;
+    gap: 1em;
+}
+
+.formWrp input {
+    outline: none;
+}
+
+.valueInput, .dropdownMenu {
+    outline: none;
+    text-align: center;
+    background-color: transparent;
+    padding: 5px;
+
+}
+
+
+.dropdownMenu {
+    background-color: var(--inputBackground);
+}
+
+.valueInput {
+    max-width: 80px;
+}
+
+.phoneNumberInput {
+    background: var(--inputBackground);
+    padding: 5px;
+    text-align: center;
+}
+
+
+.processBtnWrp {
+    display: flex;
+    align-items: end;
+}
+
+.processBtn {
+    border-radius: var(--borderRadius);
+    background: var(--primaryAccent);
+    padding: 5px 20px;
+}
+
+.responseMsg {
+    font-size: .95em;
+}
+

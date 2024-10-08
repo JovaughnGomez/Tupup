@@ -10,6 +10,7 @@ function NoReults({ text="" }) {
             src={"/img/no_results.png"}
             width={375}
             height={375}
+            alt='No Results Found'
         />
         <p>{text}</p>
     </div>

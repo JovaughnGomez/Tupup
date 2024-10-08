@@ -1,8 +1,14 @@
 import React from 'react';
 import styles from '@/public/css/ControlPanel.module.css'
 import NavigationLinks from '@/app/components/NavigationLinks';
+import { GetCurrentUser } from '../lib/auth';
+import { redirect } from 'next/navigation';
 
-export default function ControlPanelLayout({ children }) {
+export default async function ControlPanelLayout({ children }) {
+    const currentUser = await GetCurrentUser();
+    if(!currentUser)
+        redirect("/login");
+
     return (
         <div>
             <div className={styles.controlPanelWrp}>

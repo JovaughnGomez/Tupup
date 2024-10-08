@@ -5,6 +5,10 @@
     gap: 1.3em;
 }
 
+.transactionTitle {
+    font-weight: bold;
+}
+
 .heading {
     font-weight: bold;
     font-size: .9em;
@@ -57,7 +61,8 @@
     padding: 5px;
     border-radius: var(--borderRadius);
     font-weight: bold;
-    display: flex;  
+    display: flex; 
+    /* font-size: .8em; */
 }
 
 .voucherInnerWrp * {
@@ -83,6 +88,10 @@
 
 .dropdownMenu {
     background: transparent;
+}
+
+.topup_input::placeholder {
+    font-size: .8em;
 }
 
 .topupBtn, .calculateBtn {
@@ -135,6 +144,114 @@
     color: var(--primaryAccent);
 }
 
+.error {
+    color: red;
+    font-size: .9em;
+    padding-inline-start: 1em;
+}
+
+.successful {
+    color: green;
+}
+
+.pendingTransactionsWrp {
+    display: grid;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.transactionWrp {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.tableWrp {
+    display: none;
+    padding-bottom: 1em;
+    font-size: .75em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    padding: 5px 15px;
+    border-radius: var(--borderRadius);
+    background: var(--navBackground2);
+}
+
+.filter {
+    background: var(--navBackground2);
+    font-size: .8em;
+}
+
+.transactionsWrp {
+    position: relative;
+    border: 1px solid var(--border-bottom);
+    overflow: auto;
+    border-radius: 7px;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-bottom);
+    padding: .65em 1em;
+    background: var(--navBackground);
+    transition: height 0.5s ease;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+}
+
+.statsWrp {
+    padding: .65em 1em;
+    font-size: .85em;
+    background: var(--navBackground2);
+    gap: 1em;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.statValue {
+    text-align: end;
+}
+
+.dateAt1000px {
+    display: none;
+}
+
+.visibility {
+    display: none;
+}
+
+.chevronWrp {
+    
+}
+
+.chevron {
+    transform: rotate(180deg);
+}
+
+
 @media (min-width: 480px) {
     .topUpForm {
         display: grid;
@@ -152,4 +269,99 @@
         max-width: 600px;
         margin: 0 auto;
     }
+
+    .dateAt1000px {
+        display: block;
+    }
+
+    .wrapper {
+        display: grid; 
+        border: none;       
+        border-top: 2px solid var(--border-bottom);
+        grid-template-columns: 43% 54%;
+        justify-content: space-between;
+        padding: 1em 0;
+    }
+
+    .wrapper:last-child {
+        border-bottom: 2px solid var(--border-bottom);
+    }
+
+    .pendingTransactionsWrp {
+        background: var(--navBackground);
+        padding: 1em;
+        border-radius: 15px;
+    }
+
+    .tableWrp {
+        display: block;
+    }
+    
+    .tableNames {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .row1, .row2 {
+        display: grid;
+    }
+
+    .row1 {
+        grid-template-columns: 160px 120px auto;
+    }
+    
+    .row2 {
+        grid-template-columns: 75px auto;
+    }
+
+    .transactionsWrp {
+        border: none;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        background-color: transparent;
+        padding: 1em 0;
+        border-top: 2px solid var(--border-bottom);
+    }
+    
+    .transactionsWrp:last-child {
+        border-bottom: 2px solid var(--border-bottom);
+        margin-bottom: .5em;
+    }
+
+    .header {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 160px 120px auto;
+        justify-content: start;
+        gap: 0;
+        font-size: .9em;
+    }
+
+    .chevronWrp {
+        display: none;
+    }
+
+    .visibility {
+        display: block;
+    }
+
+    .statsWrp {
+        background: transparent;
+        padding: 0;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr, 1fr, 1fr;
+    }
+
+    .statsLabel {
+        display: none;
+    }
+    
+    .statsDate2 {
+        display: none;
+    }
+
 }

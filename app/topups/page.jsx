@@ -1,24 +1,18 @@
 import React from 'react'
 import ProductPage from '@/app/components/ProductList'
 
-function page() {
-    const productCategories = [];
-    const category = {
-        name: "freefire",
-        displayName:"Freefire",
-        icon:"/img/posters/freefire.webp",
-        region:"United States",
-        description:"This is a great product",
-        guide:"1. Log into PSN account 2. Enter Code 3. Redeem"
-    }
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
-    productCategories.push(category);
+async function page() {
+    let productCategories = [];
+    const res = await fetch("http://localhost:3000/api/search", {
+        method:"GET",
+        headers: {
+            InternalToken: process.env.INTERNAL_REQUEST_TOKEN,
+            }
+    });
+
+    const results = await res.json();
+    if(results.success)
+        productCategories = results.categories;
 
     return (
     <div>

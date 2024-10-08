@@ -313,6 +313,19 @@
     object-position: center;
 }
 
+.productInformation ul {
+    list-style-type: disc; /* Use circles or squares for bullet points */
+    padding-left: 20px;    /* Indent list items */
+}
+
+.productInformation li {
+    font-size: .85em;
+}
+
+.productInformation ol {
+    padding-left: 20px;    /* Indent numbered list items */
+    list-style-type: decimal;
+}
 
 @media (min-width:800px) {
     .cover {

@@ -61,6 +61,14 @@
   color: rgb(226, 226, 12);
 }
 
+.successful {
+  color: rgb(8, 230, 8);
+}
+
+.failed {
+  color: rgb(228, 37, 37);
+}
+
 .filter_blue:hover
 {
   filter: brightness(0) saturate(100%) invert(62%) sepia(43%) saturate(6643%) hue-rotate(169deg) brightness(104%) contrast(104%);
@@ -124,12 +132,19 @@ body {
   overflow: hidden;
 }
 
-.body2 {
-  margin-top: calc(10vh + .5em);
+.body2, .adminBody {
   min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.adminBody {
+  margin-top: calc(15vh + .5em);
+}
+
+.body2 {
+  margin-top: calc(10vh + .5em);
 }
 
 footer {
@@ -248,6 +263,12 @@ footer {
   margin: 0;
   color: transparent;
   outline: none;
+}
+
+.hideInputScroller::-webkit-outer-spin-button,
+.hideInputScroller::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .blur2 {

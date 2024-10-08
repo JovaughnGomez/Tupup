@@ -2,26 +2,30 @@ import React from 'react'
 import NavigationButton  from '@/app/components/NavigationButton';
 import Transaction  from '@/app/components/Transaction';
 import styles from './transactions.module.css'
+import { GetWalletDTO } from '@/data/user-dto';
+import { GetCurrentUser } from '@/app/lib/auth';
+import { redirect } from 'next/navigation';
+import { GetTransactionHistoryDTO } from '@/data/transaction-dto';
 
-function page() {
-    const balance = 0;
-    const transactions = [];
-    const transaction = {
-        transaction: "Bmobile",
-        amount: 100,
-        balance: 21,
-        date: Date.now(),
-        notes: "Voucher Type: Bmobile, Voucher #: 1234-5678-9012",
-    }
+async function page() {
+    const currentUser = await GetCurrentUser();
+    if(!currentUser)
+        redirect("/login");
+    
+    const walletDTO = await GetWalletDTO(currentUser, currentUser.id);
+    if(!walletDTO)
+        redirect("/login");
+    
+    const transactions = await GetTransactionHistoryDTO(currentUser, currentUser.id);
+    if(!transactions)
+        redirect("/login");
 
-    transactions.push(transaction);
-    transactions.push(transaction);
-  return (
+    return (
     <>
         <div className={`border ${styles.balanceWrp}`}>
             <div className={`${styles.inner}`}>
                 <h2> TOTAL ACCOUNT BALANCE </h2>
-                <span>${balance}</span>
+                <span>${walletDTO.wallet}</span>
                 <NavigationButton id={"topUpBtn"} text={"Top Up"} path={"/member/topup"} styles={styles.topUpBtn}/>
             </div>
         </div>
@@ -42,6 +46,7 @@ function page() {
                     <div className={styles.first}>
                         <span>Time</span>
                         <span>Transaction</span>
+                        <span></span>
                     </div>
                     <div className={styles.second}>
                         <span className={styles.balance}>Balance</span>
