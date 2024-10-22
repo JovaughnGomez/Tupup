@@ -8,11 +8,16 @@ import { GetControlPanelDTO } from '@/data/cataegory-dto';
 async function page({searchParams}) {
 
   const { id } = searchParams;
-  const results = await GetAdminProductsDTO(id);
-  const category = await GetControlPanelDTO(id);
+  let category = null;
   let products = [];
-  if(results.success)
-    products = results.products;
+
+  if(id)
+  {
+    const results = await GetAdminProductsDTO(id);
+    category = await GetControlPanelDTO(id);
+    if(results.success)
+      products = results.products;
+  }
   
   return (
     <div className={styles.wrapper}>

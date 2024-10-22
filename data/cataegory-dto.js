@@ -1,14 +1,14 @@
 import { FindCategoryById, FindCategoryByName, FindCategoryWhichIncludesValue } from "@/app/controllers/categoryController";
 
-export async function GetSearchDTO(value)
+export async function GetSearchDTO(value, type)
 {
-    const results = await FindCategoryWhichIncludesValue(value);
+    const results = await FindCategoryWhichIncludesValue(value, type);
     if(!results.success)
         return results;
 
     const allCategories = [];
     results.categories.map((category) => 
-        allCategories.push({ id: category.id, name: category.displayName, icon: category.icon, region: category.region })
+        allCategories.push({ id: category.id, actualName: category.name, name: category.displayName, icon: category.icon, region: category.region })
     )
     
     return { success: true, categories:allCategories }
@@ -24,11 +24,11 @@ export async function GetCategoryDTO(name)
         success: true,
         category: {
             id: results.category.id,
+            productType: results.category.productType,
             name: results.category.name,
             displayName: results.category.displayName,
             icon: results.category.icon,
             region: results.category.region,
-            onSale: results.category.onSale,
             allowMultiple: results.category.allowMultiple,
             notes: results.category.notes,
             description: results.category.description,

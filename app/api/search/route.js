@@ -9,7 +9,11 @@ export async function GET(request)
     if(searchParams.has('name'))
         name = searchParams.get('name');  
     
-    const results = await GetSearchDTO(name);
+    let type = ""
+    if(searchParams.has('type'))
+        type = searchParams.get('type');  
+    
+    const results = await GetSearchDTO(name, type);
     if(!results.success)
         return NextResponse.json(results, {status: results.status});
 

@@ -43,3 +43,13 @@ export async function ConvertDateToString(timestamp)
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     return formattedDate;
 }   
+
+export async function StoreOrderScreenshot(orderId, screenshot)
+{
+    
+}
+
+export async function GetRandomNumber (min, max)
+{
+    return parseInt(Math.random() * (max - min) + min);
+}

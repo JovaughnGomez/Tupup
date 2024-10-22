@@ -75,9 +75,10 @@
     padding-inline: .5em;
 }
 
-.order {
-    /* max-width: 830px; */
-    margin: auto;
+.transactionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
 }
 
 @media (min-width: 480px) {

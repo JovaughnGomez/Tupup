@@ -4,7 +4,7 @@ import styles from '@/public/css/SearchBar.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
 
-function SearchBar({ Search, OnSelect}) {
+function SearchBar({ OnSelect}) {
     let denounceTimeout;
     let isHoveringResults = false;
     const [results, setResults] = useState([]);
@@ -45,7 +45,7 @@ function SearchBar({ Search, OnSelect}) {
             clearTimeout(denounceTimeout);
         
         const timeout = setTimeout(async () => {
-            const response = await Search(value)
+            const response = await SearchCategory(value)
             setResults(response);
             ToggleSearchResults(response.length > 0);
         }, 300)
@@ -59,13 +59,25 @@ function SearchBar({ Search, OnSelect}) {
         ToggleSearchResults(false, true);
     }
     
+    async function SearchCategory(value)
+    {
+        const res = await fetch(`/api/search?name=${value}`,{
+            method:"GET",
+        })
+
+        const response = await res.json();
+        if(res.status == 200)
+            return response.categories;
+        else
+            return [];
+    }
 
   return (
     <div className={styles.searchWrp}>
         <input type="search" className={styles.search} onChange={OnChange} onBlur={(e) => ToggleSearchResults()} onClick={(e) => ToggleSearchResults(results.length > 0)}/>
         <ul id='search_list' className={`hide ${styles.searchResults}`} onMouseEnter={OnMouseEnter} onMouseLeave={OnMouseLeave}>
-            {results.map((result) => 
-                <li className={`${styles.searchResult}`} onClick={(e) => Select(e, result)}>
+            {results.map((result, index) => 
+                <li key={index} className={`${styles.searchResult}`} onClick={(e) => Select(e, result)}>
                     <div className={styles.resultInfo}>
                         <Image 
                             width={40}

@@ -13,6 +13,7 @@ export async function GetAdminProductsDTO(categoryId)
             id: product.id,
             name: product.name,
             icon: product.icon, 
+            onSale: product.onSale,
             usdValue: product.usdValue.toString(),
             price: product.price.toString(),
             salePrice: product.salePrice.toString(),

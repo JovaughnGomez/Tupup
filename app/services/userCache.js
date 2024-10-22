@@ -1,5 +1,5 @@
 import prisma from "@/server/prisma";
-import User from "../models/user";
+import User from "@/app/models/user";
 
 const userMap = new Map();
 
@@ -31,7 +31,7 @@ export function ListAll() {
   console.log(userMap);
 }
 
-export function UpdateWallet(userId, newBalance)
+export function UpdateWalletInUserMap(userId, newBalance)
 {
   const user = GetUserFromMap(userId);
   if(user)

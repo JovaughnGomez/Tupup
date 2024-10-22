@@ -1,7 +1,7 @@
 "use server"
 
 import { IsUserOrAdmin } from "@/app/controllers/userController";
-import { GetCurrentUser, GetUserFromId } from "@/app/lib/auth";
+import { GetCurrentUserFromMap, GetUserFromId } from "@/app/lib/auth";
 
 function CanSeeUsername() {
     return true;
@@ -24,7 +24,7 @@ async function CanSeeWalletValue(viewer, user) {
 }
 
 export async function GetNavDTO() {
-    const currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUserFromMap();
     if(!currentUser)
         return null;
 
@@ -66,7 +66,7 @@ export async function GetAccountDTO(viewer, userId)
 
 export async function GetProfileDTO(userId)
 {
-    const viewer = await GetCurrentUser();
+    const viewer = await GetCurrentUserFromMap();
     if(!viewer)
         return null;
 

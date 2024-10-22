@@ -9,7 +9,7 @@ import { GetCategoryDTO } from '@/data/cataegory-dto';
 import { FindProductsByCategoryId } from '@/app/controllers/productController';
 
 async function page({ params }) {
-    const name = params.name;
+    const { name } = params;
     
     // search for product category with that name, if the category does not exist then 404 page.
     const results = await GetCategoryDTO(name);
@@ -29,9 +29,20 @@ async function page({ params }) {
     if(productResults.success)
         products = productResults.products;
 
+    const reviews = [];
+    const review = {
+        username:"Jovaughn",
+        stars:3,
+        icon:"/img/user/avatar/p.webp",
+        createdAt: Date.now(),
+        comment:"fantastic",
+    }
+    reviews.push(review);
+    reviews.push(review);
+    reviews.push(review);
     return (
     <>
-        <ProductPage category={category} products={products} description={description} guide={guide}/>
+        <ProductPage category={category} products={products} reviews={reviews} description={description} guide={guide}/>
     </>
   )
 }

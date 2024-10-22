@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `categoryreview` MODIFY `totalExcellent` INTEGER NOT NULL DEFAULT 0,
+    MODIFY `totalGood` INTEGER NOT NULL DEFAULT 0,
+    MODIFY `totalDecent` INTEGER NOT NULL DEFAULT 0,
+    MODIFY `totalBad` INTEGER NOT NULL DEFAULT 0,
+    MODIFY `totalTerrible` INTEGER NOT NULL DEFAULT 0;

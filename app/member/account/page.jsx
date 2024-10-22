@@ -6,11 +6,11 @@ import SubmitButton from '@/app/components/SubmitButton';
 import Icon from '@mdi/react';
 import { mdiAccountCog, mdiChevronRight, mdiCurrencyUsd} from '@mdi/js';
 import { GetAccountDTO } from '@/data/user-dto';
-import { GetCurrentUser } from '@/app/lib/auth';
+import { GetCurrentUserFromMap } from '@/app/lib/auth';
 import { redirect } from 'next/navigation';
 
 async function page() {
-    const currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUserFromMap();
     if(!currentUser)
         redirect("/login");
     
@@ -67,9 +67,9 @@ async function page() {
                         <Icon path={mdiCurrencyUsd} size={1.2} />
                         <span>{userData.wallet}</span>
                     </div>     
-                    <Link href='/member/topup' className={styles.topUpBtn}>
+                    <a href='/member/topup' className={styles.topUpBtn}>
                         <SubmitButton classes='w-24 p-2' placeholder='Top Up' />
-                    </Link>
+                    </a>
                 </div>
             </div>
         </div>

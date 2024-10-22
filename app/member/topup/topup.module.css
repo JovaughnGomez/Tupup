@@ -72,22 +72,18 @@
     outline: none;
 }
 
-/* .voucherInnerWrp:focus-within {
-    background: var(--digicelAlpha); 
-} */
-
 .voucherInnerWrp input::-webkit-outer-spin-button,
 .voucherInnerWrp input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.dropdownMenu option {
-    background: var(--navBackground2);
-}
-
 .dropdownMenu {
     background: transparent;
+}
+
+.dropdownMenu option {
+    background: var(--navBackground2);
 }
 
 .topup_input::placeholder {
@@ -106,6 +102,11 @@
 .calculator {
     display: grid;
     gap: .5em;
+}
+
+.calcTip {
+    font-size: .8em;
+    margin-bottom: 1em;
 }
 
 .calculatorInput {

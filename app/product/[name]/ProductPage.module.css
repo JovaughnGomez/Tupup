@@ -60,6 +60,10 @@
     font-weight: bold;
 }
 
+.purchase {
+
+}
+
 .purchaseInner,.productInformationWrp {
     position: relative;
     display: flex;
@@ -255,6 +259,7 @@
     text-align: center;
     font-weight: bold;
     font-size: .9em;
+    cursor: pointer;
 }
 
 .productInformation {
@@ -301,6 +306,13 @@
     margin: 1em 0;
 }
 
+.productInformation h4 {
+    font-size: .8em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: .5em 0;
+}
+
 .productInformation p {
     font-size: .85em;
 }
@@ -325,6 +337,149 @@
 .productInformation ol {
     padding-left: 20px;    /* Indent numbered list items */
     list-style-type: decimal;
+}
+
+.reviewContent {
+    display: grid;
+    /* gap: 1em; */
+}
+
+.reviewHeader {
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.reviewStatsWrp {
+    /* margin: 1.5em;
+    padding: 1em;
+    border-top: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray); */
+}
+
+.reviewHeader h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .8em;
+    margin-bottom: 0 !important;
+}
+
+.otherReviews {
+    display: flex;
+    color: var(--primaryAccent);
+    font-size: .85em;
+    align-items: center;
+}
+
+.otherReviews a {
+    color: var(--primaryAccent);
+}
+
+.reviewStatsWrp {
+    margin: 1.5em 0;
+    width: 100%;
+}
+
+.reviewStatsInner {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.reviewStat {
+    font-size: .85em;
+    text-transform: uppercase;
+}
+
+.reviewStat h2::after {
+    content: attr(data-number);
+    font-weight: bolder;
+    padding-left: .5em;
+    font-size: 1.3em;
+}
+
+.review {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewSeparator {
+    display: flex;
+    gap: 1em;
+}
+
+.userIcon {
+    border-radius: 50%;
+}
+
+.reviewUserInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewUserInfo h4 {
+    font-weight: bold;
+    font-size: .78em;
+}
+
+.stars {
+    display: flex;
+    margin-bottom: 7px;
+}
+
+.reviewComment {
+    font-size: .86em;
+}
+
+.dateWrp {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    font-size: .8em;
+}
+
+.textAreaWrp {
+
+}
+
+.textarea {
+    resize: none;
+    outline: none;
+    background-color: var(--inputBackground);
+    border-radius: 5px;
+    width: 100%;
+    height: 150px;
+    max-width: 400px;
+    padding: .5em;
+    font-size: .95em;
+}
+
+.errorWrp {
+    margin: 1em 0;
+}
+
+.reviewTitle {
+    text-transform: uppercase;
+}
+
+.ratingsWrp {
+    display: flex;
+    align-items: center;
+    margin-right: .5em;
+}
+
+.ratingStars {
+    display: flex;
+}
+
+.submitWrp {
+    margin: 1em 0;
 }
 
 @media (min-width:800px) {
@@ -358,6 +513,10 @@
         padding: 0 2em;
         max-width: 1000px;
         width: 100%;
+    }
+
+    .reviewWrapper {
+        margin: unset;
     }
 
     .productView {
@@ -437,4 +596,15 @@
     .cover {
         max-width: var(--maxContentWidth);
     }
+    
+    .reviewInner {
+        display: grid;
+        width: 100%;
+        gap: 1em 2em;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* .reviewWrapper {
+        width: 100%;
+    } */
 }

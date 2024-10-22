@@ -14,8 +14,8 @@ class TransactionDTO {
         this.status = transaction.status,
         this.notes = JSON.parse(transaction.notes),
         this.adminNotes = transaction.adminNotes ? JSON.parse(transaction.adminNotes) : null,
-        this.dateCreated = transaction.dateCreated,
-        this.dateCompleted = transaction.dateCompleted,
+        this.createdAt = transaction.createdAt,
+        this.completedAt = transaction.completedAt,
         this.userId = transaction.userId
         this.balanceBefore = transaction.balanceBefore.toString();
         this.balanceAfter = transaction.balanceAfter.toString();
@@ -69,7 +69,7 @@ export async function GetAdminTransactionsDTO(transactions)
             status: transaction.status,
             notes: transaction.ConvertNotesToText(),
             adminNotes: isAdmin ? transaction.ConvertAdminNotesToText() : "",
-            dateCreated: transaction.dateCreated,
+            createdAt: transaction.createdAt,
             userId: transaction.userId
         }); 
     }
@@ -86,7 +86,7 @@ export async function GetSingleWalletTransactionUnsafeDTO(transaction)
         status: transaction.status,
         voucherType: transaction.notes.voucherType,
         voucher: transaction.notes.voucher,
-        dateCreated: transaction.dateCreated,
+        createdAt: transaction.createdAt,
     }
 }
 
@@ -94,11 +94,11 @@ export async function GetWalletTransactionsDTO(viewer, userId)
 {
     const isAuthorized = await IsUserOrAdmin(viewer, userId);
     if(!isAuthorized)
-        return null;
+        return [];
 
     const results = await GetAllPendingTransactionsFromUser(userId);
     if(!results.success)
-        return null;
+        return [];
 
     const transactions = results.transactions;
 
@@ -112,7 +112,7 @@ export async function GetWalletTransactionsDTO(viewer, userId)
             status: transaction.status,
             voucherType: transaction.notes.voucherType,
             voucher: transaction.notes.voucher,
-            dateCreated: transaction.dateCreated,
+            createdAt: transaction.createdAt,
         }); 
     }
 
@@ -138,9 +138,9 @@ export async function GetTransactionHistoryDTO(viewer, userId)
             method: transaction.method,
             status: transaction.status,
             value: transaction.value,
-            dateCompleted: transaction.dateCompleted,
+            completedAt: transaction.completedAt,
             notes: transaction.ConvertNotesToText(),
-            vatType: transaction.adminNotes.vatType,
+            // vatType: transaction.adminNotes.vatType,
             balanceAfter: transaction.balanceAfter,
         });
     });

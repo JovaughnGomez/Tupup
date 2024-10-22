@@ -1,0 +1,23 @@
+.label {
+    outline: none;
+    background: var(--inputBackground);
+    width: fit-content;
+    padding: 8px 15px;
+    border-radius: var(--borderRadius);
+    font-size: .85em;
+}
+
+.label span {
+    font-weight: bold;
+    margin-right: 1em;
+}
+
+.dropdownMenu option {
+    background: var(--navBackground2);
+}
+
+.dropdownMenu {
+    background: transparent;
+    padding-right: 1em;
+    outline: none;
+}

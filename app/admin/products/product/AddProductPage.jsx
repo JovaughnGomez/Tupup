@@ -6,22 +6,18 @@ import InputBox from '@/app/components/InputBox'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import SearchBar from '@/app/components/SearchBar'
+import Radio from '@/app/components/Radio'
 
 function AddProductPage ({ category, allProducts=[] }) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [firstLoad, setFirstLoad] = useState(true);
     const [product, setProduct] = useState(null);
     const [products, setProducts] = useState([]);
     const [version, setVersion] = useState(0);
     
     useEffect(() => {
-        if(firstLoad)
-        {
-            SetProducts();
-            setFirstLoad(false);
-        }
+        SetProducts();
 
         const addProductForm = document.getElementById("add_product");
         const upsertProduct = async (e) => {
@@ -64,19 +60,6 @@ function AddProductPage ({ category, allProducts=[] }) {
         };
 
     }, [pathname, searchParams, product])
-    
-    async function SearchCategory(value)
-    {
-        const res = await fetch(`/api/search?name=${value}`,{
-            method:"GET",
-        })
-
-        const response = await res.json();
-        if(res.status == 200)
-            return response.categories;
-        else
-            return [];
-    }
 
     function SetProducts()
     {
@@ -139,11 +122,16 @@ function AddProductPage ({ category, allProducts=[] }) {
         setVersion(version + 1);
     }
 
+    function ToggleSale(isOnSale)
+    {
+
+    }
+
   return (
     <>
         <div className={styles.contentWrp}>
             <div className={styles.searchWrp}>
-                <SearchBar Search={SearchCategory} OnSelect={SelectCategory}/>
+                <SearchBar OnSelect={SelectCategory}/>
             </div>
             <ul className={styles.productsWrp}>
                 {products.map((localProduct, index) => 
@@ -170,12 +158,12 @@ function AddProductPage ({ category, allProducts=[] }) {
             <input type="hidden" name='product_id' value={product ? product.id : ""} />
             <h2 className={styles.heading}>{ !product ? "Add" : "Update" } Product</h2>
             <InputBox key={`name${version}`} placeholder={"Product Name"} label='Name' name={"product_name"} defaultVal={product ? product.name : ""} autoComplete="false" />
-            <InputBox key={`icon${version}`} placeholder={"/img/icons/freefire_icon.webp"} label='Icon' name={"icon"} defaultVal={product ? product.icon : "/img/icons/"} />
+            <InputBox key={`icon${version}`} placeholder={"/img/icons/freefire.webp"} label='Icon' name={"icon"} defaultVal={product ? product.icon : "/img/icons/"} />
             <InputBox key={`category${version}`} placeholder={"Category"} label='Category' name={"category"} defaultVal={category ? category.name : ""}/>
             <InputBox key={`usd${version}`} placeholder={"USD Value"} label='USD Value' name={"usd_value"} type='number' defaultVal={product ? product.usdValue : ""}  autoComplete="false" />
             <InputBox key={`price${version}`} placeholder={"Price"} label='Price' name={"price"} type='number' defaultVal={product ? product.price : ""}  autoComplete="false" />
             <InputBox key={`salePrice${version}`} placeholder={"Sale Price"} label='Sale Price' name={"sale_price"} type='number' defaultVal={product ? product.salePrice : ""}  autoComplete="false" />
-
+            <Radio key={`onSale${version}`} name="onSale" defaultValue={ product ? product.onSale : false } callback={ToggleSale} text={"On Sale"}/>
             <div className={styles.btns}>
                 <label className={styles.btn} onClick={ClearProduct}>
                     <span>Clear</span>

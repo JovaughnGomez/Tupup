@@ -1,0 +1,100 @@
+.contentWrp {
+    max-width: var(--maxContentWidth);
+    margin: 0 auto;
+}
+
+.searchCategoryWrp {
+    width: 50%;
+}
+
+.addGiftcardWrp {
+    width: 700px;
+    margin: auto;
+    display: grid;
+    gap: 1em;
+}
+
+.categoryInfoWrp {
+    display: grid;
+    gap: 2em;
+}
+
+.nameWrp {
+    font-weight: bold;
+}
+
+.label {
+    text-transform: uppercase;
+
+}
+
+.listWrp {
+    display: grid;
+    gap: 1em;
+}
+
+.cardList {
+    display: grid;
+    gap: .5em;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.iconsWrp {
+    display: flex;
+    gap: 1em;
+}
+
+.listInput, .fieldCount {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    font-size: .8em;
+}
+
+.listInput {
+    background: var(--inputBackground);
+    width: 225px;
+    padding: .5em 1em;
+    text-transform: uppercase;
+}
+
+.listInput:focus-within {
+    border: 2px solid var(--primaryAccent);
+}
+
+.listItemIcon:hover {
+    color: red;
+}
+
+.listIcon:hover {
+    color: var(--primaryAccent);
+}
+
+.fieldCount {
+    width: 75px;
+    text-align: center;
+    color: black;
+}
+
+.submitWrp {
+    font-weight: bold;
+    padding: .7em 2em;
+    margin: auto;
+    margin-top: 2em;
+    border-radius: 10px;
+    background-color: var(--primaryAccent);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.submitWrp:hover {
+    background-color: #00b3ffc4;
+}

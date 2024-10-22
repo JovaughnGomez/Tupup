@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/server/prisma";
 import { CreateSession, CreateCookie } from '@/app/lib/session'
-import { CheckIfUserExist } from "@/app/lib/auth";
+import { AuthenticateUser, CheckIfBaseEmailExist, CheckIfUserExist, IsAliasEmail } from "@/app/lib/auth";
 import { AddUserToMap } from "@/app/services/userCache";
 import { GeneratePasswordHash, GenerateUUID } from "@/app/lib/utils";
 
@@ -15,16 +15,25 @@ export async function POST(request) {
   
   // Check if all fields were submitted
   if(!email || !password || !username || !passwordConfirmation)
-    return NextResponse.json({ invalid:"Please input all fields." }, { status: 400 });
+    return NextResponse.json({ error:"Please input all fields." }, { status: 400 });
   
   if(password !== passwordConfirmation)
     return NextResponse.json({ password:"Those passwords did not match. Try again." }, { status: 400 });
 
   if(password.length < 3)
     return NextResponse.json({ password:"Password must be at least 3 characters long" }, { status: 400 });
+  
+  const baseEmailData = await IsAliasEmail(email);
 
   let user;
   try {
+    if(!baseEmailData.isAuthorizedProvider)
+      return NextResponse.json({ email:"The email provider you used is not allowed. Please sign up using a common email provider like Gmail, Yahoo, Outlook, iCloud, or Zoho" }, { status: 400 });
+    
+    user = await CheckIfBaseEmailExist(baseEmailData.baseEmail);
+    if(user)
+      return NextResponse.json({ email:"A user with this email already exist." }, { status: 400 });
+
     user = await CheckIfUserExist(email, username);
     if(user)
     {
@@ -41,31 +50,33 @@ export async function POST(request) {
 
   const hashedPassword = await GeneratePasswordHash(password);
   const sessionId = await GenerateUUID();
-  user = await CreateUser(username, email, hashedPassword, sessionId);
+  user = await CreateUser(username, baseEmailData.baseEmail, email, hashedPassword, sessionId);
   
   if(!user)
     return NextResponse.json({ error :"Failed to create user. Please try again later." }, { status: 500 });
-  
-  AddUserToMap(user);
-  const session = await CreateSession(sessionId, user.id);
-  await CreateCookie(session);
-  return NextResponse.json({success: true}, {status: 200});
+
+  // Creates session and userCache
+  await AuthenticateUser(user);
+
+  return NextResponse.json({ success: true}, {status: 200});
 }
 
-async function CreateUser(username, email, password)
+export async function CreateUser(username, baseEmail, email, password, avatar)
 {
-    try {
-        const user = await prisma.user.create({
-            data: {
-              username,
+  try {
+    const user = await prisma.user.create({
+      data: {
+        username,
+              baseEmail,
               email,
               password,
-            }
-        })
+              avatar,
+        }
+    })
         
-        return user;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
+    return user;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
 }

@@ -3,12 +3,12 @@ import NavigationButton  from '@/app/components/NavigationButton';
 import Transaction  from '@/app/components/Transaction';
 import styles from './transactions.module.css'
 import { GetWalletDTO } from '@/data/user-dto';
-import { GetCurrentUser } from '@/app/lib/auth';
+import { GetCurrentUserFromMap } from '@/app/lib/auth';
 import { redirect } from 'next/navigation';
 import { GetTransactionHistoryDTO } from '@/data/transaction-dto';
 
 async function page() {
-    const currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUserFromMap();
     if(!currentUser)
         redirect("/login");
     

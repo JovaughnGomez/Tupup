@@ -55,7 +55,12 @@
 }
 
 .cardInfo span {
-    font-size: .7em;
+    font-size: .85em;
+}
+
+.iconWrp {
+    width: 45px;
+    height: 45px;
 }
 
 .value {

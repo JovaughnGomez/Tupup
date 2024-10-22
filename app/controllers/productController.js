@@ -1,25 +1,8 @@
 "use server"
-import Product from "@/data/product-dto";
 import prisma from "@/server/prisma"
+import { AppError } from "../lib/AppError";
 
-export async function UpdateMultipleProducts(products)
-{
-    try {
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
-            
-        }
-        const categories = prisma.productcategory.update({
-            where: {
-
-            }
-        })
-    } catch (error) {
-        
-    }
-}
-
-export async function CreateProduct(name, icon, categoryId, usdValue, price, salePrice)
+export async function CreateProduct(name, onSale, icon, categoryId, usdValue, price, salePrice)
 {
     if(!name || !icon || !categoryId || !usdValue || !price || !salePrice)
         return { success: false, message: `Some fields were empty`, status: 401};
@@ -35,44 +18,65 @@ export async function CreateProduct(name, icon, categoryId, usdValue, price, sal
                 icon,
                 categoryId,
                 usdValue,
+                onSale,
                 price,
                 salePrice
             }
         });
 
-        return {success: true, product}
+        return { success: true, product}
     } catch (error) {
         console.error(error);
-        return { success: false, mesage: "Unexpected Error", status:500}
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
 }
 
-export async function UpdateProduct(id, salePrice)
+export async function FindActiveProductById(id)
+{
+    try {
+        const product = await prisma.product.findUnique({
+            where: {
+                id
+            }
+        });
+
+        if(!product || !product.isActive)
+            throw new AppError("Product does not exist.", 400);
+        
+        return { success: true, product }
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
+    }
+}
+
+export async function UpdateProduct(id, onSale, salePrice)
 {
     if(!id || !salePrice)
         return { success: false, message: `Some fields were empty`, status: 401};
     
     try {
         const product = await prisma.order.findFirst({ where: { productId: id }})
-        if(product)
-            return { success: false, message: `At least one of this product has been purchased before.`, status: 400};
+        if(!product)
+            return new AppError("At least one of this product has been purchased before.", 400);
 
         const updatedProduct = await prisma.product.update({
             where: {
                 id,
             },
             data: {
+                onSale,
                 salePrice
             }
         })
 
         if(!updatedProduct)
-            return { success: false, message: `Product does not exist.`, status: 400};
+            return new AppError("Product does nto exist", 400);
         
         return { success: true, product: updatedProduct };
     } catch (error) {
         console.error(error);
-        return { success: false, mesage: "Unexpected Error", status:500}  
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
 }
 
@@ -98,7 +102,7 @@ export async function ToggleActivationOnManyProducts(products)
         return { success: true, products };
     } catch (error) {
         console.log(error);
-        return { success: false, message:"Unexpected Error" }
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
 }
 
@@ -120,7 +124,7 @@ export async function DeleteProduct(id)
         return { success: true, product: deletedProduct }
     } catch (error) {
         console.error(error);
-        return { success: false, mesage: "Unexpected Error", status:500}   
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 }; 
     }
 }
 
@@ -147,6 +151,6 @@ export async function FindProductsByCategoryId(categoryId, includeInactive)
         return { success: true, products }
     } catch (error) {
         console.error(error);
-        return { success: false, mesage: "Unexpected Error", status:500}   
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };;
     }
 }

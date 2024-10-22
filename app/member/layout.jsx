@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '@/public/css/ControlPanel.module.css'
 import NavigationLinks from '@/app/components/NavigationLinks';
-import { GetCurrentUser } from '../lib/auth';
+import { GetCurrentUserFromMap } from '../lib/auth';
 import { redirect } from 'next/navigation';
 
 export default async function ControlPanelLayout({ children }) {
-    const currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUserFromMap();
     if(!currentUser)
         redirect("/login");
 

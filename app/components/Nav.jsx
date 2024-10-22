@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -17,7 +17,13 @@ const Nav = ({ userInfo = null}) => {
     const pathname = usePathname();
     const showNav = pathname !== "/login" && pathname !== "/register";
     const showDefaultLinks = !pathname.startsWith("/member/manage");
+    useEffect(() => {
+    
+      return () => {
 
+    }
+    }, [pathname])
+    
     function ToggleRightMenu(e)
     {
         let sidebar;
@@ -57,8 +63,10 @@ const Nav = ({ userInfo = null}) => {
                 <div className={styles.adminNavWrp}>
                     <div className={styles.adminNav}>
                         <div>
-                            <Link href={"/admin/products/category"}>Manage Category</Link>
-                            <Link href={"/admin/products/product"}>Manage Product</Link>
+                            <Link href={"/admin/products/giftcard"}>GiftCards</Link>
+                            <Link href={"/admin/products/category"}>Categorys</Link>
+                            <Link href={"/admin/products/product"}>Products</Link>
+                            <Link href={"/admin/transactions"}>Wallet</Link>
                         </div>
                     </div>
                 </div> 

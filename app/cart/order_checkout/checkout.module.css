@@ -104,6 +104,7 @@
     padding: .5em 1.4em;
     background: var(--primaryAccent);
     border-radius: var(--borderRadius);
+    cursor: pointer;
 }
 
 @media (min-width:1000px) {

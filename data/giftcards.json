@@ -2,63 +2,63 @@
     {
         "name": "Playstation Network Card",
         "region":"United States",  
-        "icon": "/img/icons/psn_icon.webp",
+        "icon": "/img/icons/psn.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Xbox Live Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/xbox_icon.webp",
+        "icon": "/img/icons/xbox.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Steam Wallet Code",
         "region":"United States",   
-        "icon": "/img/icons/steam_icon.webp",
+        "icon": "/img/icons/steam.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Nintendo Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/nintendo_icon.webp",
+        "icon": "/img/icons/nintendo.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Itunes Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/itunes_icon.webp",
+        "icon": "/img/icons/itunes.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Roblox Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/roblox_icon.webp",
+        "icon": "/img/icons/roblox.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Amazon",
         "region":"United States",   
-        "icon": "/img/icons/amazon_icon.webp",
+        "icon": "/img/icons/amazon.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Spotify",
         "region":"United States",   
-        "icon": "/img/icons/spotify_icon.webp",
+        "icon": "/img/icons/spotify.webp",
         "description":"",   
         "guide":""   
     },
     {
         "name": "Netflix",
         "region":"United States",   
-        "icon": "/img/icons/netflix_icon.webp",
+        "icon": "/img/icons/netflix.webp",
         "description":"",   
         "guide":""   
     }

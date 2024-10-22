@@ -1,32 +1,55 @@
 "use client"
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductForm from './ProductForm'
 import QuantityInput from '@/app/components/QuantityInput'
+import SubmitButton from '@/app/components/SubmitButton'
 import Image from 'next/image'
 import styles from './ProductPage.module.css'
 import Icon from '@mdi/react';
-import { mdiCheckBold, mdiChevronRight } from '@mdi/js';
+import { mdiCheckBold, mdiChevronRight, mdiStar } from '@mdi/js';
+import { CalculateFinalPrice, ConvertDateToString } from '@/app/lib/clientUtils'
+import ErrorText from '@/app/components/ErrorText'
+import { useRouter } from 'next/navigation'
 
-function ProductPage({ category, products, description, guide }) {
-  let quantity = 1;
-  let currentCheckbox;
-  let currentOption;
-  let currentProduct;
+function ProductPage({ category, products = [], reviews=[], description, guide }) {
+  const router = useRouter();
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState([1,2,3,4,5]);
+  const [activeRating, setActiveRating] = useState(0);
+  const [finalRating, setFinalRating] = useState(0);
+  const [hoveringRating, setHoveringRating] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const product = document.querySelector(`.${styles.option}`);
-    if(product)
-      SelectProduct(product);
+  
+    return () => {
+
+    }
+  }, [error])
+  
+  const starsArray = [1,2,3,4,5];
+  products = products.sort((a,b) => a.price - b.price);
+  useEffect(() => {
+    if(products.length > 1)
+      setProduct(products[0]);
+  
+    return () => {
+
+    }
   }, [])
   
 
+  function ChangeQuantity(quantity)
+  {
+    setQuantity(quantity);
+    CalculatePrice();
+  }
+
   function CalculatePrice()
   {
-    if(category.onSale && currentProduct.salePrice > 0)
-      return currentProduct.salePrice * quantity;
-    else  
-      return currentProduct.price;
+    if(product)
+      return CalculateFinalPrice(product, quantity);
   }
 
 // #region Code related handling selecting products 
@@ -36,59 +59,35 @@ function ProductPage({ category, products, description, guide }) {
     purchaseWrapper.classList.toggle('show');
   }
 
-  function OnSelectProduct(e)
+  function OnSelectProduct(e, product)
   {
-    const product = e.currentTarget;
-    SelectProduct(product);
-  }
-
-  function SelectProduct(product)
-  {
-    // Save product as currentProduct
-    const productIndex = product.getAttribute("data-index");
-    currentProduct = products[productIndex];
-    
-    // Assign productID to input
-    const productId = product.getAttribute("data-product-id");
-    const productIdInput = document.getElementById("product_id");
-    productIdInput.value = productId;
-    
-    UpdateChosenOption();
-    HighlightOption(product);
-    SetPurchaseInformation();
-  }
-
-  function UpdateChosenOption()
-  {
-    const chosenOption = document.getElementById("item_form_ctrl");
-    const iconOfChosen = chosenOption.querySelector(`.${styles.productIcon}`);
-    const nameOfChosen = chosenOption.querySelector(`.${styles.pName}`);
-    iconOfChosen.src = currentProduct.icon;
-    nameOfChosen.innerHTML = currentProduct.name;
-  }
-
-  function HighlightOption(currentTarget)
-  {
-    const productCheckbox = currentTarget.querySelector(`.${styles.radioCheck}`);
-    if(currentCheckbox)
-      currentCheckbox.classList.add("hide");
-    
-    productCheckbox.classList.remove("hide");
-    currentCheckbox = productCheckbox;
-
-    if(currentOption)
-      currentOption.classList.remove(styles.activeProduct);
-
-    currentTarget.classList.add(styles.activeProduct);
-    currentOption = currentTarget;
-  }
-
-  function SetPurchaseInformation()
-  {
-    const price = document.getElementById("finalPrice");
-    price.innerText = `$ ${CalculatePrice()}`;
+    setProduct(product);
   }
 // #endregion
+
+  async function OnSubmitReview(e)
+  {
+    setError(false);
+
+    if(finalRating <= 0)
+    {
+      setError(true);
+      return;
+    }
+
+    const form = document.getElementById("review_form");
+    const data = new FormData(form);
+    const results = await fetch("/api/review/add", {
+      method:'post',
+      body: data,
+    })
+
+    const res = await results.json();
+    if(res.success)
+      router.push(res.redirect);
+    else
+      setError(res.message);
+  }
 
   return (
     <div className={`${styles.wrapper}`}>
@@ -99,7 +98,7 @@ function ProductPage({ category, products, description, guide }) {
             width={192}
             height={192}
             src={category.icon}
-            />
+          />
 
           <div className={styles.info}>
             <h2>{category.displayName}</h2>
@@ -108,19 +107,23 @@ function ProductPage({ category, products, description, guide }) {
           </div>
         </div>
       </div>
-      <form id='purchase_form' method='post' action="">
+      <form id='purchase_form' method='post' action={`/api/product/buy`}>
         <input type="hidden" name='category_id' value={category.id} />
+        <input type="hidden" name='category_name' value={category.name} />
+        <input type="hidden" name='product_id' id='product_id' value={product ? product.id : 0}/>
+        <input type="hidden" name='quantity' value={quantity}/>
+        
         <div className={styles.purchase}>
           <div className={styles.purchaseInner}>
             <div id='item_form_ctrl' className={`border ${styles.productView}`} onClick={ToggleProductList}>
               <Image 
-                src={""}
+                src={product ? product.icon : ""}
                 width={32}
                 height={32}
                 className={styles.productIcon}
               />
               <div className={styles.z}>
-                <span className={styles.pName}></span>
+                <span className={styles.pName}>{product ? product.name : ""}</span>
               </div>
               <div className={styles.z}>
                 <Icon path={mdiChevronRight} size={1} />
@@ -133,34 +136,32 @@ function ProductPage({ category, products, description, guide }) {
                 </div>
                 <div className={styles.purchaseOptions}>
                   <ul id='productTypeList' className={styles.productList}>
-                    <input type="hidden" name='category_id' id='category_id' value={category.id}/>
-                    <input type="hidden" name='product_id' id='product_id' value={0}/>
                     {
-                      products.map((product, index) => 
-                        <li key={index} className={styles.option} data-index={index} data-product-id={product.id} onClick={OnSelectProduct}>
+                      products.map((localProduct, index) => 
+                        <li key={index} className={`${localProduct == product ? styles.activeProduct : "" } ${styles.option}`} data-index={index} data-product-id={localProduct.id} onClick={(e) => OnSelectProduct(e, localProduct)}>
                           <div className={styles.product}>
                             <div className={styles.productImage}>
                               <Image  
-                                src={product.icon}
+                                src={localProduct.icon}
                                 width={40}
                                 height={40}
                               />
                             </div>
                             <div className={styles.radioCircle}>
-                              <div className={`hide ${styles.radioCheck}`}>
+                              <div className={`${localProduct == product ? "" : "hide" } ${styles.radioCheck}`}>
                                 <Icon path={mdiCheckBold} size={.6} />
                               </div>
                             </div>
-                            <span className={styles.productName}>{ product.name }</span>
-                              {category.onSale && product.salePrice > 0 ?
+                            <span className={styles.productName}>{ localProduct.name }</span>
+                              {localProduct.onSale && localProduct.salePrice > 0 ?
                                 (
                                   <div className={styles.priceList}>
-                                    <div className={`accent`}> ${ product.salePrice } </div>
-                                    <span>${product.price}</span>
+                                    <div className={`accent`}> ${ parseFloat(localProduct.salePrice).toFixed(2) } </div>
+                                    <span>${parseFloat(localProduct.price).toFixed(2)}</span>
                                   </div>
                                 ) : (
                                   <div className={styles.priceList}>
-                                    <div className={`accent`}> ${ product.price } </div>
+                                    <div className={`accent`}> ${ parseFloat(localProduct.price).toFixed(2) } </div>
                                   </div>
                                 )
                               }
@@ -181,7 +182,7 @@ function ProductPage({ category, products, description, guide }) {
                 <h3>Order Information</h3>
                 <ProductForm productName={category.name}/>
                 { category.allowMultiple &&
-                  <QuantityInput />
+                  <QuantityInput onQuantityChange={ChangeQuantity}/>
                 }
               </div>
 
@@ -189,7 +190,7 @@ function ProductPage({ category, products, description, guide }) {
                 <div className={`border ${styles.orderDetailsInner}`}>
                   <div className={styles.details}>
                     <h2>Total</h2> 
-                    <span id='finalPrice' className={styles.finalPrice}></span> 
+                    <span id='finalPrice' className={styles.finalPrice}>${product ? CalculatePrice() : "0.00"}</span> 
                   </div>
                   <label className={styles.buyBtnWrp}>
                     <span className={styles.buyBtn}>BUY NOW</span>
@@ -203,19 +204,108 @@ function ProductPage({ category, products, description, guide }) {
       </form>
       <div id='product_information' className={styles.productInformationWrp}>
         <div className={styles.productInformation}>
-            <div className={`border ${styles.productDescriptionWrp}`}>
-              <div className={styles.productDescription}>
-                <h1 className={styles.infoTitle}>Description</h1>
-                <article className={styles.desc} dangerouslySetInnerHTML={{ __html: description }}></article>
-              </div>
+          <div className={`border ${styles.productDescriptionWrp}`}>
+            <div className={styles.productDescription}>
+              <h1 className={styles.infoTitle}>Description</h1>
+              <article className={styles.desc} dangerouslySetInnerHTML={{ __html: description }}></article>
             </div>
+          </div>
 
-            <div className={`border ${styles.productDescriptionWrp}`}>
-              <div className={styles.productDescription}>
-                <h1 className={styles.infoTitle}>Guide</h1>
-                <article className={styles.desc} dangerouslySetInnerHTML={{ __html: guide }}></article>
+          <div className={`border ${styles.productDescriptionWrp}`}>
+            <div className={styles.productDescription}>
+              <h1 className={styles.infoTitle}>Guide</h1>
+              <article className={styles.desc} dangerouslySetInnerHTML={{ __html: guide }}></article>
+            </div>
+          </div>
+          <div id='reviews' className={styles.reviewContent}>
+            <div className={`border ${styles.reviewWrapper}`}>
+              <div className={styles.reviewHeader}>
+                <h2>User reviews that have a comment</h2>
+                {/* <div className={styles.otherReviews}>
+                  <a href="/reviews/playstation-network-card-psn-united-states">All Reviews</a>
+                  <Icon path={mdiChevronRight} size={.8} />
+                </div> */}
+              </div>
+              <div className={styles.stats_reviewWrp}>
+                <div className={styles.reviewStatsWrp}>
+                  <div className={styles.reviewStatsInner}>
+                    <div className={styles.reviewStat}>
+                      <h2 data-number={"160K"}>Total Reviews</h2>
+                    </div>
+                    <div className={styles.reviewStat}>
+                      <h2 data-number={"4.99"}>Avg Reviews</h2>
+                    </div>
+                  </div>
+                </div>
+                <form name='review_form' id='review_form' method='post' action='/api/review/add' className={styles.reviewForm}>
+                  <input type="hidden" name='rating' value={finalRating} min={1} max={5}/>
+                  <input type="hidden" name='category_name' value={category.name}/>
+                  <input type="hidden" name='category_id' value={category.id}/>
+                  <h3 className={styles.reviewTitle}>Leave A Review</h3>
+                  <div className={styles.ratingsWrp} onMouseEnter={(e) => setHoveringRating(true)} onMouseLeave={(e) => setHoveringRating(false)} >
+                    <h4>Your Rating: </h4>
+                    <div className={styles.ratingStars}>
+                      {rating.map((star, index) => (
+                        hoveringRating ? (
+                          <Icon key={index} path={mdiStar} size={.8} color={star <= activeRating ? "gold" : ""} onMouseEnter={(e) => setActiveRating(index + 1)} onClick={(e) => setFinalRating(index + 1)} />
+                        ) : (
+                          <Icon key={index} path={mdiStar} size={.8} color={star <= finalRating ? "gold" : ""} />
+                        )
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.textAreaWrp}>
+                    <h3 className={styles.textAreaLabel}>Your Review</h3>
+                    <textarea name="comment" className={styles.textarea} placeholder='Excellent service! I received my item in minutes!'></textarea>
+                  </div>
+                  {error &&
+                    <div className={styles.errorWrp}>
+                      <ErrorText text={"Rating must be greater than 0"} font='text-lg' />
+                    </div>
+                  }
+                  <div className={styles.submitWrp}>
+                    <SubmitButton onSubmit={OnSubmitReview}/>
+                  </div>
+                </form>
+              </div>
+
+              <div className={styles.reviewInner}>
+                {reviews.map((review, index) => 
+                  <div key={index} className={styles.review}>
+                    <div className={styles.reviewSeparator}>
+                      <div className={styles.userIconWrp}>
+                        <Image 
+                          src={review.icon}
+                          width={45}
+                          height={45}
+                          className={styles.userIcon}
+                          alt='Avatar'
+                        />
+                      </div>
+                      <div className={styles.reviewUserInfo}>
+                        <h4>{review.username}</h4>
+                        <div className={styles.stars}>
+                          {starsArray.map((star, index) => (
+                            star <= review.stars ? (
+                              <Icon key={index} path={mdiStar} size={.6} color='gold'/>
+                            ) : (
+                              <Icon key={index} path={mdiStar} size={.6}/>
+                            )
+                          ))}
+                        </div>
+                        <div className={styles.reviewComment}>
+                          so fast and easy, thanks
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.dateWrp}>
+                      <span className={styles.date}>{ConvertDateToString(Date.now(), true)}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>

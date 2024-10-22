@@ -22,7 +22,8 @@
 }
 
 .product span {
-    margin-left: 5px;
+    /* margin-left: 5px; */
+    font-size: .85em;
 }
 
 .productIcon {

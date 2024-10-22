@@ -18,17 +18,18 @@ export async function middleware(request) {
         const isAdminPage = currentPath.startsWith('/api/admin') || currentPath.startsWith('/admin');
 
         // Make fetch call to actual middleware route so that it can validate user
-        const response = await fetch("http://localhost:3000/api/middleware", {
+        const response = await fetch(`http://localhost:${process.env.PORT}/api/middleware`, {
             method: "GET", 
             headers: {
                 InternalToken: process.env.INTERNAL_REQUEST_TOKEN,
+                "Cache-Control": "no-store",
                 Authorization:sessionId,
                 Admistrator: isAdminPage,
             }
         });
         
         const responseHeader = response.headers.get("Content-Type");
-        const results = responseHeader == "application/json" ? await response.json() : {}
+        const results = responseHeader === "application/json" ? await response.json() : {}
         
         if(!results.isAuthorized)
             return NextResponse.redirect(new URL("/login", request.url));

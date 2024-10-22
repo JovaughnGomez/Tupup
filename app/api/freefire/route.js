@@ -8,7 +8,6 @@ export async function POST(request)
     console.log("OK");  
     const formData = await request.formData();
     console.log(formData);
-    return NextResponse.json({message: "Failed to find FreeFire Id Option"}, {status: 400});
 
     // Setup
     const browser = await chromium.launch();

@@ -11,6 +11,7 @@ import Icon from '@mdi/react';
 function TopUp({userData, allTransactions=[], children}) {
     const serviceFee = process.env.NEXT_PUBLIC_TOPUP_FEE;
     let isVatInclusive = true;
+    const [phoneCardType, setPhoneCardType] = useState("bmobile");
     const [showCalculation, setShowCalculation] = useState(false);
     const [vatAmount, setVatAmount] = useState(0);
     const [balance, setBalance] = useState(0);
@@ -18,34 +19,6 @@ function TopUp({userData, allTransactions=[], children}) {
     const [transactions, setTransactions] = useState([]);
 
     let topUpForm;
-    async function SubmitForm()
-    {
-        const data = new FormData(topUpForm);
-
-        const res = await fetch("/api/wallet/topup", {
-            method: "POST",
-            body: data,
-        });
-
-        const response = await res.json();
-        ToggleErrorMessage(response.success, response.message);
-        if(res.status == 200)
-        {
-            if(response.transaction)
-                setTransactions((transactions) => [response.transaction, ...transactions]);
-        }
-    }
-
-    function ToggleErrorMessage(success, message)
-    {
-        const topUpResponse = document.getElementById('topup_response');
-        topUpResponse.classList.remove("hide");
-        topUpResponse.innerText = message;
-        if(success)
-            topUpResponse.classList.add(styles.successful);
-        else
-            topUpResponse.classList.remove(styles.successful);
-    }
 
     useEffect(() => {
         setTransactions(allTransactions);
@@ -56,10 +29,10 @@ function TopUp({userData, allTransactions=[], children}) {
             const topUpBtn = document.getElementById("topupBtn");
             const value = voucherInput.value;
             if(value == "digicel")
-                {
-                    topUpBtn.classList.add("digicel");
-                    dropdownMenuLabel.classList.add("digicelAlpha")
-                } else {
+            {
+                topUpBtn.classList.add("digicel");
+                dropdownMenuLabel.classList.add("digicelAlpha")
+            } else {
                 topUpBtn.classList.remove("digicel");
                 dropdownMenuLabel.classList.remove("digicelAlpha")
             }
@@ -89,12 +62,41 @@ function TopUp({userData, allTransactions=[], children}) {
         };
     }, []);
 
+    async function SubmitForm()
+    {
+        const data = new FormData(topUpForm);
 
-    function OnChangeMobile(e)
+        const res = await fetch("/api/wallet/topup", {
+            method: "POST",
+            body: data,
+        });
+
+        const response = await res.json();
+        ToggleErrorMessage(response.success, response.message);
+        if(res.status == 200)
+        {
+            if(response.transaction)
+                setTransactions((transactions) => [response.transaction, ...transactions]);
+        }
+    }
+
+    function ToggleErrorMessage(success, message)
+    {
+        const topUpResponse = document.getElementById('topup_response');
+        topUpResponse.classList.remove("hide");
+        topUpResponse.innerText = message;
+        if(success)
+            topUpResponse.classList.add(styles.successful);
+        else
+            topUpResponse.classList.remove(styles.successful);
+    }
+
+    function OnChangeVatType()
     {
         const voucherInput = document.getElementById("voucherType");
         const topUpBtn = document.getElementById("topupBtn");
         const value = voucherInput.value;
+        console.log("OK");
         if(value == "digicel")
         {
             topUpBtn.classList.add("digicel");
@@ -165,9 +167,10 @@ function TopUp({userData, allTransactions=[], children}) {
 
             <div className={`border ${styles.calculator}`}>
                 <div><span className={styles.heading}>Calculator</span></div>
+                <span className={styles.calcTip}>Use the calculator to calculate the amount that would be added to your wallet.</span>
                 <div className={styles.calculatorInput}>
                     <label className={styles.voucherWrp} tabIndex={0}>
-                        <div id='voucherWrp' className={`${styles.voucherInnerWrp}`}>
+                        <div id='calculatorWrp' className={`${styles.voucherInnerWrp}`}>
                             <select id='vat_type' className={styles.dropdownMenu} name="vat_type" defaultValue="inclusive">
                                 <option className={styles.dropdownOption} value="inclusive">Vat Inclusive</option>
                                 <option className={styles.dropdownOption} value="exclusive">Vat Exclusive</option>
@@ -227,13 +230,13 @@ function TopUp({userData, allTransactions=[], children}) {
                     <div id={transaction.id} className={styles.transactionsWrp} key={transaction.id} onClick={(e) => ToggleVisibility(e)}>   
                         <div className={styles.header}>
                             <div className={styles.dateAt1000px}> 
-                                <span>{ConvertDateToString(transaction.dateCreated)}</span> 
+                                <span>{ConvertDateToString(transaction.createdAt)}</span> 
                             </div>
                             <div>
                                 <span>{transaction.method}</span>
                             </div>
                             <div className={styles.headerRight}>
-                                <span className={transaction.status == "waiting" ? "Waiting" : "Completed"}>{transaction.status}</span>
+                                <span className={transaction.status == "processing" ? "Processing" : "Completed"}>{transaction.status}</span>
                                 <div className={styles.chevronWrp}>
                                     <Icon className={styles.chevron} path={mdiChevronDown} size={1} />
                                 </div>
@@ -246,7 +249,7 @@ function TopUp({userData, allTransactions=[], children}) {
                                 <div className={styles.statsLabel}>Voucher:</div>
                                 <div className={styles.statsValue}>{transaction.voucher}</div>
                                 <div className={styles.statsLabel}>Date Created:</div>
-                                <div className={`${styles.statsDate2} ${styles.statsValue}`}>{ConvertDateToString(transaction.dateCreated)}</div>
+                                <div className={`${styles.statsDate2} ${styles.statsValue}`}>{ConvertDateToString(transaction.createdAt)}</div>
                             </div>
                         </div>
                     </div>

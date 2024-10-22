@@ -4,6 +4,7 @@ import styles from './AdminProductCategory.module.css'
 import ProductCategoryForm from './ProductCategoryForm'
 import { FindCategoryByName } from '@/app/controllers/categoryController'
 import { GetAdminProductsDTO } from '@/data/product-dto'
+import { redirect } from 'next/navigation'
 
 async function page({searchParams}) {
   // if search param exist, grab category from database
@@ -19,8 +20,10 @@ async function page({searchParams}) {
       const productResults = await GetAdminProductsDTO(category.id);
       if(productResults.success)
         products = productResults.products;
+    } else {
+      redirect("/admin/products/category");
     }
-  }
+  } 
 
   return (
     <>

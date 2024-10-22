@@ -5,22 +5,20 @@ import Order from '@/app/components/Order'
 import Icon from '@mdi/react'
 import { mdiMagnify } from '@mdi/js'
 import NoReults from '@/app/components/NoResults'
+import { GetCurrentUserFromMap } from '@/app/lib/auth'
+import { GetOrderHistory } from '@/app/controllers/orderController'
 
-function page() {
-    const orders = [];
-    const order = 
-    {
-        id: "O6892652",
-        paymentId: "P8561036568",
-        product: "Freefire",
-        productType: "Freefire Membership",
-        price: 5.12,
-        quantity: 2,
-        date: Date.now(),
-        status: "Completed",
-    }
-    orders.push(order);
-  return (
+async function page() {
+    const currentUser = await GetCurrentUserFromMap();
+    if(!currentUser)
+        redirect("/login");
+
+    let transactions = [];
+    const results = await GetOrderHistory();
+    if(results.success)
+        transactions = results.transactions;
+    
+    return (
     <>
         <h1>My Orders</h1>
         <div className={styles.contentWrp}>
@@ -31,7 +29,7 @@ function page() {
                             <ul>
                                 <li><a href="orders?status=all">All</a></li>
                                 <li><a href="orders?status=unsent">Waiting</a></li>
-                                <li><a href="orders?status=sending">Sending</a></li>
+                                <li><a href="orders?status=sending">Processing</a></li>
                                 <li><a href="orders?status=completed">Completed</a></li>
                                 <li><a href="orders?status=refunded">Refunded</a></li>
                             </ul>
@@ -49,17 +47,15 @@ function page() {
                     </div>
                 </div>
                 <div className={styles.ordersWrp}>
-                    <ul>
-                        {orders.length > 0 ? 
-                            (
-                                <li className={`${styles.order}`}> 
-                                    {orders.map((order, index) => <Order order={order} key={index}/> )}
-                                </li>
-                            )   :   (
-                                <NoReults text="No orders matched" />
-                            )
-                        }
-                    </ul>
+                {transactions.length > 0 ? 
+                    (
+                        <ul className={`${styles.transactionsList}`}> 
+                            {transactions.map((transaction, index) => <Order transaction={transaction} key={index}/> )}
+                        </ul>
+                    )   :   (
+                        <NoReults text="No orders matched" />
+                    )
+                }
                 </div>
             </div>
         </div>

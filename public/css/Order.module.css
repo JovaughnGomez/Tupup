@@ -12,7 +12,19 @@
 }
 
 .paymentInfo {
-    display: flex;
+    display: grid;
+}
+
+.paymentDetails {
+    width: 225px;
+}
+
+.id {
+    font-size: .85em;
+}
+
+.idHolder {
+    width: 200px;
 }
 
 .orderInfo {
@@ -80,6 +92,16 @@
         max-width: 300px;
         justify-content: space-between;
     }
+    
+    .idHolder {
+        width: 275px;
+    }
+}
+
+@media (min-width: 620px) {
+    /* .paymentInfo {
+        display: flex;
+    } */
 }
 
 @media (min-width: 700px) {
@@ -118,6 +140,6 @@
     }
 
     .orderStatus {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 }

@@ -7,10 +7,19 @@
     max-width: 700px;
     margin: auto;
     display: grid;
+    gap: 1em;
+}
+
+.categoryInfoWrp {
+    display: grid;
     gap: 2em;
 }
 
-.header {
+.searchCategoryWrp {
+    width: 50%;
+}
+
+.searchCategoryWrp h2 {
     margin-bottom: 1em;
 }
 
@@ -73,7 +82,9 @@
     display: flex;
     align-items: center;
     gap: .5em;
+    font-size: .8em;
 }
+
 
 .product_icon {
     border-radius: 5px;

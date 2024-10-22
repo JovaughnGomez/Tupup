@@ -4,20 +4,20 @@ import styles from './topup.module.css'
 import ProtectedForm from '@/app/components/ProtectedForm';
 import TopUp from './TopUp';
 import { GetSessionFromCookies } from '@/app/lib/session';
-import { GetCurrentUser } from '@/app/lib/auth';
+import { GetCurrentUserFromMap } from '@/app/lib/auth';
 import { redirect } from 'next/navigation';
 import { GetWalletTransactionsDTO } from '@/data/transaction-dto';
 
 async function page() {
-    const currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUserFromMap();
     const session = await GetSessionFromCookies();
     if(!currentUser || !session)
         redirect("/login");
-    
+
     const userData = await GetWalletDTO(currentUser, currentUser.id);
     if(!userData)
         redirect("/");
-
+    
     const transactions = await GetWalletTransactionsDTO(currentUser, currentUser.id);
     if(!transactions)
         redirect("/");

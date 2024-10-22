@@ -1,0 +1,51 @@
+.wrapper {
+    width: 100%;
+    margin-top: 1em;
+    display: grid;
+    gap: 1em;
+}
+
+.instructions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.separator {
+    width: 45%;
+    background-color: var(--lightGray);
+    height: 1px;
+}
+
+.separatorText {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    width: fit-content;
+}
+
+.buttonWrapper {
+    width: 100%;
+    background-color: rgb(66,133,244);
+    border-radius: var(--borderRadius);
+    padding: 5px;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.innerBtnWrp {
+    width: 50%;
+    display: flex;
+}
+
+.googleIconWrp {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.googleBtn {
+    width: 100%;
+    text-align: center;
+}

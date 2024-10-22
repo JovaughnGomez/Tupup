@@ -16,11 +16,13 @@ datasource db {
 model User {
   id String @id @default(uuid())
   username String @unique
+  baseEmail String? @unique
   email String @unique
   number String?
-  password String
+  password String?
   wallet Decimal @default(0)
   credits Decimal @default(0)
+  avatar String?
   country String @default("Trinidad and Tobago")
   city String?
   isAdmin Boolean @default(false)
@@ -31,37 +33,46 @@ model User {
   cart Cart[]
   order Order[]
   transaction Transaction[]
-}
-
-model Order {
-  id String @id
-  paymentId String
-  productId String  
-  status String // Ongoing, Completed, Refunded, Cancelled
-  paymentMethod String
-  dateCreated DateTime @default(now())
-  dateCompleted DateTime?
-  userId String
-  product Product @relation(fields: [productId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  cards Giftcard[]
+  reviews Review[]
 }
 
 model Transaction {
   id String @id @default(uuid())
-  method String // phonecard, offline_banking, online_banking
+  method String? // phonecard, offline_banking, online_banking, wallet_payment
+  transactionType String // wallet_topup, product_purchase
   value Decimal @default(0)
-  status String @default("waiting") // waiting, expired, completed
+  status String @default("waiting") // pending, failed, processing, completed, cancelled, refunded
   notes Json?
   adminNotes Json?
-  dateCreated DateTime @default(now())
-  dateCompleted DateTime?
+  createdAt DateTime @default(now())
+  completedAt DateTime?
   userId String 
   balanceBefore Decimal @default(0)
   balanceAfter Decimal @default(0)
   user User @relation(fields: [userId], references: [id])
-
+  orders Order[]
   @@index([userId])
   @@index([status])
+}
+
+model Order {
+  id String @id @default(uuid())
+  transactionId String?
+  productId String  
+  quantity Int @default(1)
+  userId String
+  info Json?
+  // waiting: product not paid for, 
+  // processing: paid for and being delivered,
+  // delivered, failed(payment failed?), cancelled (not really a thing)
+  status String @default("waiting") 
+  createdAt DateTime @default(now())
+  completedAt DateTime?
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  giftcards Giftcard[]
 }
 
 model Cart {
@@ -73,19 +84,21 @@ model Cart {
 
 model ProductCategory {
   id String @id @default(uuid())
+  type String @default("game-topup")
   name String @unique
   displayName String
   icon String
   region String?
-  onSale Boolean @default(false)
   allowMultiple Boolean @default(true)
   notes String?
   description String @db.Text
   guide String? @db.Text
   tags Json?
+  isActive Boolean @default(false)
+  inStock Boolean @default(false)
   products Product[]
-  isActive Boolean @default(true)
-
+  prefixes GiftcardPrefix[]
+  reviews CategoryReview[]
   @@index([name])
 }
 
@@ -96,14 +109,56 @@ model Product {
   categoryId String
   usdValue Decimal @default(0)
   price Decimal
+  onSale Boolean @default(false)
   salePrice Decimal
   isActive Boolean @default(false)
   createdAt DateTime @default(now())
-  order Order[]
+  inStock Boolean @default(false)
+  orders Order[]
   carts Cart[]
   productCategory ProductCategory @relation(fields: [categoryId], references: [id])
 }
 
-model GiftCard {
+model Giftcard {
+  id String @id @default(uuid())
+  name String
+  userId String?
+  orderId String?
+  code String @unique
+  denomination Int
+  isDelivered Boolean @default(false)
+  createdAt DateTime @default(now())
+  deliveredAt DateTime?
+  user User? @relation(fields: [userId], references: [id])
+  order Order? @relation(fields: [orderId], references: [id])
+}
+
+model GiftcardPrefix {
   id String @id
+  prefix String
+  codeLength Int
+  ProductCategory ProductCategory @relation(fields: [id], references: [name])
+}
+
+model CategoryReview {
+  id String @id 
+  totalExcellent Int @default(0)
+  totalGood Int @default(0)
+  totalDecent Int @default(0)
+  totalBad Int @default(0)
+  totalTerrible Int @default(0)
+  productCategory ProductCategory @relation(fields: [id], references: [id])
+  reviews Review[]
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+  categoryReviewId String
+  userId String
+  stars Int
+  notes String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id])
+  categoryReview CategoryReview @relation(fields: [categoryReviewId], references: [id])
 }

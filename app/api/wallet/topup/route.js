@@ -1,4 +1,4 @@
-import { CreateTransaction } from "@/app/controllers/transactionController";
+import { CreateWalletTransaction } from "@/app/controllers/transactionController";
 import { GetSessionFromCookies, ValidateCSRFToken } from "@/app/lib/session";
 import { GetSingleWalletTransactionUnsafeDTO } from "@/data/transaction-dto";
 import { NextResponse } from "next/server";
@@ -16,16 +16,16 @@ export async function POST(request) {
 
     const isValid = await ValidateCSRFToken(session, csrfToken);
     if(!isValid)
-        return NextResponse.json({success: false, message: "Unauthorized Request"}, {status: 401});
+        return NextResponse.json({ success: false, message: "Unauthorized Request"}, {status: 401});
 
     let voucher = formData.get('voucher');
     if(!voucher || !voucherType)
-        return NextResponse.json({success: false, message: "This voucher is not valid."}, {status: 400});
+        return NextResponse.json({ success: false, message: "This voucher is not valid."}, {status: 400});
 
     
     voucher = voucher.trim();
     if(voucher.length != requiredVoucherLength)
-        return NextResponse.json({success: false, message: "This voucher is not valid."}, {status: 400});
+        return NextResponse.json({ success: false, message: "This voucher is not valid."}, {status: 400});
     
     let notes;
     try {
@@ -36,10 +36,10 @@ export async function POST(request) {
         return NextResponse.json({ success: false, message: "An unexpected error occured" }, { status: 500 });
     }
     
-    const results = await CreateTransaction("phone_card", "0", notes, session.userId);
+    const results = await CreateWalletTransaction("phone_card", "0", notes, session.userId);
 
     if(!results || !results.success)
-        return NextResponse.json({ success: false, message: "An unexpected error occured" }, { status: 500 });
+        return NextResponse.json({ success: false, message: results.message }, { status: 500 });
 
     const transaction = await GetSingleWalletTransactionUnsafeDTO(results.transaction);
     return NextResponse.json({ success: true, message: "Your request is being processed. Please keep your voucher until the process has been successful.", transaction: transaction }, { status: 200 });

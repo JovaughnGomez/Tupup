@@ -6,7 +6,7 @@ import { mdiChevronDown } from '@mdi/js'
 import { ConvertDateToString } from '../lib/clientUtils'
 
 function Transaction({ transaction, identifier }) {
-    const dateAsString = ConvertDateToString(transaction.dateCompleted);
+    const dateAsString = ConvertDateToString(transaction.completedAt);
     const value = parseFloat(transaction.value);
     const valueIsPositive = value >= 0;
     const symbol = valueIsPositive >= 0 ? "+" : "-";

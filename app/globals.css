@@ -45,20 +45,21 @@
   --money-green: rgb(51, 226, 51);
 }
 
-.Completed {
-  color:rgb(26, 126, 26);
+
+.Waiting {
+  color: rgba(255, 255, 0, 0.8);
 }
 
 .Refunded {
-  color: rgb(202, 29, 29);
+  color: rgba(255, 0, 0, 0.8);
 }
 
-.Waiting {
-  color: rgb(240, 164, 23);
+.Processing {
+  color: var(--primaryAccent);
 }
 
-.Sending {
-  color: rgb(226, 226, 12);
+.Completed {
+  color:rgba(0, 128, 0, 0.8);
 }
 
 .successful {
@@ -76,6 +77,11 @@
 
 @media (prefers-color-scheme: dark) {
 
+}
+
+.bg-accent 
+{
+  background-color: var(--primaryAccent);
 }
 
 .accent
@@ -177,6 +183,10 @@ footer {
 {
   padding-inline: 1em;
   border-radius: 5px;
+}
+
+.interacted {
+  opacity: .7;
 }
 
 .menu

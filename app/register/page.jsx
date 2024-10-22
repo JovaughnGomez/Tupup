@@ -8,6 +8,7 @@ import Border from '@/app/components/Border'
 import FormBorder from '@/app/components/FormBorder'
 import SubmitButton from '@/app/components/SubmitButton'
 import ErrorText from '@/app/components/ErrorText';
+import OAuthComponent from '../components/OAuthComponent';
 
 function register() {
   const router = useRouter();
@@ -85,7 +86,7 @@ function register() {
           {validPassword.length > 0 && <ErrorText text={validPassword} />}
           {success.length > 0 && <ErrorText text={success} />}
 
-          <div className='max-w-min m-auto'>
+          <div className={`max-w-min m-auto ${loginStyles.signUpWrp}`}>
             <SubmitButton onSubmit={OnSubmit} placeholder={"Sign Up"}/>
           </div>
 
@@ -93,6 +94,9 @@ function register() {
             <a href="/login"><p className={loginStyles.signup}>Already have an account? Sign in <span className='accent'>here</span></p></a>
           </div>
         </form>
+        <div className={loginStyles.oAuthContainer}>
+          <OAuthComponent />
+        </div>
       </FormBorder>
     </Border>
   )

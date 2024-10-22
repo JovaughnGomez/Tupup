@@ -1,18 +1,16 @@
 "use client"
 import React from 'react'
 
-function RegularButton({classes, querySelector, classToToggle}) {
-async function TogglePinVisibility()
-{
-    const pins = document.getElementsByClassName(querySelector);
-    for (let index = 0; index < pins.length; index++) {
-        const pin = pins[index];
-        pin.classList.toggle(classToToggle);
-    }
-}
+function RegularButton({ classes, querySelector, classToToggle, callback }) {
+
+  async function OnClick()
+  {
+      if(callback)
+        callback();
+  }
 
   return (
-    <div className={` cursor-pointer ${classes}`} onClick={TogglePinVisibility}>
+    <div className={` cursor-pointer ${classes}`} onClick={OnClick}>
         <span>SHOW</span>
     </div>
   )

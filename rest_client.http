@@ -1,0 +1,11 @@
+@sessionCookie = CardCookie_sessionId=64dd3369-d76b-4142-bf07-be745ead57b8
+
+###
+GET http://localhost:3000/
+content-type: application/json
+CardCookie_sessionId: 64dd3369-d76b-4142-bf07-be745ead57b8
+Cookie: {{sessionCookie}}
+
+{
+
+}

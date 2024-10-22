@@ -46,13 +46,13 @@ function AdminTransactions({ transactions=[] }) {
                                     <div className={styles.tLabel}>Method:</div>
                                     <div className={styles.tValue}>{transaction.method}</div>
                                     <div className={styles.tLabel}>Status:</div>
-                                    <div className={`${transaction.status == "waiting" ? "Waiting" : "Completed"} ${styles.tValue}`}>{transaction.status}</div>
+                                    <div className={`${transaction.status == "processing" ? "Processing" : "Completed"} ${styles.tValue}`}>{transaction.status}</div>
                                     <div className={styles.tLabel}>Date Created:</div>
-                                    <div className={styles.tValue}>{ConvertDateToString(transaction.dateCreated)}</div>
-                                    { transaction.dateCompleted &&
+                                    <div className={styles.tValue}>{ConvertDateToString(transaction.createdAt)}</div>
+                                    { transaction.completedAt &&
                                         <>
                                             <div className={styles.tLabel}>Date Completed:</div>
-                                            <div className={styles.tValue}>{ConvertDateToString(transaction.dateCompleted)}</div>
+                                            <div className={styles.tValue}>{ConvertDateToString(transaction.completedAt)}</div>
                                         </>
                                     }
                                     <div className={styles.tLabel}>UserId:</div>
@@ -65,7 +65,7 @@ function AdminTransactions({ transactions=[] }) {
                                         <div className={styles.tNote} dangerouslySetInnerHTML={{ __html: transaction.adminNotes }}></div>
                                     }
                                 </div>
-                                {transaction.status == "waiting" &&
+                                {transaction.status == "processing" &&
                                     <>
                                         <form id={transaction.id} className={styles.formWrp}>
                                             <input type="hidden" name='id' value={transaction.id}/>

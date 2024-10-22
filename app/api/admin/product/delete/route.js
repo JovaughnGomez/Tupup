@@ -12,7 +12,7 @@ export async function POST(request) {
     const csrfToken = formData.get('csrfToken');
     const isValid = await ValidateCSRFToken(session, csrfToken);
     if(!isValid)
-        return NextResponse.json({success: false, message: "Unauthorized Request"}, {status: 401});
+        return NextResponse.json({ success: false, message: "Unauthorized Request"}, {status: 401});
     
     const productId = formData.get('product_id');
     const results = await DeleteProduct(productId);

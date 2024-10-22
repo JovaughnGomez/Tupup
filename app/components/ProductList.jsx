@@ -10,21 +10,21 @@ function ProductList({ categories=[] }) {
             <p>Information about the top up procedure goes here.</p>
         </div>
         <ul id='productListWrp' className={styles.productListWrp}>
-            {
-                categories.map((product, index) => 
-                    <li key={index} className={styles.product}>
-                        <a href={`/product/${product.name.toLowerCase()}`}>
-                            <Image 
-                                width={138}
-                                height={138}
-                                src={product.icon}
-                                className={styles.productIcon}
-                            />
-                            <span className={styles.productName}>{product.name}</span>
-                        </a>
-                    </li>
-                )
-            }
+        {
+            categories.map((product, index) => 
+                <li key={index} className={styles.product}>
+                    <a href={`/product/${product.actualName.toLowerCase()}`}>
+                        <Image 
+                            width={138}
+                            height={138}
+                            src={product.icon}
+                            className={styles.productIcon}
+                        />
+                        <span className={styles.productName}>{product.name}</span>
+                    </a>
+                </li>
+            )
+        }
         </ul>
     </div>
     )

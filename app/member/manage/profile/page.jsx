@@ -2,10 +2,6 @@ import React from 'react'
 import Image from 'next/image';
 import styles from './profile.module.css'
 import InputBox from '@/app/components/InputBox';
-import ProfileIcon from '@/app/components/ProfileIcon';
-import SubmitButton from '@/app/components/SubmitButton';
-import Icon from '@mdi/react';
-import { mdiAccountCog, mdiChevronRight, mdiCurrencyUsd} from '@mdi/js';
 import { ConvertDateToString } from '@/app/lib/clientUtils';
 import { GetProfileDTO } from '@/data/user-dto';
 

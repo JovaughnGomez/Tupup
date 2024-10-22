@@ -12,6 +12,11 @@ class User {
         this.isActive = user.isActive;
         this.joined = user.joined ? user.joined : Date.now(); 
     }
+
+    UpdateWallet(value)
+    {
+        this.wallet = value;
+    }
 }
 
 export default User;
