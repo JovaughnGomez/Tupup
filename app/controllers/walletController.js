@@ -1,5 +1,4 @@
 "use server"
-import { GetUserFromMap } from "@/app/services/userCache";
 import { AppError } from "../lib/AppError";
 
 async function UpdateWalletInDatabase(userId, newBalance, prismaClient)
@@ -17,8 +16,6 @@ async function UpdateWalletInDatabase(userId, newBalance, prismaClient)
             }
         });
 
-        const user = GetUserFromMap(userId);
-        user.UpdateWallet(newBalance);
         return { success: true, updatedUser};
     } catch (error) {
         return { success: false, message: error.message || "Unexpected Error", error: error.error, status: error.status || 500 };

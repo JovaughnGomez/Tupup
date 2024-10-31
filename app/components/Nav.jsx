@@ -7,7 +7,7 @@ import NavigationLinks from './NavigationLinks'
 import Image from 'next/image'
 import styles from '@/public/css/nav.module.css'
 import Icon from '@mdi/react';
-import { mdiCartOutline, mdiMagnify, mdiCash, mdiWalletGiftcard, mdiGamepad } from '@mdi/js';
+import { mdiCartOutline, mdiMagnify, mdiCash, mdiWalletGiftcard, mdiHelp } from '@mdi/js';
 import { MdClose, MdAccountCircle } from 'react-icons/md'
 
 const Nav = ({ userInfo = null}) => { 
@@ -15,13 +15,10 @@ const Nav = ({ userInfo = null}) => {
     const router = useRouter();
     const show = "show";
     const pathname = usePathname();
-    const showNav = pathname !== "/login" && pathname !== "/register";
+    const showNav = pathname !== "/login" && pathname !== "/register" && pathname !== "/resetpassword";
     const showDefaultLinks = !pathname.startsWith("/member/manage");
     useEffect(() => {
     
-      return () => {
-
-    }
     }, [pathname])
     
     function ToggleRightMenu(e)
@@ -63,8 +60,9 @@ const Nav = ({ userInfo = null}) => {
                 <div className={styles.adminNavWrp}>
                     <div className={styles.adminNav}>
                         <div>
+                            <Link href={"/admin/manage"}>Manage</Link>
                             <Link href={"/admin/products/giftcard"}>GiftCards</Link>
-                            <Link href={"/admin/products/category"}>Categorys</Link>
+                            <Link href={"/admin/products/category"}>Categories</Link>
                             <Link href={"/admin/products/product"}>Products</Link>
                             <Link href={"/admin/transactions"}>Wallet</Link>
                         </div>
@@ -76,7 +74,7 @@ const Nav = ({ userInfo = null}) => {
                     {/* Left Sidebar */}
                     <section id='navSidebar' className={styles.leftSidebarWrp}>
                         <div className={`${styles.leftSidebarInner}`}>
-                            <MdClose id="user_close_btn" size={25} fill='white' className={styles.user_close_btn} onClick={ToggleLeftMenu}/>
+                            <MdClose id="user_close_btn" size={25} fill='white' className={styles.user_close_btn} onClick={ToggleLeftMenu} />
                             <div className={styles.nav_logo}>
                                 <Link href="/">
                                     <Image 
@@ -90,8 +88,9 @@ const Nav = ({ userInfo = null}) => {
                             <div id="navigation" className={`${styles.welcome}`}>
                                 <ul className={styles.navMenu}>
                                     <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/cards"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiWalletGiftcard} size={1} /> <p className={styles.navText}>Gift Card</p></span></Link>
-                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/topups"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiCash} size={1} /> <p className={styles.navText}>Top-Up</p></span></Link>
-                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/accessories"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiGamepad } size={1} /> <p className={styles.navText}>Accessories</p></span></Link>
+                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/direct-topup"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiCash} size={1} /> <p className={styles.navText}>Direct Top-Up</p></span></Link>
+                                    <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/faq"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiHelp} size={1} /> <p className={` underline ${styles.navText}`}>Help</p></span></Link>
+                                    {/* <Link onClick={ToggleLeftMenu} className='toggleSidebar' href="/accessories"><span className={styles.navTextStyle}><Icon className={`${styles.leftNavIcons} ${styles.nav_icons}`} path={mdiGamepad } size={1} /> <p className={styles.navText}>Accessories</p></span></Link> */}
                                 </ul>
                             </div>
                         </div>
@@ -111,7 +110,7 @@ const Nav = ({ userInfo = null}) => {
                                 <div className={styles.user}>
                                     <a className={styles.searchIcon}  href="/search"><Icon path={mdiMagnify} size={1.1} /></a>
                                     {isOnline && <Icon className={styles.nav_icons} path={mdiCartOutline } size={1} /> }
-                                    <MdAccountCircle id='user_btn' size={25} fill='white' onClick={ToggleRightMenu}/>
+                                    <MdAccountCircle id='user_btn' size={25} fill='white' onClick={ToggleRightMenu} />
                                 </div>
                             </div>
                         </div>

@@ -103,3 +103,11 @@
 .terms a {
     color: var(--primaryAccent);
 }
+
+.walletText {
+    font-family: var(--font-blackOpsOne);
+}
+
+.payBtn {
+    margin-top: 1.3em;
+}

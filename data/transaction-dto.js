@@ -148,4 +148,16 @@ export async function GetTransactionHistoryDTO(viewer, userId)
     return allTransactions;
 }
 
+export async function SerializeTransactionsForUser(transaction)
+{
+    return {
+        id: transaction.id,
+        method: transaction.method,
+        value: transaction.value.toString(),
+        notes: JSON.parse(transaction.notes),
+        createdAt: transaction.createdAt,
+        completedAt: transaction.completedAt,
+    }
+}
+
 export default TransactionDTO;

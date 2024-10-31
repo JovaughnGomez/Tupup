@@ -1,0 +1,107 @@
+.outerWrp {
+    margin: 0 auto;
+}
+
+.infoWrp {
+    padding: 2em;
+    display: grid;
+    gap: 2.3em;
+}
+
+.infoWrp {
+    height: fit-content;
+}
+
+.header h1 {
+    font-size: 2.2em;
+    font-weight: bolder;
+}
+
+.header p {
+    font-size: 1.18em;
+}
+
+.infoBoxWrp {
+    display: flex;
+    gap: 1em;
+    padding: .6em 1.5em;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    align-items: center;
+}
+
+.infoBoxWrp:hover {
+    background: var(--navBackground);
+    cursor: pointer;
+    /* border: 1px solid white; */
+}
+
+.infoBoxWrp p {
+    /* letter-spacing: 1.5px; */
+    font-weight: bold;
+}
+
+.contactList {
+    display: grid;
+    gap: 1.5em;
+}
+
+.formWrp {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    gap: .75em;
+}
+
+.namesWrapper {
+    display: grid;
+    gap: .75em;
+}
+
+.formWrp label {
+    display: block;
+}
+
+.formWrp input {
+    display: block;
+    width: 100%;
+}
+
+.inputWrp {
+    margin: .3em 0;
+}
+
+.inputWrp span {
+    display: block;
+    margin-bottom: .5em;
+    font-weight: bold;
+}
+
+.submitInner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1em;
+}
+
+.sendIcon {
+    transform: rotateZ(-45deg);
+}
+
+@media (min-width: 1000px) {
+    .outerWrp {
+        display: flex;
+        width: 90%;
+        gap: 2em;
+        margin: auto;
+        justify-content: space-around;
+        max-width: 1050px;
+    }
+
+    .formWrp {
+        width: 500px;
+        margin: unset;
+    }
+}

@@ -41,4 +41,17 @@ export function CalculateFinalPrice(product, quantity)
 export function CapitalizeWord(word) {
     if (!word) return '';
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }
+}
+
+export function CalculateAverageRating(reviewData)
+{
+    const excellentStars = reviewData.totalExcellent * 5;
+    const goodStars = reviewData.totalGood * 4;
+    const decentStars = reviewData.totalDecent * 3;
+    const badStars = reviewData.totalBad * 2;
+    const terribleStars = reviewData.totalTerrible * 1;
+    
+    const totalStars = excellentStars + goodStars + decentStars + badStars + terribleStars;
+    const averageRating = totalStars / reviewData.totalReviews.toFixed(2);
+    return isNaN(averageRating) ? 5 : averageRating;
+}

@@ -90,34 +90,41 @@ export async function GetGiftcardHistory()
 {
     const session = await GetSessionFromCookies();
     try {
-        let giftcards = await prisma.giftcard.findMany({
-            where: {
+        const orders = await prisma.order.findMany({
+            where: { 
                 userId: session.userId,
+                giftcards: {
+                    some: {}, // Ensures the order has at least one associated gift card
+                }, 
             },
-            take:10,
+            orderBy: { createdAt: 'desc' }, // Sort orders by the latest created first
+            take: 10, // Limit to the latest 10 orders
             select: {
-                deliveredAt: true,
-                code: true,
-                order: {
+                id: true,
+                quantity: true,
+                createdAt: true,
+                completedAt: true,
+                product: {
                     select: {
-                        id: true,
-                        product: {
+                        icon: true,
+                        name: true,
+                        productCategory: {
                             select: {
-                                name: true,
-                                icon: true,
-                                productCategory: {
-                                    select: {
-                                        displayName: true,
-                                    }
-                                }
+                                displayName: true,
                             }
                         }
                     }
-                }
+                },
+                giftcards: { // Include all gift cards related to each order
+                    select: {
+                        code: true,
+                        deliveredAt: true,
+                    }
+                } 
             },
-        });
+          });
         
-        return { success: true, giftcards};
+        return { success: true, orders };
     } catch (error) {
         console.log(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };

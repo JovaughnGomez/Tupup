@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ErrorText({text="This field is required", font="text-base", successful = false}) {
+function ErrorText({text="This field is required", font="text-sm", successful = false}) {
 
   return (
     <p className={`errorText ${successful ? "successful" : ""} ${font}`}>{text}
@@ -9,7 +9,7 @@ function ErrorText({text="This field is required", font="text-base", successful 
                 color:red;
                 width: 100%;
                 gap: 0%;
-                margin: -.8em 0;
+                margin: .5em 0;
                 margin-left: 1em;
             }
 

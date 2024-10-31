@@ -16,7 +16,7 @@ function ProductDisplay({ id, name, products=[], seeMorePath="" }) {
           <div className={styles.products}>
 
             {products.map((product, index) => 
-              <div className={`group ${styles.wrapper}`} key={index}>
+              <div className={`group cursor-pointer ${styles.wrapper}`} key={index}>
                 <Image 
                     width={50}
                     height={50}

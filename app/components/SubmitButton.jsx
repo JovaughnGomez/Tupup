@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function FormBorder({
     type="",
@@ -10,7 +10,9 @@ function FormBorder({
     rounded=true,
     background="bg-accent",
     children,
-    href=""
+    href="",
+    fullWidth=false,
+    propInteractbale=true,
     }) 
   {
 
@@ -19,7 +21,7 @@ function FormBorder({
 
   async function OnClick()
   {
-    if(!interactable)
+    if(!interactable || !propInteractbale)
       return;
     
     if(onSubmit)
@@ -51,7 +53,7 @@ function FormBorder({
     return selectedElement;
   }
   return (
-    <label onClick={OnClick} className={` ${background} text-white flex justify-center ${classes} ${!interactable ? "interacted" : ""} ${rounded ? "roundedBorders" : 'rectangularBorders'} cursor-pointer`} id={id} onMouseEnter={(e) => setHovered(true)} onMouseLeave={(e) => setHovered(false)}>
+    <label onClick={OnClick} className={` ${background} text-white flex justify-center ${classes} ${!propInteractbale || !interactable ? "interacted" : ""} ${rounded ? "roundedBorders" : 'rectangularBorders'} cursor-pointer ${fullWidth && "w-full"}`} id={id} onMouseEnter={(e) => setHovered(true)} onMouseLeave={(e) => setHovered(false)}>
       {children ? children : SelectElement(type)}
     </label>
   )

@@ -1,0 +1,35 @@
+.input {
+    outline: none;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: .5em;
+    padding-inline: 1.5em;
+    flex: 1;
+    background: var(--inputBackground);
+    font-size: .9em;
+}
+
+.input::placeholder {
+    font-weight: 800;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    color: white;transition: background-color 10000000s;
+    -webkit-text-fill-color: white;
+}
+
+.textarea {
+    width: 100%;
+    background-color: var(--inputBackground);
+    height: 125px;
+    padding: 1em;
+    border-radius: 7px;
+    font-size: .85em;
+    resize: none;
+}

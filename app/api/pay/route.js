@@ -16,17 +16,17 @@ export async function POST(request) {
     
     if(!transactionId)
         redirect("/");
-
+    
     if(!paymentMethod || !agreement)
         redirect(`/pay?trade_id=${transactionId}`)
     
     const hasAgreed = agreement === "true";
     if(!hasAgreed)
-        NextResponse.json({ success: false, message: "You must agree to proceed." }, {status: 400})
+        return NextResponse.json({ success: false, message: "You must agree to proceed." }, {status: 400})
 
     const results = await ProcessProductTransaction(transactionId);
     if(!results.success)
-        NextResponse.json({ success: false, message: results.message }, {status: results.status})
+        return NextResponse.json({ success: false, message: results.message }, {status: results.status})
     
-    redirect(`/pay/confirmation`);
+    return NextResponse.json({ success: true, transaction: results.transaction });
 }

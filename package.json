@@ -27,6 +27,8 @@
     "hero-core": "^0.0.1",
     "next": "^14.2.6",
     "next-auth": "^4.24.8",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.15",
     "passport-google-oauth2": "^0.2.0",
     "playwright": "^1.48.1",
     "react": "^18",
@@ -37,6 +39,7 @@
     "rehype-sanitize": "^6.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
+    "resend": "^4.0.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@ import { AppError } from "../lib/AppError";
 import { GetSessionFromCookies } from "../lib/session";
 import { FindActiveProductById } from "./productController";
 
-export async function CreateOrder(productId, quantity, userId)
+export async function CreateOrder(productId, quantity, userId, notes)
 {
     if(!productId || !quantity || !userId)
         return { success: false, message: `Some fields were empty`, status: 401};
@@ -21,6 +21,7 @@ export async function CreateOrder(productId, quantity, userId)
                 productId,
                 quantity,
                 userId,
+                notes,
             }
         });
 
@@ -44,7 +45,6 @@ export async function FindCheckoutOrder(id, userId)
         const order = await prisma.order.findFirst({
             where: {
                 id,
-                userId,
             },
             include: {
                 product: {
@@ -66,7 +66,10 @@ export async function FindCheckoutOrder(id, userId)
             throw new AppError("You do not own this order", 400);
 
         if(order.transactionId)
+        {
+            console.log(order.transactionId);
             throw new AppError("Order already belongs to a transaction.", 400);
+        }
         
         if(!order)
             throw new AppError(`Order was not found.`, 400);
@@ -81,7 +84,7 @@ export async function FindCheckoutOrder(id, userId)
     }
 }
 
-export async function GetOrderHistory(status)
+export async function GetOrderHistory()
 {
     const session = await GetSessionFromCookies();
     try {
@@ -131,17 +134,64 @@ export async function MarkOrdersAsCompleted(orders, prismaClient)
 
 export async function MarkSingleOrderAsCompleted(order, prismaClient)
 {
+    if(!order || !prismaClient)
+        return { success: false, error: "Order or Transaction prisma client is undefinded", status: 500 };
+    
     try {
         // Mark orders as completed.
-        const updatedOrder = await prismaClient.order.update({
+        let updatedOrder = await prismaClient.order.update({
             where: {
                 id: order.id,
             },
             data: {
                 status: "completed",
-                completedAt: new Date(Date.now()),
+                completedAt: new Date(Date.now())
             }
         });
+
+        return { success: true, order: updatedOrder};
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
+    }
+}
+
+export async function MarkSingleOrderAsProcessing(order)
+{
+    try {
+        // Mark orders as completed.
+        let updatedOrder = await prisma.order.update({
+            where: {
+                id: order.id,
+            },
+            data: {
+                status: "processing",
+            }
+        });
+
+        return { success: true, order: updatedOrder};
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
+    }
+}
+
+export async function AddAdminNotesToOrder(orderId, notesAsObject)
+{
+    try {
+        if(!notesAsObject)
+            throw new AppError(`Order:${orderId} did not include any admin notes`, 400);
+
+        const updatedOrder = await prisma.order.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                adminNotes: notesAsObject,
+            }
+        });
+
+        return { success: true, order: updatedOrder};
     } catch (error) {
         console.log(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
@@ -168,6 +218,4 @@ export async function CheckIfOrderWasCompleted(orderId)
         console.error(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
-
-
 }

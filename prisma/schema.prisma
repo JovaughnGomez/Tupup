@@ -20,8 +20,8 @@ model User {
   email String @unique
   number String?
   password String?
-  wallet Decimal @default(0)
-  credits Decimal @default(0)
+  wallet Decimal @default(0) @db.Decimal(10,2)
+  credits Decimal @default(0) @db.Decimal(10,2)
   avatar String?
   country String @default("Trinidad and Tobago")
   city String?
@@ -41,15 +41,15 @@ model Transaction {
   id String @id @default(uuid())
   method String? // phonecard, offline_banking, online_banking, wallet_payment
   transactionType String // wallet_topup, product_purchase
-  value Decimal @default(0)
+  value Decimal @default(0)@db.Decimal(10,2)
   status String @default("waiting") // pending, failed, processing, completed, cancelled, refunded
   notes Json?
   adminNotes Json?
   createdAt DateTime @default(now())
   completedAt DateTime?
   userId String 
-  balanceBefore Decimal @default(0)
-  balanceAfter Decimal @default(0)
+  balanceBefore Decimal @default(0) @db.Decimal(10,2)
+  balanceAfter Decimal @default(0) @db.Decimal(10,2)
   user User @relation(fields: [userId], references: [id])
   orders Order[]
   @@index([userId])
@@ -62,10 +62,11 @@ model Order {
   productId String  
   quantity Int @default(1)
   userId String
-  info Json?
+  notes Json?
+  adminNotes Json?
   // waiting: product not paid for, 
-  // processing: paid for and being delivered,
-  // delivered, failed(payment failed?), cancelled (not really a thing)
+  // processing: paid for and being completed,
+  // completed, failed(payment failed?), cancelled (not really a thing)
   status String @default("waiting") 
   createdAt DateTime @default(now())
   completedAt DateTime?
@@ -98,7 +99,7 @@ model ProductCategory {
   inStock Boolean @default(false)
   products Product[]
   prefixes GiftcardPrefix[]
-  reviews CategoryReview[]
+  reviews CategoryReview?
   @@index([name])
 }
 
@@ -107,13 +108,14 @@ model Product {
   name String
   icon String
   categoryId String
-  usdValue Decimal @default(0)
-  price Decimal
+  usdValue Decimal @db.Decimal(10,2)
+  price Decimal @db.Decimal(10,2)
   onSale Boolean @default(false)
-  salePrice Decimal
+  salePrice Decimal @db.Decimal(10,2)
   isActive Boolean @default(false)
   createdAt DateTime @default(now())
-  inStock Boolean @default(false)
+  inStock Boolean @default(true)
+  cheaperPrice Decimal @default(0)
   orders Order[]
   carts Cart[]
   productCategory ProductCategory @relation(fields: [categoryId], references: [id])
@@ -147,6 +149,7 @@ model CategoryReview {
   totalDecent Int @default(0)
   totalBad Int @default(0)
   totalTerrible Int @default(0)
+  totalReviews Int @default(0)
   productCategory ProductCategory @relation(fields: [id], references: [id])
   reviews Review[]
 }
@@ -159,6 +162,16 @@ model Review {
   notes String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  isActive Boolean @default(true)
+  show Boolean @default(true)
   user User @relation(fields: [userId], references: [id])
   categoryReview CategoryReview @relation(fields: [categoryReviewId], references: [id])
+}
+
+model Notification {
+  id Int @id @default(autoincrement())
+  type String
+  notes Json
+  createdAt DateTime @default(now())
+  isAdmin Boolean
 }

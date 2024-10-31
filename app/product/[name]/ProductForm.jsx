@@ -8,7 +8,7 @@ function ProductForm({ productName }) {
     switch (productName) {
       case "freefire":
         return (
-          <InputBox type='number' number={true} placeholder={"Please enter Player ID"} label='Player ID' name={"player_id"}/>
+          <InputBox type='number' number={true} placeholder={"Please enter Player ID"} label='Player ID' name={"freefire_id"} autoComplete='true'/>
         )
         default:
           return (

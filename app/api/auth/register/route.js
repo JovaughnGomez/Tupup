@@ -1,48 +1,68 @@
 import { NextResponse } from "next/server";
 import prisma from "@/server/prisma";
-import { CreateSession, CreateCookie } from '@/app/lib/session'
 import { AuthenticateUser, CheckIfBaseEmailExist, CheckIfUserExist, IsAliasEmail } from "@/app/lib/auth";
-import { AddUserToMap } from "@/app/services/userCache";
-import { GeneratePasswordHash, GenerateUUID } from "@/app/lib/utils";
+import { ComparePassword, GeneratePasswordHash, GenerateUUID, IsUsernameValid } from "@/app/lib/utils";
+import { DeleteTokenRedis, redisDelete, RetrieveTokenRedis } from "@/app/lib/db";
 
 // To handle a POST request to /api
 export async function POST(request) {
   const formData = await request.formData();
-  const username = formData.get('username');
-  const email = formData.get('email').toLowerCase();
+  const secret = formData.get('secret');
+  const email = formData.get('email');
+  let username = formData.get('username');
   const password = formData.get('password');
   const passwordConfirmation = formData.get('passwordconfirmation');
+
+  // Verify that user is sending a secret and email.
+  if(!email || !secret )
+    return NextResponse.json({ success: false, redirect: `/register?secret=${secret}&expired=true` }, { status: 400 })
   
+  // Find token in database corresponding to email
+  const tokenResults = await RetrieveTokenRedis("email_verification", email);
+  if(!tokenResults.success)
+    return NextResponse.json({ success: false, redirect: `/register?secret=${secret}&expired=true` }, { status: 400 })
+  
+  // Verify that the token in database and token in email are the same
+  const doSecretsMatch = await ComparePassword(secret, tokenResults.token);
+  if(!doSecretsMatch)
+    return NextResponse.json({ success: false, redirect: `/register?secret=${secret}&expired=true` }, { status: 400 })
+
   // Check if all fields were submitted
-  if(!email || !password || !username || !passwordConfirmation)
-    return NextResponse.json({ error:"Please input all fields." }, { status: 400 });
-  
+  if(!password || !username || !passwordConfirmation)
+    return NextResponse.json({ error:"Please input all fields." }, { status: 400 })
+
+  // Check to make sure username does not have disallowed symbols
+  const isUsernameValid = await IsUsernameValid(username);
+  if(!isUsernameValid)
+    return NextResponse.json({ username:"Username can only contain letters, numbers, and underscores." }, { status: 400 });
+
   if(password !== passwordConfirmation)
-    return NextResponse.json({ password:"Those passwords did not match. Try again." }, { status: 400 });
+    return NextResponse.json({ error:"Those passwords did not match. Try again." }, { status: 400 });
 
   if(password.length < 3)
-    return NextResponse.json({ password:"Password must be at least 3 characters long" }, { status: 400 });
+    return NextResponse.json({ error:"Password must be at least 3 characters long." }, { status: 400 });
   
-  const baseEmailData = await IsAliasEmail(email);
-
+  username = username.toLowerCase();
+  username = username.replace(/\s/g,'');
+  
   let user;
+  const baseEmailData = await IsAliasEmail(email);
   try {
-    if(!baseEmailData.isAuthorizedProvider)
-      return NextResponse.json({ email:"The email provider you used is not allowed. Please sign up using a common email provider like Gmail, Yahoo, Outlook, iCloud, or Zoho" }, { status: 400 });
+    // Check if an email has already been created with that email or alias.
+    const isEmailTaken = await CheckIfBaseEmailExist(baseEmailData.baseEmail);
+    if(isEmailTaken)
+      return NextResponse.json({ success: false, error: "A account with this email already exist." }, { status: 400 });
     
-    user = await CheckIfBaseEmailExist(baseEmailData.baseEmail);
-    if(user)
-      return NextResponse.json({ email:"A user with this email already exist." }, { status: 400 });
-
+    // Check if an email has been created with that email or username(email check is redundant here)
     user = await CheckIfUserExist(email, username);
     if(user)
-    {
-      if(user.username == username) 
-        return NextResponse.json({ username:"A user with this username already exist." }, { status: 400 });
-      else
-        return NextResponse.json({ email:"A user with this email already exist." }, { status: 400 });
+      {
+        if(user.username == username) 
+          return NextResponse.json({ username:"A account with this username already exist." }, { status: 400 });
+        else
+        return NextResponse.json({ email:"A account with this email already exist." }, { status: 400 });
     }
-
+    
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error :"Failed to create user. Please try again later." }, { status: 500 });
@@ -57,7 +77,7 @@ export async function POST(request) {
 
   // Creates session and userCache
   await AuthenticateUser(user);
-
+  await DeleteTokenRedis("email_verification", email);
   return NextResponse.json({ success: true}, {status: 200});
 }
 

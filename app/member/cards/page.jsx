@@ -10,19 +10,19 @@ async function page() {
     if(!currentUser)
         redirect("/login");
 
-    let giftcards = [];
+    let orders = [];
     const results = await GetGiftcardHistory();
     if(results.success)
-        giftcards = results.giftcards;
-    
+        orders = results.orders;
+
     return (
     <>
         <h1>My Cards</h1>
         <div className={styles.contentWrp}>
-            { giftcards && giftcards.length > 0 ?
+            { orders && orders.length > 0 ?
                 ( 
                     <ul className={styles.ugh}>
-                        { giftcards.map((card, index) => <Card card={card} key={index}/> ) }
+                        { orders.map((order, index) => <Card order={order} key={index}/> ) }
                     </ul>
                 ) : (
                     <NoResults text='Card data unavailable'/>

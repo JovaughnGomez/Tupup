@@ -11,7 +11,7 @@
     background-color: var(--inputBackground);
     align-items: center;
     position: relative;
-    border-radius: var(--borderRadius);
+    /* border-radius: var(--borderRadius); */
     padding: .8em 0;
     border: 2px solid transparent;
 }

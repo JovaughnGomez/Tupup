@@ -1,0 +1,64 @@
+.outerWrp {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.inner {
+    display: grid;
+    gap: 2em;
+}
+
+.faqContent {
+    display: grid;
+    gap: 1.5em;   
+}
+
+.faqContent a {
+    color: var(--primaryAccent);
+}
+
+.faqContent h1 {
+    font-size: 1.2em;
+    font-weight: bolder;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.faq {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.faqHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: .4em 1em;
+    background: var(--navBackground);
+    cursor: pointer;
+}
+
+.answer {
+    background: var(--inputBackground);
+    padding: 1em 1em;
+    font-size: .9em;
+    padding: 1em 1em;
+}
+
+.faqContent ol {
+    padding-left: 20px;    /* Indent numbered list items */
+    list-style-type: decimal;
+    display: grid;
+    gap: 5px;
+}   
+
+.faqContent ul {
+    display: grid;
+    gap: 5px;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.rotate {
+    transform: rotateZ(180deg);
+}

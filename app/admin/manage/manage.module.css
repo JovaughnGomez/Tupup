@@ -1,0 +1,14 @@
+.outerWrp {
+    max-width: var(--maxContentWidth);
+    margin: 0 auto;
+    width: 90%;
+}
+
+.inner {
+    display: grid;
+    gap: 2em;
+}
+
+.menu {
+    width: 70%;
+}

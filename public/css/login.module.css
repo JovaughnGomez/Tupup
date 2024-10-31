@@ -110,3 +110,15 @@
 .signUpWrp {
     border-radius: var(--borderRadius);
 }
+
+.registerTitle {
+    margin-bottom: 1em;
+}
+
+.successfulEmail h1 {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    color: var(--primaryAccent);
+    margin-bottom: 1em;
+}

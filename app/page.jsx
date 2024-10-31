@@ -28,8 +28,8 @@ export default function Home() {
         </ul>
       </div>
       <ProductSlider>
+        <ProductDisplay name={"Popular Game Top-Up"} id={"popular-topups"} products = {topups} seeMorePath="/direct-topup"/>
         <ProductDisplay name={"Popular Game Card"} id={"popular-cards"} products={giftcards} seeMorePath="/cards"/>
-        <ProductDisplay name={"Popular Game Top-Up"} id={"popular-topups"} products = {topups} seeMorePath="/topups"/>
       </ProductSlider>
     </Border>
   );

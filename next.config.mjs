@@ -8,6 +8,7 @@ const nextConfig = {
           config.externals.push('@ulixee/hero');
           config.externals.push("@ulixee/hero-playground");
         }
+
         return config;
     }
 };

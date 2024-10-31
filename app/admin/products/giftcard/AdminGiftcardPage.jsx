@@ -95,7 +95,7 @@ function AdminGiftcardPage({ category }) {
       <input type='hidden' name='id' value={category ? category.id : ""}/>
       <label className={styles.searchCategoryWrp}>
           <h2 className={styles.header}>Search Category</h2>
-          <SearchBar OnSelect={SelectCategory}/>
+          <SearchBar type={"giftcard"} OnSelect={SelectCategory}/>
       </label>
       { category &&
         <>

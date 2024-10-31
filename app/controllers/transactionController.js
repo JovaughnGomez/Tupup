@@ -127,9 +127,9 @@ export async function ProcessProductTransaction(transactionId)
     // Deduct total cost of transaction
     // Change the status of the transaction from pending to processing
     // Log data
-    // Delivery product
+    // Deliver product
     try {
-        const results = await prisma.$transaction(async (prisma) => {
+        const updatedTransaction = await prisma.$transaction(async (prisma) => {
             const userResults = await FindCurrentUserInDatabase();
             if(!userResults.success)
                 throw new AppError(userResults.message, userResults.status);
@@ -159,13 +159,42 @@ export async function ProcessProductTransaction(transactionId)
             const deliveryResults = await DeliverProductInTransaction(transaction, prisma);
             if(!deliveryResults.success)
                 throw new AppError(deliveryResults.message, deliveryResults.status);
+
+            return updatedTransactionResults.updatedTransaction;
         });
 
-        return { success: true }
+        return { success: true, transaction: updatedTransaction }
     } catch (error) {
         console.error(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }        
+}
+
+export async function AdminFindTransactionOfUser(id, userId, session)
+{
+    if(!id)    
+        return { success: false, message: "Transaction does not exist", status: 400 };
+    
+    try {
+        const transaction = await prisma.transaction.findUnique({
+            where: { id },
+            include: {
+                orders: true,
+            }
+        });
+        
+        if(!transaction)
+            return { success: false, message: `There are no transactions with the id of ${id}.`, status: 400 }
+        
+        if(!transaction.userId !== userId)
+            return { success: false, message: `This user does not own this transaction.`, status: 400 }
+            
+        console.log(2);
+        return { success: true, transaction };
+    } catch (error) {
+        console.error(error);
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
+    }
 }
 
 async function FindTransactionByIdFromUser(id, userId, prismaClient)
@@ -238,6 +267,11 @@ export async function GetTransactionHistory(userId)
         console.log(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
+}
+
+export async function GetTransactionForPaymentPage()
+{
+
 }
 
 export async function AdminGetPendingTransactions()
@@ -339,7 +373,7 @@ export async function CompleteTransaction(transactionId, status, balanceBefore, 
     
     try {
         if(!Object.values(TransactionStatus).includes(status))
-            throw new AppError("Unexpected Error", 400, error);
+            throw new AppError("", 400, `${status} is not a valid transaction status.`);
 
         const updatedTransaction = await prismaClient.transaction.update({
             where: {

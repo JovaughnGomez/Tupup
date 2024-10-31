@@ -5,14 +5,19 @@ import html from 'remark-html';
 import { rehype } from 'rehype';
 import rehypeSanitize from 'rehype-sanitize';
 import { redirect } from 'next/navigation';
-import { GetCategoryDTO } from '@/data/cataegory-dto';
-import { FindProductsByCategoryId } from '@/app/controllers/productController';
+import { FindCategoryByName } from '@/app/controllers/categoryController';
+import { HasUserLeftReviewBefore } from '@/app/controllers/reviewController';
+import { GetSessionFromCookies } from '@/app/lib/session';
+import { GetCurrentUserFromMap } from '@/app/lib/auth';
 
 async function page({ params }) {
     const { name } = params;
     
+    const session = await GetSessionFromCookies();
+    const currentUser = await GetCurrentUserFromMap();
+    
     // search for product category with that name, if the category does not exist then 404 page.
-    const results = await GetCategoryDTO(name);
+    const results = await FindCategoryByName(name);
     if(!results.success)
         redirect("/");
 
@@ -24,25 +29,16 @@ async function page({ params }) {
                     .process(description)).value;
 
     const guide = (await remark().use(html).process(category.guide)).toString();
-    let products = [];
-    const productResults = await FindProductsByCategoryId(category.id);
-    if(productResults.success)
-        products = productResults.products;
+    const canLeaveReview = await HasUserLeftReviewBefore(session.userId, category.categoryId);
+    const products = category.products;
+    const reviewData = category.reviews;
+    reviewData.canLeaveReview = canLeaveReview;
+    category.reviews = undefined;
+    category.products = undefined;
 
-    const reviews = [];
-    const review = {
-        username:"Jovaughn",
-        stars:3,
-        icon:"/img/user/avatar/p.webp",
-        createdAt: Date.now(),
-        comment:"fantastic",
-    }
-    reviews.push(review);
-    reviews.push(review);
-    reviews.push(review);
     return (
     <>
-        <ProductPage category={category} products={products} reviews={reviews} description={description} guide={guide}/>
+        <ProductPage category={category} products={products} reviewData={reviewData} isAdmin={currentUser.isAdmin} description={description} guide={guide}/>
     </>
   )
 }

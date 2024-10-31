@@ -11,8 +11,11 @@ async function page({ searchParams }) {
     if(categoryName)
     {
         const results = await FindCategoryByName(categoryName, true);
-        if(results.success)
-            category = results.category;
+        if(results.category.type === "giftcard")
+        {
+          if(results.success)
+              category = results.category;
+        }
     }
 
   return (

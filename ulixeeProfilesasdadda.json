@@ -1,0 +1,87 @@
+{
+  "cookies": [
+    {
+      "name": "source",
+      "value": "pc",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "region",
+      "value": "SA",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-26T23:31:38.967Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "mspid2",
+      "value": "962dc5563765fe393706c95f30dbdf12",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-26T23:31:38.967Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    }
+  ],
+  "storage": {
+    "https://pagostore.garena.com": {
+      "indexedDB": [],
+      "localStorage": [],
+      "sessionStorage": []
+    }
+  },
+  "locale": "en-US,en",
+  "timezoneId": "America/La_Paz",
+  "userAgent": {
+    "browserName": "chrome",
+    "browserVersion": {
+      "major": "128",
+      "minor": "0",
+      "build": "6613",
+      "patch": "120"
+    },
+    "operatingSystemName": "mac-os",
+    "operatingSystemVersion": {
+      "major": "15",
+      "patch": "1"
+    },
+    "uaClientHintsPlatformVersion": "15",
+    "string": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+  },
+  "userAgentString": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+  "deviceProfile": {
+    "deviceMemory": 4,
+    "rtt": 100,
+    "hardwareConcurrency": 24,
+    "videoDevice": {
+      "deviceId": "3eebe6aaf582d210e0db8e5b7078013d9840bc0110905c79a9b0911290a1a54b",
+      "groupId": "955431a49128561a0755028ff13cf5947a5371735d9a3009aa3cfc77cfc40b42"
+    },
+    "maxHeapSize": 2172649472,
+    "deviceStorageTib": 2,
+    "webGlParameters": {
+      "37445": "Intel Inc.",
+      "37446": "Intel Iris OpenGL Engine"
+    },
+    "viewport": {
+      "positionX": 1,
+      "positionY": 52,
+      "screenWidth": 1440,
+      "screenHeight": 900,
+      "width": 1424,
+      "height": 732,
+      "deviceScaleFactor": 1,
+      "isDefault": true
+    }
+  }
+}

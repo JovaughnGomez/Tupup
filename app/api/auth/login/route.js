@@ -27,7 +27,7 @@ export async function POST(request) {
       return NextResponse.json({ email: "There are no users with this email." }, { status: 400 });
     
     if(!user.password)
-      return NextResponse.json({ error: "You do not have an account local to this platform. Try Login with Google." }, { status: 400 });
+      return NextResponse.json({ password: "You do not have an account local to this platform. Try Login with Google." }, { status: 400 });
       
   } catch (error) {
     return NextResponse.json({ error:"There was an issue processing your request. Please try again later!" }, { status: 400 });

@@ -84,6 +84,10 @@
   background-color: var(--primaryAccent);
 }
 
+.transparent {
+  background: transparent;
+}
+
 .accent
 {
   color: var(--primaryAccent) !important;
@@ -283,6 +287,12 @@ footer {
 
 .blur2 {
   visibility: hidden;
+}
+
+@media (min-width: 300px) {
+  .adminBody {
+    margin-top: calc(15vh + 2.5em);
+  }
 }
 
 @media (min-width: 750px) {

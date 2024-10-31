@@ -4,6 +4,8 @@ import { GenerateUUID } from "../lib/utils";
 import { AppError } from "../lib/AppError";
 import { CreateReviewCategory } from "./reviewController";
 import { CreateGiftcardPrefix } from "./giftcardPrefixController";
+import { GetSessionFromCookies } from "../lib/session";
+import { GetUserFromMap } from "../services/userCache";
 
 export async function FindCategoryById(id)
 {
@@ -35,20 +37,80 @@ export async function FindCategoryByName(name, includeInactive)
     if(!name)
         return { success: false, message: "The name field is empty", status: 401 };
     
+    const session = await GetSessionFromCookies();
+    const user = await GetUserFromMap(session.userId);
+    const isAdmin = user.isAdmin;
+    let reviewSearchParams = { show: true };
+    if(isAdmin)
+        reviewSearchParams = {};
+
     try {
         const category = await prisma.productCategory.findUnique({
             where:{
                 name,
-                ...(includeInactive ? {} : { isActive: true })
+            },
+            select: {
+                id: true,
+                type: true,
+                name: true,
+                displayName: true,
+                icon: true,
+                region: true,
+                allowMultiple: true,
+                notes: true,
+                description: true,
+                guide: true,
+                isActive: true,
+                products: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+                reviews: {
+                    select: {
+                        totalExcellent: true,
+                        totalGood: true,
+                        totalDecent: true,
+                        totalBad: true,
+                        totalTerrible: true,
+                        totalReviews: true,
+                        reviews: {
+                            where: reviewSearchParams,
+                            select: {
+                                id: true,
+                                stars: true,
+                                notes: true,
+                                createdAt: true,
+                                show: true,
+                                user: {
+                                    select: {
+                                        username: true,
+                                        avatar: true,
+                                    }
+                                }
+                            },
+                            take: 10,
+                        }
+                    }
+                }
             }
         })
 
         if(!category)
-            throw new AppError("There are no ACTIVE categories with that name", 404);
+            throw new AppError("There are no products with that name", 400);
         
+        if(!includeInactive && !category.isActive)
+            throw new AppError("There are no products with that name", 400, "This product exist but is not activated");
+
+        category.products = category.products.map((product) => ({
+            ...product,
+            price: product.price.toString(),
+            salePrice: product.salePrice.toString(),
+            usdValue: product.usdValue.toString(),
+        }));
+
         return { success: true, category}
     } catch (error) {
-
         console.log(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
     }
@@ -65,7 +127,8 @@ export async function FindCategoryWhichIncludesValue(value, type)
                 },
                 type: {
                     contains: type,
-                }
+                },
+                isActive: true,
             },
         })
         
@@ -110,6 +173,11 @@ export async function UpsertCategory(id, type, poster, productName, displayName,
                     notes,
                     description,
                     guide,
+                    reviews: {
+                        create: {
+                            
+                        }
+                    }
                 }
             });
             
@@ -128,10 +196,6 @@ export async function UpsertCategory(id, type, poster, productName, displayName,
                     if(!prefixResults.success)
                         throw new AppError(prefixResults.message, prefixResults.status);
                 }
-                
-                const reviewResults = await CreateReviewCategory(category.id, prismaClient);
-                if(!reviewResults.success)
-                    throw new AppError(reviewResults.simpleMessage, reviewResults.status);
             }
         });
 
@@ -139,5 +203,27 @@ export async function UpsertCategory(id, type, poster, productName, displayName,
     } catch (error) {
         console.error(error);
         return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };
+    }
+}
+
+export async function IsCategoryAGiftcard(categoryName)
+{
+    try {
+        if(!categoryName)
+            throw new AppError("Category not found", 400, "No name was submitted when checking if category is a giftcard");
+
+        const category = await prisma.productCategory.findUnique({
+            where: {
+                name: categoryName,
+            }
+        })
+        
+        if(!category)
+            throw new AppError("Category not found", 400);
+        
+        return category.type === "giftcard";
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: error.simpleMessage || "Unexpected Error", error: error, status: error.status || 500 };   
     }
 }

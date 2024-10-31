@@ -1,7 +1,14 @@
 import React from 'react'
 import styles from '@/public/css/DropdownMenu.module.css'
 
-function DropdownMenu({ children, defaultVal="", name="", label="", callback }) {
+function DropdownMenu({ 
+    children, 
+    defaultVal="", 
+    name="", 
+    label="", 
+    callback ,
+    fullWidth=false,
+  }) {
 
   function OnChange(e)
   {
@@ -9,7 +16,7 @@ function DropdownMenu({ children, defaultVal="", name="", label="", callback }) 
       callback(e.currentTarget.value);
   }
   return (
-    <label className={styles.label}>
+    <label className={`${styles.label} ${fullWidth ? "w-full" : ""}`}>
         <span>{label}</span>
         <select className={styles.dropdownMenu} name={name} defaultValue={defaultVal} onChange={OnChange}>
             {children}

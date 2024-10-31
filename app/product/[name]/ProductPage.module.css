@@ -269,10 +269,36 @@
     flex-direction: column;
     gap: 1.5em;
     border-radius: 20px;
+    position: relative;
+}
+
+.informationTabs {
+    display: flex;
+    background-color: #30383b73;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.tab {
+    padding: .75em 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .9em;
+    cursor: pointer;
+}
+
+.desc {
+    border-top-left-radius: 7px;
+}
+
+.activeTab {
+    background: var(--navBackground);
+    color: var(--primaryAccent);
 }
 
 .productDescriptionWrp {
     padding: 2em 0;
+    background-color: var(--navBackground);
 }
 
 .productDescription {
@@ -400,11 +426,19 @@
     font-weight: bolder;
     padding-left: .5em;
     font-size: 1.3em;
+    color: var(--primaryAccent);
 }
 
 .review {
     display: flex;
     justify-content: space-between;
+    gap: 1em;
+}
+
+.outerSeparator {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .reviewSeparator {
@@ -432,7 +466,7 @@
 }
 
 .reviewComment {
-    font-size: .86em;
+    font-size: 1em;
 }
 
 .dateWrp {
@@ -476,6 +510,21 @@
 
 .ratingStars {
     display: flex;
+}
+
+.reviewActions {
+    display: grid;
+    justify-content: space-between;
+    height: 90%;
+    margin: auto 0;
+}
+
+.reviewEdit:hover {
+    color: var(--primaryAccent);
+}
+
+.reviewEdit:focus {
+    color: var(--primaryAccent);
 }
 
 .submitWrp {

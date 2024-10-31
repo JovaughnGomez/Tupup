@@ -13,7 +13,11 @@ const InputBox = ({
     defaultVal,
     inputClasses="",
     valueFill="",
-    autoComplete="false", }) => {
+    autoComplete="false",
+    lowercase=false, 
+    onChange,
+    rounded = true,
+  }) => {
 
   function OnChange(e)
   {
@@ -34,13 +38,19 @@ const InputBox = ({
       // else if(value.length > 8 && value.length < 12)
       //   newValue = `(${value.substring(0, 3)}) ${value.substring(3, 7)}-${value.substring(7, value.length)}`
 
+      if(lowercase)
+        newValue = newValue.toLowerCase();
+
       e.target.value = newValue;
     }
+
+    if(onChange)
+      onChange(e.currentTarget.value);
   }
 
   return (
     <div className={styles.input_wrp}>
-        <label className={`${styles.label}`}>
+        <label className={`${styles.label} ${rounded ? "roundedBorders" : "rectangularBorders"}`}>
           { label.length > 0 &&
             <span>{label}</span>
           }

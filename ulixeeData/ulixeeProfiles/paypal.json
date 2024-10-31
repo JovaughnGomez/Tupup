@@ -1,0 +1,364 @@
+{
+  "cookies": [
+    {
+      "name": "_GRECAPTCHA",
+      "value": "09ANOXeZwg67SO5qz8GkdvlK8jIjDFXQgQuK33e1gVTZXRqd8Hl5QwMv7p8hjxIGE9NSEMrQPUy-m7QLtrZI9HarM",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-04-26T15:25:46.128Z",
+      "httpOnly": true,
+      "path": "/recaptcha",
+      "domain": "www.recaptcha.net"
+    },
+    {
+      "name": "enforce_policy",
+      "value": "ccpa",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-28T15:25:51.341Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "cookie_check",
+      "value": "yes",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:42.588Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "d_id",
+      "value": "839f14262d714902a971a12438c122e21730129142225",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:42.588Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "LANG",
+      "value": "en_US%3BUS",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2024-10-29T00:11:47.341Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "nsid",
+      "value": "s%3AzJez_-bWQGxF-0qJllBL_aeiSK_b6dx_.BOlgs8Jv935HeMScDg1B2nFwSwTNYwepTUNbjhiBPoE",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": true,
+      "path": "/",
+      "domain": "www.paypal.com"
+    },
+    {
+      "name": "l7_az",
+      "value": "dcg15.slc",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2024-10-28T15:55:51.387Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "ts_c",
+      "value": "vr%3Dd3bba19d1920ad10a8bafb30ff36ca3e%26vt%3Dd3bba19d1920ad10a8bafb30ff36ca3d",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:51.388Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "TLTSID",
+      "value": "44155439259442352374406555092780",
+      "secure": true,
+      "sameSite": "Strict",
+      "sameParty": false,
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "TLTDID",
+      "value": "68311431458022159571788634961896",
+      "secure": false,
+      "sameSite": "Lax",
+      "sameParty": false,
+      "expires": "2025-10-28T15:25:44.301Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "rssk",
+      "value": "d%7DC9%409367%3D2%3D%3A%3DB%3C%3Exqx%3Ev9%7Fq~sm%3B%3F10",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2024-10-28T15:40:44.596Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "cookie_prefs",
+      "value": "T%3D0%2CP%3D0%2CF%3D0%2Ctype%3Dinitial",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-28T15:25:44.790Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "KHcl0EuY7AKSMgfvHl7J5E7hPtK",
+      "value": "9MFsYVraCYqfdZDWCH2VV3tWZC2bU9CHzW1nGqPERmHZHmpRkpQivRA39wbgfpkgdKAHanyq2wLG05Xh",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:44.963Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "sc_f",
+      "value": "I-tlfMRCnDmVgg71EZGd981jK63L9ZuvkngDK44maiSJNGZXPbcwxfS1Qns5HC8YOR6AEcQdI82KsfQwMTGpe9Tg038UwnObhdYd5W",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:44.990Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "c",
+      "value": "a9ab6223650e71431bbd",
+      "secure": false,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:45.530Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".stats.paypal.com"
+    },
+    {
+      "name": "fn_dt",
+      "value": "839f14262d714902a971a12438c122e2",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "tsrce",
+      "value": "unifiedloginnodeweb",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2024-10-31T15:25:49.839Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "x-pp-s",
+      "value": "eyJ0IjoiMTczMDEyOTE1MTA3MSIsImwiOiIwIiwibSI6IjAifQ",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "ts",
+      "value": "vreXpYrS%3D1824737151%26vteXpYrS%3D1730130951%26vr%3Dd3bba19d1920ad10a8bafb30ff36ca3e%26vt%3Dd3bba19d1920ad10a8bafb30ff36ca3d%26vtyp%3Dnew",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-12-02T15:25:51.388Z",
+      "httpOnly": true,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "datadome",
+      "value": "QN0Ir2sAZnDA7UZPkCaWBeIr4CuGbX1plO3jsl1LtFBecyofVtEfo5iolFjo38txZFtyn30AXiSKyNCRMCp5e0rgOoXrKF4FHRjN2F0SevskTf3BSap1oBEUuEiwzUYW",
+      "secure": true,
+      "sameSite": "Lax",
+      "sameParty": false,
+      "expires": "2024-11-27T15:25:53.690Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".paypal.com"
+    },
+    {
+      "name": "_dd_s",
+      "value": "",
+      "secure": false,
+      "sameSite": "Strict",
+      "sameParty": false,
+      "expires": "2024-10-28T15:40:54.000Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": "www.paypal.com"
+    },
+    {
+      "name": "tcs",
+      "value": "main%3Aunifiedlogin%3Asplitlogin%3A%3Aemail%7CbtnLogin",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": false,
+      "path": "/",
+      "domain": "www.paypal.com"
+    }
+  ],
+  "storage": {
+    "https://www.paypal.com": {
+      "indexedDB": [],
+      "localStorage": [
+        [
+          "_vid_lr",
+          "[[\"R9FwALvHjEip\",\"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\"]]"
+        ],
+        [
+          "pa_feature_mod",
+          "37"
+        ],
+        [
+          "sc-lst",
+          "I-tlfMRCnDmVgg71EZGd981jK63L9ZuvkngDK44maiSJNGZXPbcwxfS1Qns5HC8YOR6AEcQdI82KsfQwMTGpe9Tg038UwnObhdYd5W"
+        ],
+        [
+          "ulData",
+          "{\"startTime\":1730129149125,\"startPerf\":7268,\"ts\":1730129150120}"
+        ],
+        [
+          "vf",
+          "9MFsYVraCYqfdZDWCH2VV3tWZC2bU9CHzW1nGqPERmHZHmpRkpQivRA39wbgfpkgdKAHanyq2wLG05Xh"
+        ]
+      ],
+      "sessionStorage": [
+        [
+          "__atomic-event-state",
+          "{\"uiState\":\"waiting\",\"domain\":\"UL\",\"events\":[],\"intent\":\"submit_password\",\"intentType\":\"submit\",\"task\":\"login\",\"flow\":\"missing\",\"path\":\"/signin\",\"timeStamp\":12636,\"timeOrigin\":1730129141854.7,\"viewName\":\"passwordLogin\"}"
+        ],
+        [
+          "4g3-fd7gc5k5-CMID",
+          "ODM5ZjE0MjYyZDcxNDkwMmE5NzFhMTI0MzhjMTIyZTI="
+        ],
+        [
+          "tl.PU",
+          "https://www.paypal.com/signin"
+        ],
+        [
+          "__atomic-event-state-history",
+          "[{\"uiState\":\"waiting\",\"domain\":\"identity_UL\",\"events\":[],\"intent\":\"FIRST_PAGE_LOAD\",\"intentType\":\"render\",\"task\":\"login\",\"flow\":\"login\",\"path\":\"\",\"timeStamp\":0,\"timeOrigin\":1730129141854.7,\"interactionStartTime\":0,\"viewName\":\"emailLogin\"},{\"uiState\":\"waiting\",\"domain\":\"identity_UL\",\"events\":[],\"intent\":\"FIRST_PAGE_LOAD\",\"intentType\":\"render\",\"task\":\"login\",\"flow\":\"login\",\"path\":\"\",\"timeStamp\":0,\"timeOrigin\":1730129141854.7,\"interactionStartTime\":0,\"viewName\":\"emailLogin\"},{\"domain\":\"identity_UL\",\"timeStamp\":2467,\"timeOrigin\":1730129141854.7,\"duration\":2467,\"path\":\"/signin\",\"status\":\"emailLogin\",\"viewName\":\"emailLogin\",\"uiState\":\"ready\",\"task\":\"first_page_load\",\"flow\":\"login\",\"events\":[]}]"
+        ],
+        [
+          "isInvisibleBanner",
+          "true"
+        ],
+        [
+          "tl.TR",
+          "unload"
+        ],
+        [
+          "tltTabId",
+          "ET6A"
+        ],
+        [
+          "4g3-fd7gc5k5",
+          "true"
+        ],
+        [
+          "ulData",
+          "{\"privateCredentialSubmitPerf\":12635.300000011921}"
+        ],
+        [
+          "__atomic-event-stream",
+          "[{\"name\":\"init\",\"type\":\"init\",\"payload\":{}},{\"name\":\"markUIReady\",\"type\":\"markUIReady\",\"payload\":{\"interaction\":\"render\",\"task\":\"first_page_load\",\"domain\":\"identity_UL\",\"viewName\":\"emailLogin\",\"status\":\"emailLogin\"}}]"
+        ]
+      ]
+    },
+    "https://www.paypalobjects.com": {
+      "indexedDB": [],
+      "localStorage": [],
+      "sessionStorage": []
+    },
+    "https://www.recaptcha.net": {
+      "indexedDB": [],
+      "localStorage": [],
+      "sessionStorage": []
+    }
+  },
+  "locale": "en-US,en",
+  "timezoneId": "America/La_Paz",
+  "userAgent": {
+    "browserName": "chrome",
+    "browserVersion": {
+      "major": "128",
+      "minor": "0",
+      "build": "6613",
+      "patch": "85"
+    },
+    "operatingSystemName": "mac-os",
+    "operatingSystemVersion": {
+      "major": "12",
+      "patch": "1"
+    },
+    "uaClientHintsPlatformVersion": "12.6.1",
+    "string": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+  },
+  "userAgentString": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+  "deviceProfile": {
+    "deviceMemory": 8,
+    "rtt": 50,
+    "hardwareConcurrency": 4,
+    "videoDevice": {
+      "deviceId": "6896445f212b98188258a92b0d6c047f3585e32037a982fe034701a9f1823625",
+      "groupId": "39eb2f7bb4727ec66e941802d96bef884ade8ebf6ca4d648c6b01b4f2f3232f7"
+    },
+    "maxHeapSize": 4294705152,
+    "deviceStorageTib": 0.5,
+    "webGlParameters": {
+      "37445": "Intel Inc.",
+      "37446": "Intel Iris OpenGL Engine"
+    },
+    "viewport": {
+      "positionX": 8,
+      "positionY": 53,
+      "screenWidth": 1440,
+      "screenHeight": 900,
+      "width": 1424,
+      "height": 732,
+      "deviceScaleFactor": 1,
+      "isDefault": true
+    }
+  }
+}

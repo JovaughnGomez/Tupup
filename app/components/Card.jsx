@@ -2,26 +2,34 @@
 import React, { useState } from 'react'
 import styles from '@/public/css/Card.module.css'
 import Image from 'next/image'
-import RegularButton from './RegularButton';
-import { ConvertDateToString } from '../lib/clientUtils';
+import { ConvertDateToString } from '@/app/lib/clientUtils';
 
-function Card({ card }) {
+function Card({ order }) {
     const [show, setShow] = useState(false)
+    const [visiblePins, setVisiblePins] = useState({})
 
-    const dateAsString = ConvertDateToString(card.deliveredAt);
-    const product = card.order.product;
-    const code = card.code.split(":")[1];
+    const dateAsString = ConvertDateToString(order.completedAt, true);
+    const product = order.product;
 
     function TogglePinVisibility()
     {
         setShow(!show);
+    }
+
+    function ToggleVisiblePin(id)
+    {
+        setVisiblePins((prev) => ({
+            ...prev,
+            [id]: !prev[id], // Toggle visibility for the specific giftcard ID
+          }));
+
     }
     
     return (
         <li className={`border ${styles.cardWrp}`}>
             <div className={styles.cardHeader}>
                 <div className={styles.orderDetails}>
-                    <span className={`accent ${styles.orderId}`}>{card.order.id}</span>
+                    <span className={`accent ${styles.orderId}`}>{order.id}</span>
                     <span className={styles.deliveryTime}>{dateAsString}</span>
                 </div>
             </div>
@@ -42,18 +50,22 @@ function Card({ card }) {
                         <span>{product.productCategory.displayName}</span>
                     </div>
                 </div>
-                <RegularButton classes={styles.productBtn} querySelector={styles.value} classToToggle={styles.visibility} callback={TogglePinVisibility}/>
    
             </div>
-            <div className={styles.cardInfo}>
-                {/* <div>
-                    <h3>Serial:</h3>
-                    <span className={`${styles.visibility} ${styles.value}`}> {card.serial} </span>
-                </div> */}
-                <div>
-                    <h3>Pin: </h3>
-                    <span className={`${!show ? styles.visibility : ""} ${styles.value}`}> {code} </span>
-                </div>
+            <div className={styles.cardList}>
+                {order.giftcards.map((giftcard, index) => 
+                    <div key={index} className={styles.cardInfo}>
+                        {/* <div>
+                            <h3>Serial:</h3>
+                            <span className={`${styles.visibility} ${styles.value}`}> {card.serial} </span>
+                            </div> */}
+                            <div className={styles.cardInnerPin}>
+                                <h3>Pin: </h3>
+                                <span className={`${visiblePins[giftcard.code] ? "" : styles.hide } ${styles.value}`}> {giftcard.code.split(":")[1]} </span>
+                            </div>
+                            <span className={styles.showBtn} onClick={(e) => ToggleVisiblePin(giftcard.code)}>Show</span>
+                    </div>
+                )}
             </div>
         </li>
     )

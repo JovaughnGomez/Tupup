@@ -73,7 +73,7 @@ function page() {
 
           <div className={styles.pwd_reset}>
             <a href="/register"><p className={styles.signup}>Don't have an account? Sign up <span className='accent'>here</span></p></a>
-            <a href="forgotpassword" className="accent"><p className="accent">Forgot password?</p></a>
+            <a href="/resetpassword" className="accent"><p className="accent">Forgot password?</p></a>
           </div>
         </form>
         <div className={styles.oAuthContainer}>

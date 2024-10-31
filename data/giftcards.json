@@ -2,64 +2,46 @@
     {
         "name": "Playstation Network Card",
         "region":"United States",  
-        "icon": "/img/icons/psn.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/psn.webp"
     },
     {
-        "name": "Xbox Live Gift Card",
+        "name": "EA",
         "region":"United States",   
-        "icon": "/img/icons/xbox.webp",
-        "description":"",   
-        "guide":""   
-    },
-    {
-        "name": "Steam Wallet Code",
-        "region":"United States",   
-        "icon": "/img/icons/steam.webp",
-        "description":"",   
-        "guide":""   
-    },
-    {
-        "name": "Nintendo Gift Card",
-        "region":"United States",   
-        "icon": "/img/icons/nintendo.webp",
-        "description":"",   
-        "guide":""   
-    },
-    {
-        "name": "Itunes Gift Card",
-        "region":"United States",   
-        "icon": "/img/icons/itunes.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/ea.webp"
     },
     {
         "name": "Roblox Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/roblox.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/roblox.webp"
     },
     {
-        "name": "Amazon",
+        "name": "Itunes Gift Card",
         "region":"United States",   
-        "icon": "/img/icons/amazon.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/itunes.webp"
     },
     {
-        "name": "Spotify",
+        "name": "Steam Wallet Code",
         "region":"United States",   
-        "icon": "/img/icons/spotify.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/steam.webp"
+    },
+    {
+        "name": "Nintendo Gift Card",
+        "region":"United States",   
+        "icon": "/img/icons/nintendo.webp"
+    },
+    {
+        "name": "Xbox Live Gift Card",
+        "region":"United States",   
+        "icon": "/img/icons/xbox.webp"
+    },
+    {
+        "name": "Google Play",
+        "region":"United States",   
+        "icon": "/img/icons/googleplay.webp"
     },
     {
         "name": "Netflix",
         "region":"United States",   
-        "icon": "/img/icons/netflix.webp",
-        "description":"",   
-        "guide":""   
+        "icon": "/img/icons/netflix.webp"
     }
 ]

@@ -1,9 +1,10 @@
 import React from 'react'
+import Manage from './Manage'
 
 function page() {
   return (
     <div>
-        Purchase successful
+        <Manage />
     </div>
   )
 }

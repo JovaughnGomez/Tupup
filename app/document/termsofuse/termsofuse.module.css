@@ -1,0 +1,73 @@
+.contentWrapper {
+    width: 92%;
+    margin: 0 auto;
+    max-width: 700px;
+    margin-bottom: 8em;
+}
+
+.contentWrapper h1 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+.contentWrapper h2 {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: .25em;
+}
+
+.contentWrapper h3 {
+    font-weight: bold;
+    font-size: .9em;
+}
+
+.contentWrapper p, .indent {
+    font-size: .8em;
+    margin: .5em .2em;
+}
+
+.indentedWrappers, .indentedWrappers2 {
+    display: flex;
+    margin: .5em 0;
+    margin-left: 1em;
+}
+
+.indentedWrappers2 {
+    margin-left: 2em;
+}
+
+/* .contentWrapper p {
+    margin: .5em 0;
+}
+
+.indentedWrappers1 p, .indentedWrappers2 p {
+    margin: 0;
+} */
+
+.inner {
+    display: flex;
+}
+
+.section {
+    margin: 1em 0;
+}
+
+@media (min-width: 1200px) {
+    .contentWrapper {
+        max-width: 1000px;
+    }
+
+    .contentWrapper h1 {
+        font-size: 1.8em;
+    }
+    
+    .contentWrapper h2 {
+        font-size: 1.3em;
+    } 
+
+    .contentWrapper p, .indent {
+        font-size: 1em;
+    }
+    
+}

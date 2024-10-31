@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE `product` MODIFY `price` DECIMAL(65, 30) NOT NULL,
+    MODIFY `salePrice` DECIMAL(65, 30) NOT NULL,
+    MODIFY `usdValue` DECIMAL(65, 30) NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE `transaction` MODIFY `value` DECIMAL(65, 30) NOT NULL DEFAULT 0,
+    MODIFY `balanceAfter` DECIMAL(65, 30) NOT NULL DEFAULT 0,
+    MODIFY `balanceBefore` DECIMAL(65, 30) NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE `user` MODIFY `wallet` DECIMAL(65, 30) NOT NULL DEFAULT 0,
+    MODIFY `credits` DECIMAL(65, 30) NOT NULL DEFAULT 0;

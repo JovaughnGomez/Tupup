@@ -72,6 +72,7 @@ export async function GetProfileDTO(userId)
 
     let userData = userId ? await GetUserFromId(userId) : viewer;
     return {
+        id: CanSeeUsername(viewer, userData) ? userData.id : null,
         username: CanSeeUsername(viewer, userData) ? userData.username : null,
         email: await CanSeeEmail(viewer, userData) ? userData.email : null,
         joined: await CanSeeDateJoined(viewer, userData) ? userData.joined : null,

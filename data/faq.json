@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Our Store",
+        "questions": [
+            {
+                "question": "What are our opening hours?",
+                "answer": "One of our main goals at Game Haven is to offer our services 24/7, 365 days a year. To achieve this, our services will be available at all times except for when the website is actively under maintenance. In short, we will always almost be open."
+            }
+        ]
+    },
+    {
+        "title": "WALLET",
+        "questions": [
+            {
+                "question":"How do I fund my wallet?",
+                "answer":"Users can fund their wallets on the [Top-Up](http://localhost:3000/member/topup) page. There, you can select your phone-card provider and enter the voucher number."
+            },
+            {
+                "question":"What is VAT?",
+                "answer":"Vat or Value-Added Tax, is a tax applied to goods and services by the government as a way to generate revenue."
+            },
+            {
+                "question":"What are VAT inclusive phone-cards?",
+                "answer":"**Vat or Value-Added Tax**, is a tax applied to goods and services by the government as a way to generate revenue.  \n VAT inclusive phone-cards are those sold without the **prior** deduction of VAT."
+            },
+            {
+                "question":"What's the actual value of my phone-card?",
+                "answer":"Here's a list of phone-card values. Alternatively, you can calculate the actual value of your phone-card on the [My Wallet](http://localhost:3000/member/topup) page.  \n1. 15 Phone Card = TTD $13.00  \n1. 25 Phone Card = TTD $22.00  \n1. 30 Phone Card = TTD $26.00  \n1. 50 Phone Card = TTD $44.00  \n1. 60 Phone Card = TTD $53.00  \n1. 65 Phone Card = TTD $57.00  \n1. 100 Phone Card = TTD $88.00  \n1. 120 Phone Card = TTD $106.00  \n1. 300 Phone Card = TTD $266.00"
+            }
+        ]
+    },
+    {
+        "title": "Orders",
+        "questions": [
+            {
+                "question":"How do I place an order?",
+                "answer":"\n 1. Top Up your GameHaven wallet at [My Wallet](http://localhost:3000/member/topup).  \n2. Select the [Giftcard](http://localhost:3000/cards) or [Direct Top-Up](http://localhost:3000/direct-topup) of your choice.  \n3. Choose the item you wish to buy.  \n4. Enter your detals if necessary. (e.g player_id)  \n5. Click 'Buy Now'.  \n6. Review the details of your order and click 'Pay Now' once satisfied.  \n7. Lastly, agree to the terms and finalize your payment by clicking the 'Pay Now' button"
+            },
+            {
+                "question":"How long until I receive my order?",
+                "answer":"Giftcards are instantly delivered to your account on the [My Cards](http://localhost:3000/member/cards) page.  \nDirect Top-Ups are usually processed on our platform within 5 minutes. Once the transactions are processed on our end, the respective game platform takes over to top-up your account. Typically, this is a quick process but if there is any delay, it would be on their end."
+            },
+            {
+                "question":"What does each order status mean?",
+                "answer":"- **Waiting**: Your order is still awaiting payment.  \n- **Processing**: Your order is being processed.  \n- **Completed** Your order has been completed."
+            },
+            {
+                "question":"Where can I view a history of my orders?",
+                "answer":"You can view all past and present orders at the [My Orders](http://localhost:3000/member/orders) page."
+            },
+            {
+                "question":"Where can I find the giftcards I've bought?",
+                "answer":"You can view all the giftcards you've purchased at the [My Cards](http://localhost:3000/member/cards) page."
+            }
+        ]
+    }
+]

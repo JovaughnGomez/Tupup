@@ -14,7 +14,7 @@ const aliasDomains = {
 
 export async function IsAliasEmail(email) {
     const [localPart, domain] = email.split('@');
-    const cleanDomain = domain.toLowerCase();
+    const cleanDomain = domain ? domain.toLowerCase() : "";
     let cleanLocalPart = email;
     let returnObject = {};
 
@@ -42,7 +42,7 @@ export async function IsAliasEmail(email) {
     }
     
     returnObject.baseEmail = cleanLocalPart;
-    return returnObject;  // No alias detected
+    return returnObject;
 }
 
 export async function GetUsernameFromGmail(email)
@@ -59,7 +59,6 @@ export async function CheckIfBaseEmailExist(baseEmail)
             }
         })
 
-        console.log("Returning User");
         return user;
     } catch (error) {
         return null;

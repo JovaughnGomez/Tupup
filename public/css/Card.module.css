@@ -35,19 +35,29 @@
     font-weight: bold;
 }
 
+.cardList {
+    border-bottom: 2px solid var(--border-bottom);
+}
+
 .cardInfo {
     padding: .4em;
     border-top: 2px solid var(--border-bottom);
-    border-bottom: 2px solid var(--border-bottom);
+    width: 100%;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
 }
 
-.cardInfo>div {
+/* .cardInfo>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+} */
+
+.cardInnerPin {
     display: flex;
     gap: .3em;
-    align-items: center;
 }
 
 .cardInfo h3 {
@@ -67,8 +77,19 @@
     /* DO NOT REMOVE */
 }
 
-.visibility {
+.hide {
     visibility: hidden;
+}
+
+.showBtn {
+    border-radius: var(--borderRadius);
+    background-color: var(--primaryAccent);
+    padding: .3em 1em;
+    cursor: pointer;
+}
+
+.showBtn:hover {
+    background: #00b3ff80;
 }
 
 @media (min-width:410px) {

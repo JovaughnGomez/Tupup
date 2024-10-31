@@ -44,5 +44,5 @@ export async function middleware(request) {
  
 export const config = {
     // Does not run on the following paths:
-    matcher: ['/((?!_next/static|css|img|js|login|register|topups|product|cards|api/auth|$).*)']
+    matcher: ['/((?!_next/static|css|img|js|login|register|resetpassword|topups|product|cards|api/auth|$).*)']
 }

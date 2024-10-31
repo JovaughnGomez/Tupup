@@ -1,0 +1,136 @@
+{
+  "cookies": [
+    {
+      "name": "source",
+      "value": "pc",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "region",
+      "value": "SA",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-26T23:50:42.784Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "mspid2",
+      "value": "1ea12d9695807055016394a5093dd898",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-10-26T23:50:35.056Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "datadome",
+      "value": "yXSyGV_BbUyIKUPMDnqR_fIY05G_i1Fg~e0dVBqA14jQMIeJ6k4COMDOw~928xOoS44OS59gYPdF4orybw58Mj5ucCNUuKXrX4w7N0zDA_mcgV~fkrk15AUldz1eBh8t",
+      "secure": true,
+      "sameSite": "Lax",
+      "sameParty": false,
+      "expires": "2025-10-26T23:50:35.347Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".garena.com"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.2035434646.1729986636",
+      "secure": false,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-11-30T23:50:35.555Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".garena.com"
+    },
+    {
+      "name": "session_key",
+      "value": "3sl1deqxxpdcltlww8tnlmadwlwhhc09",
+      "secure": true,
+      "sameSite": "None",
+      "sameParty": false,
+      "httpOnly": true,
+      "path": "/",
+      "domain": "pagostore.garena.com"
+    },
+    {
+      "name": "_ga_TCKCH5ZJG0",
+      "value": "GS1.1.1729986635.1.1.1729986647.0.0.0",
+      "secure": false,
+      "sameSite": "None",
+      "sameParty": false,
+      "expires": "2025-11-30T23:50:47.938Z",
+      "httpOnly": false,
+      "path": "/",
+      "domain": ".garena.com"
+    }
+  ],
+  "storage": {
+    "https://pagostore.garena.com": {
+      "indexedDB": [],
+      "localStorage": [
+        [
+          "welcomed_at",
+          "1729986644"
+        ]
+      ],
+      "sessionStorage": []
+    }
+  },
+  "locale": "en-US,en",
+  "timezoneId": "America/La_Paz",
+  "userAgent": {
+    "browserName": "chrome",
+    "browserVersion": {
+      "major": "128",
+      "minor": "0",
+      "build": "6613",
+      "patch": "85"
+    },
+    "operatingSystemName": "mac-os",
+    "operatingSystemVersion": {
+      "major": "10",
+      "minor": "15",
+      "patch": "1"
+    },
+    "uaClientHintsPlatformVersion": "10.15.2",
+    "string": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+  },
+  "userAgentString": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+  "deviceProfile": {
+    "deviceMemory": 2,
+    "rtt": 100,
+    "hardwareConcurrency": 12,
+    "videoDevice": {
+      "deviceId": "f5975e9ea87572b7d4e27e44adc84224dc3732fc15f77c06cac6e66076fd7c4b",
+      "groupId": "201fccb70a42f127d7ff9f7f5d982856e2b8a58fee7f638d5df0f20911a9cfb1"
+    },
+    "maxHeapSize": 1620000000,
+    "deviceStorageTib": 1,
+    "webGlParameters": {
+      "37445": "Intel Inc.",
+      "37446": "Intel Iris OpenGL Engine"
+    },
+    "viewport": {
+      "positionX": 2,
+      "positionY": 35,
+      "screenWidth": 1440,
+      "screenHeight": 900,
+      "width": 1424,
+      "height": 732,
+      "deviceScaleFactor": 1,
+      "isDefault": true
+    }
+  }
+}

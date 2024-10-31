@@ -1,7 +1,6 @@
 import { UpsertCategory } from "@/app/controllers/categoryController";
 import { ToggleActivationOnManyProducts } from "@/app/controllers/productController";
 import { GetSessionFromCookies, ValidateCSRFToken } from "@/app/lib/session";
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {

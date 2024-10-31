@@ -4,7 +4,7 @@
     grid-template-columns: 1fr;
     gap: 1.5em;    
     margin: auto;
-    width: 480px;
+    max-width: 480px;
 }
 
 .heading {
@@ -19,7 +19,8 @@
 }
 
 .product {
-
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .title {
@@ -72,6 +73,11 @@
     gap: 1.5em;
 }
 
+.paymentInfo {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 .paymentDetails {
     margin-top: 1em;
     font-size: .8em;
@@ -107,6 +113,10 @@
     cursor: pointer;
 }
 
+/* .contentInner {
+    width: 100%;
+} */
+
 @media (min-width:1000px) {
     .contentWrp {
         width: 100%;
@@ -119,8 +129,16 @@
         gap: 1.5em;
     }
 
+    .product {
+        border-radius: 10px;
+    }
+
     .paymentWrp {
         min-width: 360px;
+    }
+
+    .paymentInfo {
+        border-radius: 10px;        
     }
 
     .productCost {

@@ -1,0 +1,64 @@
+.outerWrp {
+
+}
+
+.wrapper {
+    margin: 0 auto;
+    margin-top: 2.5em;
+    min-width: 319px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.header {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    padding-bottom: 1.5em;
+}
+
+.informationWrp {
+    border-bottom: 1px solid rgba(124, 124, 124, 0.616);
+    padding-bottom: .6em;
+}
+
+.row1 {
+    padding: 1.2em 0;
+    border-top: 1px solid rgba(124, 124, 124, 0.616);
+    border-bottom: 1px solid rgba(124, 124, 124, 0.616);
+}
+
+.row, .row1 {
+    display: flex;
+    justify-content: space-between;
+    font-size: .9em;
+}
+
+.row {
+    margin: .6em;
+}
+
+
+.infoValue {
+    text-align: end;
+}
+
+.additionalInfo {
+    margin-top: .5em;
+}
+
+.additionalInfo p {
+    font-size: .8em;
+    text-align: center;
+}
+
+.giftcardWrp {
+    margin-top: 1em;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.backBtn {
+
+}
